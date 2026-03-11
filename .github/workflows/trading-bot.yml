@@ -1,8 +1,8 @@
-﻿name: Trading Bot
+name: Trading Bot
 
 on:
   schedule:
-    - cron: '0 * * * *'  # Setiap 1 jam
+    - cron: '0 */2 * * *'  # Setiap 1 jam
   workflow_dispatch:      # Bisa dijalankan manual
 
 jobs:
