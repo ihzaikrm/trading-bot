@@ -1,0 +1,34 @@
+﻿name: Trading Bot
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Setiap 1 jam
+  workflow_dispatch:      # Bisa dijalankan manual
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install httpx anthropic openai python-dotenv pandas numpy ta ccxt yfinance aiohttp requests
+
+      - name: Create .env
+        run: |
+          echo "QWEN_API_KEY=${{ secrets.QWEN_API_KEY }}" >> .env
+          echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env
+          echo "GROK_API_KEY=${{ secrets.GROK_API_KEY }}" >> .env
+          echo "DEEPSEEK_API_KEY=${{ secrets.DEEPSEEK_API_KEY }}" >> .env
+          echo "TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}" >> .env
+          echo "TELEGRAM_CHAT_ID=${{ secrets.TELEGRAM_CHAT_ID }}" >> .env
+          echo "TRADING_MODE=paper" >> .env
+
+      - name: Run bot
+        run: python bot.py
+        timeout-minutes: 10
