@@ -1,34 +1,42 @@
-name: Trading Bot
+name: AI Trading Bot
 
 on:
   schedule:
-    - cron: '0 */2 * * *'  # Setiap 1 jam
-  workflow_dispatch:      # Bisa dijalankan manual
+    - cron: '0 * * * *'  # Setiap jam
+  workflow_dispatch:       # Bisa trigger manual
 
 jobs:
   run-bot:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install httpx anthropic openai python-dotenv pandas numpy ta ccxt yfinance aiohttp requests
-
-      - name: Create .env
-        run: |
-          echo "QWEN_API_KEY=${{ secrets.QWEN_API_KEY }}" >> .env
-          echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env
-          echo "GROK_API_KEY=${{ secrets.GROK_API_KEY }}" >> .env
-          echo "DEEPSEEK_API_KEY=${{ secrets.DEEPSEEK_API_KEY }}" >> .env
-          echo "TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}" >> .env
-          echo "TELEGRAM_CHAT_ID=${{ secrets.TELEGRAM_CHAT_ID }}" >> .env
-          echo "TRADING_MODE=paper" >> .env
+        run: pip install ccxt pandas yfinance httpx python-dotenv requests
 
       - name: Run bot
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROK_API_KEY: ${{ secrets.GROK_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          QWEN_API_KEY: ${{ secrets.QWEN_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TRADING_MODE: paper
+          MAX_DAILY_LOSS_PCT: '3.0'
+          MAX_POSITION_SIZE_PCT: '5.0'
         run: python bot.py
-        timeout-minutes: 10
+
+      - name: Save trade logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: trade-logs
+          path: logs/

@@ -1,5 +1,13 @@
 {
-  "balance": 1000.0,
+  "balance": 666.6666666666667,
   "trades": [],
-  "positions": {}
+  "positions": {},
+  "shorts": {
+    "SPX": {
+      "entry_price": 6775.02,
+      "qty": 0.04920034676404399,
+      "amount": 333.3333333333333,
+      "time": "2026-03-11 21:51"
+    }
+  }
 }

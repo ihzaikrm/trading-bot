@@ -1,4 +1,4 @@
-import os
+﻿import os
 from dataclasses import dataclass
 from typing import Dict
 from dotenv import load_dotenv
@@ -48,14 +48,14 @@ LLM_CONFIGS: Dict[str, LLMConfig] = {
     ),
 
     "gemini": LLMConfig(
-        name="Llama 3.3 70B (Groq)",
-        api_key=os.getenv("GEMINI_API_KEY", ""),
-        model="llama-3.3-70b-versatile",
-        base_url="https://api.groq.com/openai/v1",
-        max_tokens=1024, temperature=0.3,
-        requests_per_minute=30,
-        role="trend_analyst", weight=0.20,
-    ),
+    name="Llama 3.3 70B (Groq)",
+    api_key=os.getenv("QWEN_API_KEY", ""),
+    model="meta-llama/llama-3.1-70b-instruct",
+    base_url="https://openrouter.ai/api/v1",
+    max_tokens=1024, temperature=0.3,
+    requests_per_minute=10,
+    role="news_analyst", weight=0.25,
+),
 
     "gpt": LLMConfig(
         name="GPT-4o-mini (OpenRouter)",
