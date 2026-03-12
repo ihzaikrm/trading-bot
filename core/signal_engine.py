@@ -3,6 +3,8 @@ import json, re
 from collections import Counter
 from .llm_clients import call_all_llms
 from .llm_performance import get_weights, add_prediction
+from .news_sentiment import get_news_sentiment, get_fear_greed
+from config.trading_params import USE_NEWS_SENTIMENT, USE_FEAR_GREED
 
 def mtf_bias(data):
     scores = []
@@ -45,6 +47,15 @@ def rule_based_signal(data):
 async def get_signal(asset_name, data, timestamp, perf):
     price = data["price"]
     change = data["change"]
+    
+    # Dapatkan news sentiment dan fear & greed
+    news = {}
+    fng = {}
+    if USE_NEWS_SENTIMENT:
+        news = get_news_sentiment(asset_name)
+    if USE_FEAR_GREED:
+        fng = get_fear_greed()
+    
     tf_lines = []
     for tf, label in [("1d", "Daily"), ("4h", "4-Hour"), ("1h", "1-Hour")]:
         if tf in data:
@@ -55,16 +66,24 @@ async def get_signal(asset_name, data, timestamp, perf):
             )
 
     bias = mtf_bias(data)
+    
+    # Tambahkan informasi sentimen ke prompt
+    extra_info = ""
+    if news:
+        extra_info += f"\nNews Sentiment: {news['sentiment']} (skor {news['score']}, {news['articles']} artikel)"
+    if fng:
+        extra_info += f"\nFear & Greed Index: {fng['value']} - {fng['classification']}"
+    
     prompt = (
         f"{asset_name} | Harga: {price} | 24h: {change}%\n"
-        f"MTF Bias: {bias}\n"
+        f"MTF Bias: {bias}{extra_info}\n"
         + "\n".join(tf_lines) + "\n\n"
         'Balas JSON: {"signal":"BUY/SELL/SHORT/COVER/HOLD","confidence":0.5,"reason":"singkat"}\n'
         "BUY=buka long, SELL=tutup long, SHORT=buka short, COVER=tutup short, HOLD=tidak ada aksi"
     )
 
     results = await call_all_llms(
-        "Analis trading profesional multi-timeframe. Gunakan bias MTF untuk keputusan. Balas JSON saja.", prompt)
+        "Analis trading profesional multi-timeframe. Gunakan bias MTF dan sentimen untuk keputusan. Balas JSON saja.", prompt)
 
     weights = get_weights(perf)
     score = {"BUY":0, "SELL":0, "SHORT":0, "COVER":0, "HOLD":0}
