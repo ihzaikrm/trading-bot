@@ -6,14 +6,18 @@ from datetime import datetime, timedelta
 
 def load_crypto_data(symbol, start_date, end_date, timeframe='1d'):
     """
-    Ambil data historis crypto dari Binance via ccxt
+    Ambil data historis crypto dari Gate.io via ccxt
     """
-    exchange = ccxt.binance()
+    exchange = ccxt.gate()  # pakai gate, lebih stabil
     since = exchange.parse8601(start_date + 'T00:00:00Z')
     end = exchange.parse8601(end_date + 'T00:00:00Z')
     all_ohlcv = []
     while since < end:
-        ohlcv = exchange.fetch_ohlcv(symbol, timeframe, since=since, limit=1000)
+        try:
+            ohlcv = exchange.fetch_ohlcv(symbol, timeframe, since=since, limit=1000)
+        except Exception as e:
+            print(f"Error fetch: {e}")
+            break
         if len(ohlcv) == 0:
             break
         all_ohlcv += ohlcv

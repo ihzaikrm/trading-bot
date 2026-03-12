@@ -9,8 +9,8 @@ def main():
     parser.add_argument('--symbol', type=str, default='BTC/USDT', help='Symbol to backtest')
     parser.add_argument('--start', type=str, default='2023-01-01', help='Start date YYYY-MM-DD')
     parser.add_argument('--end', type=str, default='2024-01-01', help='End date YYYY-MM-DD')
-    parser.add_argument('--sl', type=float, default=2.0, help='Stop loss %')
-    parser.add_argument('--tp', type=float, default=5.0, help='Take profit %')
+    parser.add_argument('--sl', type=float, default=2.0, help='Stop loss (persen)')
+    parser.add_argument('--tp', type=float, default=5.0, help='Take profit (persen)')
     parser.add_argument('--leverage', type=int, default=1, help='Leverage')
     args = parser.parse_args()
 
