@@ -8,14 +8,14 @@ load_dotenv()
 
 # Import dari modul baru
 from config.assets import ASSETS
-from config.trading_params import STOP_LOSS_PCT, TAKE_PROFIT_PCT, LEVERAGE
+from config.trading_params import LEVERAGE  # SL/TP diambil dari ASSETS
 from core.market_data import get_asset_data, is_market_open
 from core.signal_engine import get_signal, mtf_bias
 from core.risk_manager import force_close_position
 from core.notifier import tg
 from core.llm_clients import call_all_llms
 from core.llm_performance import evaluate_predictions
-from core.command_handler import handle_commands   # <-- TAMBAHAN
+from core.command_handler import handle_commands
 from core.daily_report import send_daily_report
 from core.correlation import check_correlation
 from core.liquidation import calculate_liquidation_price, check_margin_call
@@ -155,7 +155,7 @@ async def main():
     print("=== MULTI-ASSET BOT (MTF + LONG/SHORT) | "+now+" ===")
     data = load_trades()
     
-    # ===== TAMBAHAN: Proses perintah Telegram =====
+    # Proses perintah Telegram
     handle_commands(data, os.getenv("TELEGRAM_CHAT_ID"))
     
     # Kirim daily report jika waktunya
@@ -164,7 +164,7 @@ async def main():
     positions = data.get("positions", {})
     shorts = data.get("shorts", {})
 
-        # Kumpulkan harga terkini untuk semua aset secara paralel
+    # Kumpulkan harga terkini untuk semua aset secara paralel
     current_prices = {}
     tasks = []
     asset_list = []
@@ -194,7 +194,7 @@ async def main():
         tg(margin_warning)
         print(margin_warning)
 
-    # ===== TAMBAHAN: Cek apakah bot di-pause =====
+    # Cek apakah bot di-pause
     if os.path.exists("logs/pause.txt"):
         print("⏸️ Bot dalam mode pause. Tidak melakukan trading baru.")
         tg("⏸️ Bot dalam mode pause. Hanya akan memonitor posisi.")
@@ -228,6 +228,10 @@ async def main():
         change = asset_data["change"]
         bias = mtf_bias(asset_data)
 
+        # Ambil SL/TP spesifik aset
+        sl_pct = info.get('sl_pct', 2.0)   # fallback 2%
+        tp_pct = info.get('tp_pct', 5.0)   # fallback 5%
+
         # Cek SL/TP untuk posisi existing
         long_pos = positions.get(name)
         short_pos = shorts.get(name)
@@ -235,7 +239,7 @@ async def main():
         if long_pos:
             entry = long_pos["entry_price"]
             pnl_pct = (price - entry) / entry * 100 * LEVERAGE
-            if pnl_pct <= -STOP_LOSS_PCT:
+            if pnl_pct <= -sl_pct:
                 data = force_close_position(data, name, price, "STOP_LOSS")
                 positions = data.get("positions", {})
                 shorts = data.get("shorts", {})
@@ -243,7 +247,7 @@ async def main():
                 equity = calculate_equity(data, current_prices)
                 drawdown = max(0, (initial - equity) / initial * 100)
                 continue
-            elif pnl_pct >= TAKE_PROFIT_PCT:
+            elif pnl_pct >= tp_pct:
                 data = force_close_position(data, name, price, "TAKE_PROFIT")
                 positions = data.get("positions", {})
                 shorts = data.get("shorts", {})
@@ -254,14 +258,14 @@ async def main():
         if short_pos:
             entry = short_pos["entry_price"]
             pnl_pct = (entry - price) / entry * 100 * LEVERAGE
-            if pnl_pct <= -STOP_LOSS_PCT:
+            if pnl_pct <= -sl_pct:
                 data = force_close_position(data, name, price, "STOP_LOSS")
                 positions = data.get("positions", {})
                 shorts = data.get("shorts", {})
                 equity = calculate_equity(data, current_prices)
                 drawdown = max(0, (initial - equity) / initial * 100)
                 continue
-            elif pnl_pct >= TAKE_PROFIT_PCT:
+            elif pnl_pct >= tp_pct:
                 data = force_close_position(data, name, price, "TAKE_PROFIT")
                 positions = data.get("positions", {})
                 shorts = data.get("shorts", {})
@@ -355,7 +359,6 @@ async def main():
     # Generate dashboard HTML
     generate_dashboard(data, perf, equity, drawdown)
 
-    # Hitung ulang equity untuk status akhir (sudah dihitung)
     # Status ringkasan
     trades = data["trades"]
     wins = sum(1 for t in trades if t.get("pnl",0) > 0)
