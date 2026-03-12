@@ -1,0 +1,32 @@
+{
+  "claude": {
+    "correct": 0,
+    "total": 0,
+    "accuracy": 0.5
+  },
+  "gemini": {
+    "correct": 0,
+    "total": 0,
+    "accuracy": 0.5
+  },
+  "gpt": {
+    "correct": 0,
+    "total": 0,
+    "accuracy": 0.5
+  },
+  "grok": {
+    "correct": 0,
+    "total": 0,
+    "accuracy": 0.5
+  },
+  "deepseek": {
+    "correct": 0,
+    "total": 0,
+    "accuracy": 0.5
+  },
+  "qwen": {
+    "correct": 0,
+    "total": 0,
+    "accuracy": 0.5
+  }
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trading Bot Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: Arial; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 8px; }
+        h1 { color: #333; }
+        .status { background: #e3f2fd; padding: 15px; border-radius: 5px; }
+        .position { border-left: 4px solid #ff9800; padding: 10px; margin: 10px 0; }
+        .table { width: 100%; border-collapse: collapse; }
+        .table th, .table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        .table th { background-color: #f2f2f2; }
+        .good { color: green; }
+        .bad { color: red; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Trading Bot Dashboard</h1>
+    <p>Last updated: 2026-03-12 17:39:34 UTC</p>
+    
+    <div class="status">
+        <h2>Account Summary</h2>
+        <p>Balance: $666.67</p>
+        <p>Equity: $670.22</p>
+        <p>Drawdown: 33.0%</p>
+    </div>
+    
+    <h2>Open Positions</h2>
+    <div id="positions">
+
+        <div class="position">
+            <strong>SPX</strong> (Short) - Entry: $6775.02, Qty: 0.0492
+        </div>
+    </div>
+    
+    <h2>Recent Trades</h2>
+    <table class="table">
+        <tr><th>Asset</th><th>Type</th><th>Entry</th><th>Exit</th><th>PnL</th></tr>
+
+    </table>
+    
+    <h2>LLM Performance</h2>
+    <table class="table">
+        <tr><th>LLM</th><th>Correct</th><th>Total</th><th>Accuracy</th></tr>
+
+        <tr>
+            <td>claude</td>
+            <td>0</td>
+            <td>0</td>
+            <td>50.0%</td>
+        </tr>
+        <tr>
+            <td>gemini</td>
+            <td>0</td>
+            <td>0</td>
+            <td>50.0%</td>
+        </tr>
+        <tr>
+            <td>gpt</td>
+            <td>0</td>
+            <td>0</td>
+            <td>50.0%</td>
+        </tr>
+        <tr>
+            <td>grok</td>
+            <td>0</td>
+            <td>0</td>
+            <td>50.0%</td>
+        </tr>
+        <tr>
+            <td>deepseek</td>
+            <td>0</td>
+            <td>0</td>
+            <td>50.0%</td>
+        </tr>
+        <tr>
+            <td>qwen</td>
+            <td>0</td>
+            <td>0</td>
+            <td>50.0%</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
