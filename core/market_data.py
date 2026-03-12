@@ -1,7 +1,22 @@
 # core/market_data.py
 import ccxt
 import yfinance as yf
+from datetime import datetime
 from .indicators import calc_indicators
+
+def is_market_open(asset_type):
+    """
+    Cek apakah pasar sedang buka.
+    Crypto: 24/7
+    Saham: Senin-Jumat (weekend tutup)
+    """
+    now = datetime.utcnow()
+    if asset_type == "crypto":
+        return True
+    # Saham tutup Sabtu (5) dan Minggu (6)
+    if now.weekday() >= 5:
+        return False
+    return True
 
 def get_crypto_mtf(symbol):
     ex = ccxt.gate()

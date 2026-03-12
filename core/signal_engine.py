@@ -31,6 +31,16 @@ def mtf_bias(data):
     elif avg <= -0.5: return "BEAR"
     else: return "NEUTRAL"
 
+def rule_based_signal(data):
+    """Fallback jika semua LLM gagal"""
+    bias = mtf_bias(data)
+    if bias in ["STRONG_BULL", "BULL"]:
+        return "BUY", 0.6
+    elif bias in ["STRONG_BEAR", "BEAR"]:
+        return "SHORT", 0.6
+    else:
+        return "HOLD", 0.5
+
 async def get_signal(name, data):
     price = data["price"]
     change = data["change"]
@@ -68,6 +78,9 @@ async def get_signal(name, data):
             except: pass
 
     if not signals:
-        return "HOLD", 0.5, 0, [], bias
+        # Fallback ke rule-based jika semua LLM gagal
+        fallback_signal, fallback_conf = rule_based_signal(data)
+        return fallback_signal, fallback_conf, 0, ["Fallback: rule-based"], bias
+
     most = Counter(signals).most_common(1)[0]
     return most[0], round(sum(confs)/len(confs),2), most[1], details, bias

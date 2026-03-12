@@ -9,7 +9,7 @@ load_dotenv()
 # Import dari modul baru
 from config.assets import ASSETS
 from config.trading_params import STOP_LOSS_PCT, TAKE_PROFIT_PCT, LEVERAGE
-from core.market_data import get_asset_data
+from core.market_data import get_asset_data, is_market_open
 from core.signal_engine import get_signal, mtf_bias
 from core.risk_manager import force_close_position
 from core.notifier import tg
@@ -35,7 +35,7 @@ async def main():
     positions = data.get("positions", {})
     shorts = data.get("shorts", {})
 
-    # Circuit breaker (sementara tetap)
+    # Circuit breaker
     initial = 1000.0
     current = data["balance"]
     drawdown = max(0, (initial - current) / initial * 100)
@@ -45,11 +45,17 @@ async def main():
         return
 
     # Alokasi per aset (dengan leverage)
-    alloc = data["balance"] / len(ASSETS) * LEVERAGE  # notional dengan leverage
+    alloc = data["balance"] / len(ASSETS) * LEVERAGE
 
     print("\nAnalisa 3 aset (MTF)...")
     summary = []
     for name, info in ASSETS.items():
+        # Cek apakah pasar buka (untuk saham)
+        if not is_market_open(info["type"]):
+            print(f"  [{name}] Pasar tutup (weekend), lewati")
+            summary.append(f"{name}: SKIP (market closed)")
+            continue
+
         print(f"\n  [{name}] Mengambil data MTF...")
         asset_data = get_asset_data(name, info)
         if not asset_data or "price" not in asset_data:
