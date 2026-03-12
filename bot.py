@@ -16,6 +16,7 @@ from core.notifier import tg
 from core.llm_clients import call_all_llms
 from core.llm_performance import evaluate_predictions
 from core.command_handler import handle_commands   # <-- TAMBAHAN
+from core.daily_report import send_daily_report
 
 PAPER_FILE = "logs/paper_trades.json"
 
@@ -155,6 +156,9 @@ async def main():
     # ===== TAMBAHAN: Proses perintah Telegram =====
     handle_commands(data, os.getenv("TELEGRAM_CHAT_ID"))
     
+    # Kirim daily report jika waktunya
+    send_daily_report()
+
     positions = data.get("positions", {})
     shorts = data.get("shorts", {})
 
