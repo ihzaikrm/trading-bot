@@ -15,6 +15,7 @@ from core.risk_manager import force_close_position
 from core.notifier import tg
 from core.llm_clients import call_all_llms
 from core.llm_performance import evaluate_predictions
+from core.command_handler import handle_commands   # <-- TAMBAHAN
 
 PAPER_FILE = "logs/paper_trades.json"
 
@@ -150,6 +151,10 @@ async def main():
     now = datetime.now().strftime("%Y-%m-%d %H:%M")
     print("=== MULTI-ASSET BOT (MTF + LONG/SHORT) | "+now+" ===")
     data = load_trades()
+    
+    # ===== TAMBAHAN: Proses perintah Telegram =====
+    handle_commands(data, os.getenv("TELEGRAM_CHAT_ID"))
+    
     positions = data.get("positions", {})
     shorts = data.get("shorts", {})
 
@@ -169,9 +174,16 @@ async def main():
     initial = 1000.0
     equity = calculate_equity(data, current_prices)
     drawdown = max(0, (initial - equity) / initial * 100)
-    can_open_new = drawdown <= 3.0
 
-    if drawdown > 3:
+    # ===== TAMBAHAN: Cek apakah bot di-pause =====
+    if os.path.exists("logs/pause.txt"):
+        print("⏸️ Bot dalam mode pause. Tidak melakukan trading baru.")
+        tg("⏸️ Bot dalam mode pause. Hanya akan memonitor posisi.")
+        can_open_new = False
+    else:
+        can_open_new = drawdown <= 3.0
+
+    if drawdown > 3 and not os.path.exists("logs/pause.txt"):
         msg = f"⚠️ CIRCUIT BREAKER: Drawdown {round(drawdown,1)}% > 3%! Hanya akan menutup posisi, tidak membuka baru."
         print(msg); tg(msg)
 
