@@ -1,0 +1,20 @@
+[
+  {
+    "symbol": "SPX",
+    "best_sl": 4.0,
+    "best_tp": 5.0,
+    "best_return": 222.24
+  },
+  {
+    "symbol": "XAUUSD",
+    "best_sl": 5.0,
+    "best_tp": 10.0,
+    "best_return": 215.46
+  },
+  {
+    "symbol": "BTC/USDT",
+    "best_sl": 5.0,
+    "best_tp": 10.0,
+    "best_return": 309.96
+  }
+]
