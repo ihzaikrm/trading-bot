@@ -17,6 +17,8 @@ from core.llm_clients import call_all_llms
 from core.llm_performance import evaluate_predictions
 from core.command_handler import handle_commands   # <-- TAMBAHAN
 from core.daily_report import send_daily_report
+from core.correlation import check_correlation
+from core.liquidation import calculate_liquidation_price, check_margin_call
 
 PAPER_FILE = "logs/paper_trades.json"
 
@@ -186,6 +188,12 @@ async def main():
     equity = calculate_equity(data, current_prices)
     drawdown = max(0, (initial - equity) / initial * 100)
 
+    # Cek margin call
+    margin_warning = check_margin_call(equity, data["balance"], positions, shorts, current_prices)
+    if margin_warning:
+        tg(margin_warning)
+        print(margin_warning)
+
     # ===== TAMBAHAN: Cek apakah bot di-pause =====
     if os.path.exists("logs/pause.txt"):
         print("⏸️ Bot dalam mode pause. Tidak melakukan trading baru.")
@@ -278,6 +286,10 @@ async def main():
 
         # Open Long hanya jika can_open_new
         if can_open_new and signal == "BUY" and conf >= 0.55 and votes >= 3 and not long_pos and not short_pos and alloc > 10:
+            # Cek korelasi dengan posisi yang sudah ada
+            if not check_correlation(name, positions) or not check_correlation(name, shorts):
+                print(f"  [{name}] Diblokir oleh correlation filter (korelasi tinggi dengan posisi lain)")
+                continue
             qty = alloc / price
             positions[name] = {"entry_price": price, "qty": qty, "amount": alloc/LEVERAGE, "time": now}
             data["balance"] -= alloc/LEVERAGE
@@ -306,6 +318,10 @@ async def main():
 
         # Open Short hanya jika can_open_new
         elif can_open_new and signal == "SHORT" and conf >= 0.55 and votes >= 3 and not short_pos and not long_pos and alloc > 10:
+            # Cek korelasi dengan posisi yang sudah ada
+            if not check_correlation(name, positions) or not check_correlation(name, shorts):
+                print(f"  [{name}] Diblokir oleh correlation filter (korelasi tinggi dengan posisi lain)")
+                continue
             qty = alloc / price
             shorts[name] = {"entry_price": price, "qty": qty, "amount": alloc/LEVERAGE, "time": now}
             data["balance"] -= alloc/LEVERAGE
