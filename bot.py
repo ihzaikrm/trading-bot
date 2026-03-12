@@ -28,6 +28,24 @@ def save_trades(data):
     with open(PAPER_FILE, "w") as f:
         json.dump(data, f, indent=2)
 
+def calculate_equity(data, current_prices):
+    """Hitung equity total = balance + unrealized PnL semua posisi"""
+    equity = data["balance"]
+    positions = data.get("positions", {})
+    shorts = data.get("shorts", {})
+    
+    for symbol, pos in positions.items():
+        if symbol in current_prices:
+            price = current_prices[symbol]
+            pnl = (price - pos["entry_price"]) * pos["qty"]
+            equity += pnl
+    for symbol, pos in shorts.items():
+        if symbol in current_prices:
+            price = current_prices[symbol]
+            pnl = (pos["entry_price"] - price) * pos["qty"]
+            equity += pnl
+    return equity
+
 async def main():
     now = datetime.now().strftime("%Y-%m-%d %H:%M")
     print("=== MULTI-ASSET BOT (MTF + LONG/SHORT) | "+now+" ===")
@@ -35,22 +53,32 @@ async def main():
     positions = data.get("positions", {})
     shorts = data.get("shorts", {})
 
-    # Circuit breaker
-    initial = 1000.0
-    current = data["balance"]
-    drawdown = max(0, (initial - current) / initial * 100)
-    if drawdown > 3:
-        msg = "⛔ CIRCUIT BREAKER: Drawdown "+str(round(drawdown,1))+"% > 3%!"
-        print(msg); tg(msg)
-        return
+    # Kumpulkan harga terkini untuk semua aset (untuk hitung equity)
+    current_prices = {}
+    for name, info in ASSETS.items():
+        if not is_market_open(info["type"]):
+            continue
+        asset_data = get_asset_data(name, info)
+        if asset_data and "price" in asset_data:
+            current_prices[name] = asset_data["price"]
 
-    # Alokasi per aset (dengan leverage)
+    # Hitung equity dan drawdown
+    initial = 1000.0
+    equity = calculate_equity(data, current_prices)
+    drawdown = max(0, (initial - equity) / initial * 100)
+    can_open_new = drawdown <= 3.0
+
+    if drawdown > 3:
+        msg = f"⚠️ CIRCUIT BREAKER: Drawdown {round(drawdown,1)}% > 3%! Hanya akan menutup posisi, tidak membuka baru."
+        print(msg); tg(msg)
+
+    # Alokasi per aset (hanya digunakan jika can_open_new)
     alloc = data["balance"] / len(ASSETS) * LEVERAGE
 
     print("\nAnalisa 3 aset (MTF)...")
     summary = []
     for name, info in ASSETS.items():
-        # Cek apakah pasar buka (untuk saham)
+        # Cek pasar buka
         if not is_market_open(info["type"]):
             print(f"  [{name}] Pasar tutup (weekend), lewati")
             summary.append(f"{name}: SKIP (market closed)")
@@ -66,7 +94,7 @@ async def main():
         change = asset_data["change"]
         bias = mtf_bias(asset_data)
 
-        # Cek SL/TP
+        # Cek SL/TP untuk posisi existing
         long_pos = positions.get(name)
         short_pos = shorts.get(name)
 
@@ -77,11 +105,16 @@ async def main():
                 data = force_close_position(data, name, price, "STOP_LOSS")
                 positions = data.get("positions", {})
                 shorts = data.get("shorts", {})
+                # Update equity setelah close
+                equity = calculate_equity(data, current_prices)
+                drawdown = max(0, (initial - equity) / initial * 100)
                 continue
             elif pnl_pct >= TAKE_PROFIT_PCT:
                 data = force_close_position(data, name, price, "TAKE_PROFIT")
                 positions = data.get("positions", {})
                 shorts = data.get("shorts", {})
+                equity = calculate_equity(data, current_prices)
+                drawdown = max(0, (initial - equity) / initial * 100)
                 continue
 
         if short_pos:
@@ -91,20 +124,25 @@ async def main():
                 data = force_close_position(data, name, price, "STOP_LOSS")
                 positions = data.get("positions", {})
                 shorts = data.get("shorts", {})
+                equity = calculate_equity(data, current_prices)
+                drawdown = max(0, (initial - equity) / initial * 100)
                 continue
             elif pnl_pct >= TAKE_PROFIT_PCT:
                 data = force_close_position(data, name, price, "TAKE_PROFIT")
                 positions = data.get("positions", {})
                 shorts = data.get("shorts", {})
+                equity = calculate_equity(data, current_prices)
+                drawdown = max(0, (initial - equity) / initial * 100)
                 continue
 
-        # Cetak ringkasan
+        # Cetak ringkasan teknikal
         for tf in ["1d", "4h", "1h"]:
             if tf in asset_data:
                 ind = asset_data[tf]
                 print(f"    {tf}: RSI:{ind['rsi']} | MACD:{ind['macd_cross']} | EMA:{ind['ema_trend']} | BB:{ind['bb_pos']}")
         print(f"    Bias MTF: {bias}")
 
+        # Dapatkan sinyal (meskipun tidak bisa open baru, tetap dapat sinyal untuk informasi)
         signal, conf, votes, details, bias = await get_signal(info["name"], asset_data)
         print(f"  -> {signal} conf:{conf} votes:{votes}")
         summary.append(f"{name}: {signal} ({conf}) [{bias}]")
@@ -112,8 +150,8 @@ async def main():
         long_pos = positions.get(name)
         short_pos = shorts.get(name)
 
-        # Open Long
-        if signal == "BUY" and conf >= 0.55 and votes >= 3 and not long_pos and not short_pos and alloc > 10:
+        # Open Long hanya jika can_open_new
+        if can_open_new and signal == "BUY" and conf >= 0.55 and votes >= 3 and not long_pos and not short_pos and alloc > 10:
             qty = alloc / price
             positions[name] = {"entry_price": price, "qty": qty, "amount": alloc/LEVERAGE, "time": now}
             data["balance"] -= alloc/LEVERAGE
@@ -126,7 +164,7 @@ async def main():
             print(f"  [BUY] {name}")
             tg(msg)
 
-        # Close Long
+        # Close Long (tetap bisa dilakukan meskipun drawdown tinggi)
         elif signal == "SELL" and long_pos:
             pnl = (price - long_pos["entry_price"]) * long_pos["qty"]
             data["balance"] += long_pos["amount"] + pnl
@@ -140,8 +178,8 @@ async def main():
             print(f"  [SELL] {name} PnL: ${round(pnl,2)}")
             tg(msg)
 
-        # Open Short
-        elif signal == "SHORT" and conf >= 0.55 and votes >= 3 and not short_pos and not long_pos and alloc > 10:
+        # Open Short hanya jika can_open_new
+        elif can_open_new and signal == "SHORT" and conf >= 0.55 and votes >= 3 and not short_pos and not long_pos and alloc > 10:
             qty = alloc / price
             shorts[name] = {"entry_price": price, "qty": qty, "amount": alloc/LEVERAGE, "time": now}
             data["balance"] -= alloc/LEVERAGE
@@ -154,7 +192,7 @@ async def main():
             print(f"  [SHORT] {name}")
             tg(msg)
 
-        # Close Short
+        # Close Short (tetap bisa)
         elif signal == "COVER" and short_pos:
             pnl = (short_pos["entry_price"] - price) * short_pos["qty"]
             data["balance"] += short_pos["amount"] + pnl
@@ -172,7 +210,11 @@ async def main():
     data["shorts"] = shorts
     save_trades(data)
 
-    # Status akhir
+    # Hitung ulang equity untuk status akhir
+    equity = calculate_equity(data, current_prices)
+    drawdown = max(0, (initial - equity) / initial * 100)
+    
+    # Status ringkasan
     trades = data["trades"]
     wins = sum(1 for t in trades if t.get("pnl",0) > 0)
     winrate = str(round(wins/len(trades)*100))+"%" if trades else "N/A"
@@ -181,7 +223,7 @@ async def main():
     open_short = ", ".join(shorts.keys()) if shorts else "Tidak ada"
 
     status = (f"📊 MULTI-ASSET STATUS {now}\n"
-              f"Balance: ${round(data['balance'],2)} (Leverage {LEVERAGE}x)\n"
+              f"Equity: ${round(equity,2)} (Balance: ${round(data['balance'],2)})\n"
               f"Drawdown: {round(drawdown,1)}%\n"
               f"Long: {open_long}\n"
               f"Short: {open_short}\n\n"
