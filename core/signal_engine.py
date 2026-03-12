@@ -2,6 +2,7 @@
 import json, re
 from collections import Counter
 from .llm_clients import call_all_llms
+from .llm_performance import get_weights, add_prediction
 
 def mtf_bias(data):
     scores = []
@@ -41,7 +42,7 @@ def rule_based_signal(data):
     else:
         return "HOLD", 0.5
 
-async def get_signal(name, data):
+async def get_signal(asset_name, data, timestamp, perf):
     price = data["price"]
     change = data["change"]
     tf_lines = []
@@ -55,7 +56,7 @@ async def get_signal(name, data):
 
     bias = mtf_bias(data)
     prompt = (
-        f"{name} | Harga: {price} | 24h: {change}%\n"
+        f"{asset_name} | Harga: {price} | 24h: {change}%\n"
         f"MTF Bias: {bias}\n"
         + "\n".join(tf_lines) + "\n\n"
         'Balas JSON: {"signal":"BUY/SELL/SHORT/COVER/HOLD","confidence":0.5,"reason":"singkat"}\n'
@@ -65,22 +66,33 @@ async def get_signal(name, data):
     results = await call_all_llms(
         "Analis trading profesional multi-timeframe. Gunakan bias MTF untuk keputusan. Balas JSON saja.", prompt)
 
-    signals, confs, details = [], [], []
+    weights = get_weights(perf)
+    score = {"BUY":0, "SELL":0, "SHORT":0, "COVER":0, "HOLD":0}
+    details = []
     for llm, (ok, resp) in results.items():
         if ok:
             try:
                 r = json.loads(re.search(r"\{.*\}", resp, re.DOTALL).group())
                 sig = r["signal"].upper()
-                if sig in ["BUY","SELL","SHORT","COVER","HOLD"]:
-                    signals.append(sig)
-                    confs.append(r.get("confidence", 0.5))
-                    details.append(f"{llm}: {sig} ({round(r.get('confidence',0.5)*100)}%)")
-            except: pass
+                if sig in score:
+                    conf = r.get("confidence", 0.5)
+                    weight = weights.get(llm, 0.1)
+                    score[sig] += weight * conf
+                    details.append(f"{llm}: {sig} ({round(conf*100)}%)")
+                    # Catat prediksi jika entry
+                    if sig in ["BUY","SHORT"]:
+                        add_prediction(asset_name, timestamp, price, llm, sig, conf)
+            except:
+                pass
 
-    if not signals:
+    if not details:
         # Fallback ke rule-based jika semua LLM gagal
         fallback_signal, fallback_conf = rule_based_signal(data)
         return fallback_signal, fallback_conf, 0, ["Fallback: rule-based"], bias
 
-    most = Counter(signals).most_common(1)[0]
-    return most[0], round(sum(confs)/len(confs),2), most[1], details, bias
+    best_signal = max(score.items(), key=lambda x: x[1])[0]
+    total_weight = sum(weights.values())
+    conf = score[best_signal] / total_weight if total_weight > 0 else 0.5
+    # Hitung jumlah LLM yang memberikan sinyal yang sama (untuk info)
+    votes = sum(1 for d in details if best_signal in d)
+    return best_signal, round(conf, 2), votes, details, bias

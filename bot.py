@@ -14,6 +14,7 @@ from core.signal_engine import get_signal, mtf_bias
 from core.risk_manager import force_close_position
 from core.notifier import tg
 from core.llm_clients import call_all_llms
+from core.llm_performance import evaluate_predictions  # tambahan
 
 PAPER_FILE = "logs/paper_trades.json"
 
@@ -53,7 +54,7 @@ async def main():
     positions = data.get("positions", {})
     shorts = data.get("shorts", {})
 
-    # Kumpulkan harga terkini untuk semua aset (untuk hitung equity)
+    # Kumpulkan harga terkini untuk semua aset (untuk hitung equity dan evaluasi prediksi)
     current_prices = {}
     for name, info in ASSETS.items():
         if not is_market_open(info["type"]):
@@ -61,6 +62,9 @@ async def main():
         asset_data = get_asset_data(name, info)
         if asset_data and "price" in asset_data:
             current_prices[name] = asset_data["price"]
+
+    # Evaluasi prediksi sebelumnya dan dapatkan performa terbaru
+    perf = evaluate_predictions(current_prices)
 
     # Hitung equity dan drawdown
     initial = 1000.0
@@ -142,8 +146,8 @@ async def main():
                 print(f"    {tf}: RSI:{ind['rsi']} | MACD:{ind['macd_cross']} | EMA:{ind['ema_trend']} | BB:{ind['bb_pos']}")
         print(f"    Bias MTF: {bias}")
 
-        # Dapatkan sinyal (meskipun tidak bisa open baru, tetap dapat sinyal untuk informasi)
-        signal, conf, votes, details, bias = await get_signal(info["name"], asset_data)
+        # Dapatkan sinyal dengan bobot dinamis
+        signal, conf, votes, details, bias = await get_signal(info["name"], asset_data, now, perf)
         print(f"  -> {signal} conf:{conf} votes:{votes}")
         summary.append(f"{name}: {signal} ({conf}) [{bias}]")
 
