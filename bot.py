@@ -14,7 +14,7 @@ from core.signal_engine import get_signal, mtf_bias
 from core.risk_manager import force_close_position
 from core.notifier import tg
 from core.llm_clients import call_all_llms
-from core.llm_performance import evaluate_predictions  # tambahan
+from core.llm_performance import evaluate_predictions
 
 PAPER_FILE = "logs/paper_trades.json"
 
@@ -46,6 +46,105 @@ def calculate_equity(data, current_prices):
             pnl = (pos["entry_price"] - price) * pos["qty"]
             equity += pnl
     return equity
+
+def generate_dashboard(data, perf, equity, drawdown):
+    """Buat file HTML dashboard dengan data terkini"""
+    import os
+    from datetime import datetime
+    dashboard_dir = "dashboard"
+    os.makedirs(dashboard_dir, exist_ok=True)
+    
+    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    html = f"""<!DOCTYPE html>
+<html>
+<head>
+    <title>Trading Bot Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {{ font-family: Arial; margin: 20px; background: #f5f5f5; }}
+        .container {{ max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 8px; }}
+        h1 {{ color: #333; }}
+        .status {{ background: #e3f2fd; padding: 15px; border-radius: 5px; }}
+        .position {{ border-left: 4px solid #ff9800; padding: 10px; margin: 10px 0; }}
+        .table {{ width: 100%; border-collapse: collapse; }}
+        .table th, .table td {{ border: 1px solid #ddd; padding: 8px; text-align: left; }}
+        .table th {{ background-color: #f2f2f2; }}
+        .good {{ color: green; }}
+        .bad {{ color: red; }}
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Trading Bot Dashboard</h1>
+    <p>Last updated: {now} UTC</p>
+    
+    <div class="status">
+        <h2>Account Summary</h2>
+        <p>Balance: ${data.get('balance',0):.2f}</p>
+        <p>Equity: ${equity:.2f}</p>
+        <p>Drawdown: {drawdown:.1f}%</p>
+    </div>
+    
+    <h2>Open Positions</h2>
+    <div id="positions">
+"""
+    # Tambah posisi long
+    for sym, pos in data.get('positions',{}).items():
+        html += f"""
+        <div class="position">
+            <strong>{sym}</strong> (Long) - Entry: ${pos['entry_price']:.2f}, Qty: {pos['qty']:.4f}
+        </div>"""
+    for sym, pos in data.get('shorts',{}).items():
+        html += f"""
+        <div class="position">
+            <strong>{sym}</strong> (Short) - Entry: ${pos['entry_price']:.2f}, Qty: {pos['qty']:.4f}
+        </div>"""
+    if not data.get('positions') and not data.get('shorts'):
+        html += "<p>No open positions.</p>"
+    
+    html += """
+    </div>
+    
+    <h2>Recent Trades</h2>
+    <table class="table">
+        <tr><th>Asset</th><th>Type</th><th>Entry</th><th>Exit</th><th>PnL</th></tr>
+"""
+    for trade in data.get('trades',[])[-10:]:
+        pnl = trade.get('pnl',0)
+        cls = "good" if pnl > 0 else "bad"
+        html += f"""
+        <tr>
+            <td>{trade.get('asset','')}</td>
+            <td>{trade.get('type','')}</td>
+            <td>${trade.get('entry_price',0):.2f}</td>
+            <td>${trade.get('exit_price',0):.2f}</td>
+            <td class="{cls}">${pnl:.2f}</td>
+        </tr>"""
+    html += """
+    </table>
+    
+    <h2>LLM Performance</h2>
+    <table class="table">
+        <tr><th>LLM</th><th>Correct</th><th>Total</th><th>Accuracy</th></tr>
+"""
+    for llm, stats in perf.items():
+        acc = stats.get('accuracy',0)*100
+        html += f"""
+        <tr>
+            <td>{llm}</td>
+            <td>{stats.get('correct',0)}</td>
+            <td>{stats.get('total',0)}</td>
+            <td>{acc:.1f}%</td>
+        </tr>"""
+    html += """
+    </table>
+</div>
+</body>
+</html>"""
+    with open(os.path.join(dashboard_dir, "index.html"), "w") as f:
+        f.write(html)
+    print("[Dashboard] Generated dashboard/index.html")
 
 async def main():
     now = datetime.now().strftime("%Y-%m-%d %H:%M")
@@ -214,10 +313,10 @@ async def main():
     data["shorts"] = shorts
     save_trades(data)
 
-    # Hitung ulang equity untuk status akhir
-    equity = calculate_equity(data, current_prices)
-    drawdown = max(0, (initial - equity) / initial * 100)
-    
+    # Generate dashboard HTML
+    generate_dashboard(data, perf, equity, drawdown)
+
+    # Hitung ulang equity untuk status akhir (sudah dihitung)
     # Status ringkasan
     trades = data["trades"]
     wins = sum(1 for t in trades if t.get("pnl",0) > 0)
@@ -234,6 +333,11 @@ async def main():
               + "\n".join(summary) + "\n\n"
               f"Trade: {len(trades)} | Winrate: {winrate}\n"
               f"Total PnL: ${round(total_pnl,2)}")
+    
+    # Tambahkan link dashboard
+    dashboard_url = "https://htmlpreview.github.io/?https://github.com/ihzaikrm/trading-bot/blob/main/dashboard/index.html"
+    status += f"\n\n📈 Monitor: {dashboard_url}"
+    
     print("\n"+status)
     tg(status)
     print("\n=== SELESAI ===")
