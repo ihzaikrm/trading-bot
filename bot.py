@@ -162,14 +162,21 @@ async def main():
     positions = data.get("positions", {})
     shorts = data.get("shorts", {})
 
-    # Kumpulkan harga terkini untuk semua aset (untuk hitung equity dan evaluasi prediksi)
+        # Kumpulkan harga terkini untuk semua aset secara paralel
     current_prices = {}
+    tasks = []
+    asset_list = []
     for name, info in ASSETS.items():
         if not is_market_open(info["type"]):
             continue
-        asset_data = get_asset_data(name, info)
-        if asset_data and "price" in asset_data:
-            current_prices[name] = asset_data["price"]
+        tasks.append(get_asset_data(name, info))
+        asset_list.append(name)
+    
+    if tasks:
+        results = await asyncio.gather(*tasks)
+        for name, asset_data in zip(asset_list, results):
+            if asset_data and "price" in asset_data:
+                current_prices[name] = asset_data["price"]
 
     # Evaluasi prediksi sebelumnya dan dapatkan performa terbaru
     perf = evaluate_predictions(current_prices)
