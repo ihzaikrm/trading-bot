@@ -1,7 +1,10 @@
-requests
+﻿requests
 ccxt
 pandas
+numpy
 python-dotenv
 yfinance
 httpx
 matplotlib
+python-dateutil
+aiohttp
