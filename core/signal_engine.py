@@ -1,4 +1,4 @@
-# core/signal_engine.py
+﻿# core/signal_engine.py
 import json, re
 import pandas as pd
 import numpy as np
@@ -182,6 +182,13 @@ async def get_signal(asset_name, data, timestamp, perf, closes=None, volumes=Non
             )
 
     bias = mtf_bias(data)
+
+    # D4: Skip LLM jika MTF NEUTRAL
+    if bias == "NEUTRAL":
+        fallback_signal, fallback_conf = rule_based_signal_v2(
+            asset_name, data.get("1d", {}), closes, volumes, date_str
+        )
+        return fallback_signal, fallback_conf, 0, ["D4: MTF NEUTRAL - rule-based only"], bias
     extra_info = ""
     if news:
         extra_info += f"\nNews Sentiment: {news['sentiment']} (skor {news['score']}, {news['articles']} artikel)"
