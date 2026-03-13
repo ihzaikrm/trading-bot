@@ -326,6 +326,15 @@ async def generate_quarterly_report() -> str:
     lines.append("⚠️ _Review temuan di atas secara manual sebelum implementasi_")
     lines.append("_Jangan auto-deploy strategi baru tanpa backtest + OOS validation_")
 
+    # ── Bagian 5: WFO Update ──
+    lines.append("\n🔄 *5. WALK-FORWARD OPTIMIZATION UPDATE*\n")
+    try:
+        wfo_text = wfo_summary()
+        lines.append(wfo_text if wfo_text else "_WFO: belum cukup data historis_")
+    except Exception as e:
+        lines.append(f"_WFO error: {e}_")
+    lines.append("\n" + "─" * 35)
+
     return "\n".join(lines)
 
 
