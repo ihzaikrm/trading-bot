@@ -1,3 +1,10 @@
+STOP_LOSS_PCT = 0.05
+TAKE_PROFIT_PCT = 0.15
+LEVERAGE = 1
+USE_NEWS_SENTIMENT = False
+USE_FEAR_GREED = False
+COOLDOWN_AFTER_LOSS = 3
+
 # config/trading_params.py
 # Parameter trading
 
