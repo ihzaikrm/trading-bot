@@ -8,6 +8,7 @@ from .llm_clients import call_all_llms
 from .llm_performance import get_weights, add_prediction
 from .news_sentiment import get_news_sentiment, get_fear_greed
 from config.trading_params import USE_NEWS_SENTIMENT, USE_FEAR_GREED
+from core.alternative_data import get_alt_data_for_prompt
 
 # ----------------------------------------------------------------------
 # Strategi final per aset
@@ -190,6 +191,10 @@ async def get_signal(asset_name, data, timestamp, perf, closes=None, volumes=Non
         )
         return fallback_signal, fallback_conf, 0, ["D4: MTF NEUTRAL - rule-based only"], bias
     extra_info = ""
+    # H5: Alternative data
+    alt_data = get_alt_data_for_prompt(asset_name)
+    if alt_data:
+        extra_info += f"\n{alt_data}"
     if news:
         extra_info += f"\nNews Sentiment: {news['sentiment']} (skor {news['score']}, {news['articles']} artikel)"
     if fng:
