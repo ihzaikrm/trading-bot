@@ -367,10 +367,6 @@ async def main():
             tg(msg)
 
         # Open Short
-        # H2: Konfirmasi MTF 4h + 1d sebelum open short
-        _1d_bear = _ind_1d.get("ema_trend") == "BEARISH" or _ind_1d.get("rsi", 50) < 50
-        _4h_bear = _ind_4h.get("ema_trend") == "BEARISH" or _ind_4h.get("rsi", 50) < 50
-        _mtf_confirmed_short = _1d_bear and _4h_bear
 
         elif can_open_new and signal == "SHORT" and conf >= 0.55 and votes >= 3 and not short_pos and not long_pos and alloc > 10:
             if not check_correlation(name, positions) or not check_correlation(name, shorts):
