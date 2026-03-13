@@ -47,3 +47,17 @@ def get_adaptive_sl_tp(asset, current_price, atr, fixed_sl_pct, fixed_tp_pct):
     final_sl   = max(fixed_sl_pct, ATR_SL_MULTIPLIER * atr_pct)
     final_tp   = max(fixed_tp_pct, ATR_TP_MULTIPLIER * atr_pct)
     return round(final_sl, 4), round(final_tp, 4)
+
+
+# H4: Load optimal params dari WFO
+def get_wfo_params(symbol: str) -> dict:
+    """
+    Ambil params optimal hasil WFO quarterly.
+    Dipanggil dari signal_engine.py sebelum jalankan strategi.
+    Fallback ke default jika WFO belum pernah jalan.
+    """
+    try:
+        from backtest.walk_forward import get_optimal_params
+        return get_optimal_params(symbol)
+    except Exception:
+        return {}
