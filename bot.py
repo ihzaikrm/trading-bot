@@ -372,7 +372,7 @@ async def main():
         _4h_bear = _ind_4h.get("ema_trend") == "BEARISH" or _ind_4h.get("rsi", 50) < 50
         _mtf_confirmed_short = _1d_bear and _4h_bear
 
-        elif can_open_new and signal == "SHORT" and _mtf_confirmed_short and conf >= 0.55 and votes >= 3 and not short_pos and not long_pos and alloc > 10:
+        elif can_open_new and signal == "SHORT" and conf >= 0.55 and votes >= 3 and not short_pos and not long_pos and alloc > 10:
             if not check_correlation(name, positions) or not check_correlation(name, shorts):
                 print(f"  [{name}] Diblokir oleh correlation filter")
                 continue
