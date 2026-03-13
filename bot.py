@@ -10,7 +10,9 @@ from config.assets import ASSETS
 from config.trading_params import STOP_LOSS_PCT, TAKE_PROFIT_PCT, LEVERAGE
 from core.market_data import get_asset_data, is_market_open
 from core.signal_engine import get_signal, mtf_bias, get_strategy_status_text
-from core.risk_manager import force_close_position
+from core.risk_manager import force_close_position, is_in_cooldown, set_cooldown
+from core.indicators import calc_atr
+from config.assets import get_adaptive_sl_tp
 from core.notifier import tg
 from core.llm_clients import call_all_llms
 from core.llm_performance import evaluate_predictions
@@ -227,14 +229,24 @@ async def main():
         # Cek SL/TP untuk posisi existing
         long_pos = positions.get(name)
         short_pos = shorts.get(name)
+
+        # H3: ATR-based adaptive SL/TP
+        _closes = asset_data.get("closes", [])
+        _highs  = asset_data.get("highs",  _closes)
+        _lows   = asset_data.get("lows",   _closes)
+        _atr    = calc_atr(_closes, _highs, _lows, period=14)
         sl_pct = info.get("sl_pct", STOP_LOSS_PCT)
         tp_pct = info.get("tp_pct", TAKE_PROFIT_PCT)
+        if _atr > 0 and price > 0:
+            sl_pct, tp_pct = get_adaptive_sl_tp(name, price, _atr, sl_pct, tp_pct)
+
 
         if long_pos:
             entry = long_pos["entry_price"]
             pnl_pct = (price - entry) / entry * 100 * LEVERAGE
             if pnl_pct <= -sl_pct:
                 data = force_close_position(data, name, price, "STOP_LOSS")
+                set_cooldown(name)  # B4: cooldown 3 siklus
                 positions = data.get("positions", {})
                 shorts = data.get("shorts", {})
                 equity = calculate_equity(data, current_prices)
@@ -253,6 +265,7 @@ async def main():
             pnl_pct = (entry - price) / entry * 100 * LEVERAGE
             if pnl_pct <= -sl_pct:
                 data = force_close_position(data, name, price, "STOP_LOSS")
+                set_cooldown(name)  # B4: cooldown 3 siklus
                 positions = data.get("positions", {})
                 shorts = data.get("shorts", {})
                 equity = calculate_equity(data, current_prices)
@@ -296,7 +309,21 @@ async def main():
             strategy_used = "llm"
 
         # Open Long
-        if can_open_new and signal == "BUY" and conf >= 0.55 and votes >= 3 and not long_pos and not short_pos and alloc > 10:
+
+        # B4: Skip jika aset masih dalam cooldown pasca SL
+        if is_in_cooldown(name):
+            print(f"  [{name}] SKIP - cooldown aktif")
+            summary.append(f"{name}: SKIP (cooldown)")
+            continue
+
+        # H2: Konfirmasi MTF 4h + 1d sebelum open long
+        _ind_1d = asset_data.get("1d", {})
+        _ind_4h = asset_data.get("4h", {})
+        _1d_bull = _ind_1d.get("ema_trend") == "BULLISH" or _ind_1d.get("rsi", 50) > 50
+        _4h_bull = _ind_4h.get("ema_trend") == "BULLISH" or _ind_4h.get("rsi", 50) > 50
+        _mtf_confirmed_long = _1d_bull and _4h_bull
+
+        if can_open_new and signal == "BUY" and _mtf_confirmed_long and conf >= 0.55 and votes >= 3 and not long_pos and not short_pos and alloc > 10:
             if not check_correlation(name, positions) or not check_correlation(name, shorts):
                 print(f"  [{name}] Diblokir oleh correlation filter")
                 continue
@@ -328,7 +355,12 @@ async def main():
             tg(msg)
 
         # Open Short
-        elif can_open_new and signal == "SHORT" and conf >= 0.55 and votes >= 3 and not short_pos and not long_pos and alloc > 10:
+        # H2: Konfirmasi MTF 4h + 1d sebelum open short
+        _1d_bear = _ind_1d.get("ema_trend") == "BEARISH" or _ind_1d.get("rsi", 50) < 50
+        _4h_bear = _ind_4h.get("ema_trend") == "BEARISH" or _ind_4h.get("rsi", 50) < 50
+        _mtf_confirmed_short = _1d_bear and _4h_bear
+
+        elif can_open_new and signal == "SHORT" and _mtf_confirmed_short and conf >= 0.55 and votes >= 3 and not short_pos and not long_pos and alloc > 10:
             if not check_correlation(name, positions) or not check_correlation(name, shorts):
                 print(f"  [{name}] Diblokir oleh correlation filter")
                 continue
