@@ -53,3 +53,22 @@ def calc_indicators(closes):
         "bb_upper": bb_upper, "bb_lower": bb_lower, "bb_pos": bb_pos,
         "stoch_rsi": stoch_rsi, "stoch_signal": stoch_signal
     }
+
+def calc_atr(closes, highs, lows, period=14):
+    """ATR Wilder smoothing. Return float (unit harga)."""
+    if len(closes) < period + 1 or len(highs) < period or len(lows) < period:
+        return 0.0
+    tr_list = []
+    for i in range(1, len(closes)):
+        high = highs[i] if i < len(highs) else closes[i]
+        low  = lows[i]  if i < len(lows)  else closes[i]
+        prev_close = closes[i - 1]
+        tr = max(high - low, abs(high - prev_close), abs(low - prev_close))
+        tr_list.append(tr)
+    if len(tr_list) < period:
+        return sum(tr_list) / len(tr_list) if tr_list else 0.0
+    atr = sum(tr_list[:period]) / period
+    alpha = 1.0 / period
+    for tr in tr_list[period:]:
+        atr = alpha * tr + (1 - alpha) * atr
+    return round(atr, 6)

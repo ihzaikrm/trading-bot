@@ -30,3 +30,20 @@ ASSETS = {
         "tp_pct": 30.0,  # ✅ was 5.0 (AI lain) → riset: 30.0
     },
 }
+
+# â”€â”€ H3: ATR-based adaptive SL/TP â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+ATR_SL_MULTIPLIER = 1.5
+ATR_TP_MULTIPLIER = 4.5
+
+def get_adaptive_sl_tp(asset, current_price, atr, fixed_sl_pct, fixed_tp_pct):
+    """
+    SL = max(fixed_sl, 1.5 x ATR%)
+    TP = max(fixed_tp, 4.5 x ATR%)   <- rasio 3:1
+    Melebar saat volatilitas tinggi, tidak pernah di bawah nilai riset.
+    """
+    if current_price <= 0 or atr <= 0:
+        return fixed_sl_pct, fixed_tp_pct
+    atr_pct    = atr / current_price
+    final_sl   = max(fixed_sl_pct, ATR_SL_MULTIPLIER * atr_pct)
+    final_tp   = max(fixed_tp_pct, ATR_TP_MULTIPLIER * atr_pct)
+    return round(final_sl, 4), round(final_tp, 4)
