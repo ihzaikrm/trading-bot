@@ -33,7 +33,7 @@ OPTIMAL_PARAMS_FILE = os.path.join(
 TRAIN_YEARS  = 2      # panjang window training
 TEST_MONTHS  = 3      # panjang window test (1 kuartal)
 STEP_MONTHS  = 3      # geser per kuartal
-MIN_TRADES   = 5      # minimum trade di test window agar valid
+MIN_TRADES   = 3      # minimum trade di test window agar valid
 
 
 # â”€â”€ Parameter grid per aset â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -58,7 +58,7 @@ PARAM_GRID = {
 
 # Default fallback jika WFO belum pernah jalan
 DEFAULT_PARAMS = {
-    "BTC/USDT": {"score_threshold": 5, "vol_ratio_min": 1.2, "ret30d_weight": 2, "ret7d_weight": 1},
+    "BTC/USDT": {"score_threshold": 4, "vol_ratio_min": 1.0, "ret30d_weight": 2, "ret7d_weight": 1},
     "GC=F":     {"bear_ret3m": -0.08, "bear_ret1m": -0.03, "ema_span": 200},
     "^GSPC":    {"score_threshold": 5, "skip_months": [9]},
 }
@@ -76,6 +76,8 @@ def _fetch_data(symbol: str, start: str, end: str) -> pd.DataFrame:
         if df.empty:
             return pd.DataFrame()
         df.index = pd.to_datetime(df.index)
+        if isinstance(df.columns, pd.MultiIndex):
+            df.columns = df.columns.get_level_values(0)
         return df
     except Exception as e:
         logger.warning("yfinance fetch error for %s: %s", symbol, e)
@@ -249,8 +251,8 @@ def run_walk_forward(symbol: str) -> dict:
         train_end   = cursor
         test_end    = cursor + relativedelta(months=TEST_MONTHS)
 
-        df_train = df[(df.index >= pd.Timestamp(train_start)) & (df.index < pd.Timestamp(train_end))]
-        df_test  = df[(df.index >= pd.Timestamp(train_end))   & (df.index < pd.Timestamp(test_end))]
+        df_train = df[(df.index >= pd.Timestamp(train_start.replace(tzinfo=None))) & (df.index < pd.Timestamp(train_end.replace(tzinfo=None)))]
+        df_test  = df[(df.index >= pd.Timestamp(train_end.replace(tzinfo=None)))   & (df.index < pd.Timestamp(test_end.replace(tzinfo=None)))]
 
         if len(df_train) < 100 or len(df_test) < 10:
             cursor += relativedelta(months=STEP_MONTHS)

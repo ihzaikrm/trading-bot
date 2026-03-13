@@ -20,7 +20,7 @@ def _sig_btc_vol_tsmom(ind, closes, volumes):
     ret_30d = (closes[-1] - closes[-30]) / closes[-30]
     ret_7d  = (closes[-1] - closes[-7])  / closes[-7]
     vol_ratio = volumes[-1] / (np.median(volumes[-20:]) + 1e-9)
-    vol_strong = vol_ratio > 1.2
+    vol_strong = vol_ratio > 1.0
     score = 0
     if ret_30d > 0:   score += 2
     elif ret_30d < 0: score -= 2
@@ -31,7 +31,7 @@ def _sig_btc_vol_tsmom(ind, closes, volumes):
     if ind["macd_cross"] == "BULLISH": score += 1
     else: score -= 1
     if vol_strong: score += 2
-    if score >= 5:
+    if score >= 4:
         return "BUY"
     return "HOLD"
 
