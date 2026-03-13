@@ -16,6 +16,7 @@ from core.llm_clients import call_all_llms
 from core.llm_performance import evaluate_predictions
 from core.command_handler import handle_commands
 from core.daily_report import send_daily_report
+from core.strategy_manager import run_scheduled_reports
 from core.correlation import check_correlation
 from core.liquidation import calculate_liquidation_price, check_margin_call
 
@@ -155,6 +156,7 @@ async def main():
     
     handle_commands(data, os.getenv("TELEGRAM_CHAT_ID"))
     send_daily_report()
+    await run_scheduled_reports()
 
     positions = data.get("positions", {})
     shorts = data.get("shorts", {})
