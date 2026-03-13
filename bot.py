@@ -6,11 +6,10 @@ sys.path.insert(0, os.getcwd())
 from dotenv import load_dotenv
 load_dotenv()
 
-# Import dari modul baru
 from config.assets import ASSETS
-from config.trading_params import LEVERAGE  # SL/TP diambil dari ASSETS
+from config.trading_params import STOP_LOSS_PCT, TAKE_PROFIT_PCT, LEVERAGE
 from core.market_data import get_asset_data, is_market_open
-from core.signal_engine import get_signal, mtf_bias
+from core.signal_engine import get_signal, mtf_bias, get_strategy_status_text
 from core.risk_manager import force_close_position
 from core.notifier import tg
 from core.llm_clients import call_all_llms
@@ -34,7 +33,6 @@ def save_trades(data):
         json.dump(data, f, indent=2)
 
 def calculate_equity(data, current_prices):
-    """Hitung equity total = balance + unrealized PnL semua posisi"""
     equity = data["balance"]
     positions = data.get("positions", {})
     shorts = data.get("shorts", {})
@@ -52,7 +50,6 @@ def calculate_equity(data, current_prices):
     return equity
 
 def generate_dashboard(data, perf, equity, drawdown):
-    """Buat file HTML dashboard dengan data terkini"""
     import os
     from datetime import datetime
     dashboard_dir = "dashboard"
@@ -93,7 +90,6 @@ def generate_dashboard(data, perf, equity, drawdown):
     <h2>Open Positions</h2>
     <div id="positions">
 """
-    # Tambah posisi long
     for sym, pos in data.get('positions',{}).items():
         html += f"""
         <div class="position">
@@ -112,11 +108,12 @@ def generate_dashboard(data, perf, equity, drawdown):
     
     <h2>Recent Trades</h2>
     <table class="table">
-        <tr><th>Asset</th><th>Type</th><th>Entry</th><th>Exit</th><th>PnL</th></tr>
+        <tr><th>Asset</th><th>Type</th><th>Entry</th><th>Exit</th><th>PnL</th><th>Strategy</th></tr>
 """
     for trade in data.get('trades',[])[-10:]:
         pnl = trade.get('pnl',0)
         cls = "good" if pnl > 0 else "bad"
+        strategy = trade.get('strategy', 'unknown')
         html += f"""
         <tr>
             <td>{trade.get('asset','')}</td>
@@ -124,6 +121,7 @@ def generate_dashboard(data, perf, equity, drawdown):
             <td>${trade.get('entry_price',0):.2f}</td>
             <td>${trade.get('exit_price',0):.2f}</td>
             <td class="{cls}">${pnl:.2f}</td>
+            <td>{strategy}</td>
         </tr>"""
     html += """
     </table>
@@ -155,16 +153,13 @@ async def main():
     print("=== MULTI-ASSET BOT (MTF + LONG/SHORT) | "+now+" ===")
     data = load_trades()
     
-    # Proses perintah Telegram
     handle_commands(data, os.getenv("TELEGRAM_CHAT_ID"))
-    
-    # Kirim daily report jika waktunya
     send_daily_report()
 
     positions = data.get("positions", {})
     shorts = data.get("shorts", {})
 
-    # Kumpulkan harga terkini untuk semua aset secara paralel
+    # Kumpulkan harga terkini secara paralel
     current_prices = {}
     tasks = []
     asset_list = []
@@ -176,11 +171,13 @@ async def main():
     
     if tasks:
         results = await asyncio.gather(*tasks)
+        asset_data_dict = {}
         for name, asset_data in zip(asset_list, results):
             if asset_data and "price" in asset_data:
                 current_prices[name] = asset_data["price"]
+                asset_data_dict[name] = asset_data
 
-    # Evaluasi prediksi sebelumnya dan dapatkan performa terbaru
+    # Evaluasi prediksi dan dapatkan performa terbaru
     perf = evaluate_predictions(current_prices)
 
     # Hitung equity dan drawdown
@@ -194,7 +191,7 @@ async def main():
         tg(margin_warning)
         print(margin_warning)
 
-    # Cek apakah bot di-pause
+    # Cek pause
     if os.path.exists("logs/pause.txt"):
         print("⏸️ Bot dalam mode pause. Tidak melakukan trading baru.")
         tg("⏸️ Bot dalam mode pause. Hanya akan memonitor posisi.")
@@ -206,35 +203,30 @@ async def main():
         msg = f"⚠️ CIRCUIT BREAKER: Drawdown {round(drawdown,1)}% > 3%! Hanya akan menutup posisi, tidak membuka baru."
         print(msg); tg(msg)
 
-    # Alokasi per aset (hanya digunakan jika can_open_new)
     alloc = data["balance"] / len(ASSETS) * LEVERAGE
 
     print("\nAnalisa 3 aset (MTF)...")
     summary = []
     for name, info in ASSETS.items():
-        # Cek pasar buka
         if not is_market_open(info["type"]):
             print(f"  [{name}] Pasar tutup (weekend), lewati")
             summary.append(f"{name}: SKIP (market closed)")
             continue
 
-        print(f"\n  [{name}] Mengambil data MTF...")
-        asset_data = get_asset_data(name, info)
-        if not asset_data or "price" not in asset_data:
-            print(f"  {name}: gagal ambil data")
+        asset_data = asset_data_dict.get(name)
+        if not asset_data:
+            print(f"  {name}: tidak ada data")
             continue
 
         price = asset_data["price"]
         change = asset_data["change"]
         bias = mtf_bias(asset_data)
 
-        # Ambil SL/TP spesifik aset
-        sl_pct = info.get('sl_pct', 2.0)   # fallback 2%
-        tp_pct = info.get('tp_pct', 5.0)   # fallback 5%
-
         # Cek SL/TP untuk posisi existing
         long_pos = positions.get(name)
         short_pos = shorts.get(name)
+        sl_pct = info.get("sl_pct", STOP_LOSS_PCT)
+        tp_pct = info.get("tp_pct", TAKE_PROFIT_PCT)
 
         if long_pos:
             entry = long_pos["entry_price"]
@@ -243,7 +235,6 @@ async def main():
                 data = force_close_position(data, name, price, "STOP_LOSS")
                 positions = data.get("positions", {})
                 shorts = data.get("shorts", {})
-                # Update equity setelah close
                 equity = calculate_equity(data, current_prices)
                 drawdown = max(0, (initial - equity) / initial * 100)
                 continue
@@ -280,19 +271,32 @@ async def main():
                 print(f"    {tf}: RSI:{ind['rsi']} | MACD:{ind['macd_cross']} | EMA:{ind['ema_trend']} | BB:{ind['bb_pos']}")
         print(f"    Bias MTF: {bias}")
 
-        # Dapatkan sinyal dengan bobot dinamis
-        signal, conf, votes, details, bias = await get_signal(info["name"], asset_data, now, perf)
+        # Dapatkan sinyal dengan closes & volumes
+        closes = asset_data.get("closes", [])
+        volumes = asset_data.get("volumes", [])
+        signal, conf, votes, details, bias = await get_signal(
+            info["name"], asset_data, now, perf, closes=closes, volumes=volumes
+        )
         print(f"  -> {signal} conf:{conf} votes:{votes}")
         summary.append(f"{name}: {signal} ({conf}) [{bias}]")
 
         long_pos = positions.get(name)
         short_pos = shorts.get(name)
 
-        # Open Long hanya jika can_open_new
+        # Tentukan strategi untuk dicatat di trade
+        if name == "BTC/USDT":
+            strategy_used = "vol_tsmom"
+        elif name == "XAUUSD":
+            strategy_used = "smart_hold"
+        elif name == "SPX":
+            strategy_used = "monthly_seasonal"
+        else:
+            strategy_used = "llm"
+
+        # Open Long
         if can_open_new and signal == "BUY" and conf >= 0.55 and votes >= 3 and not long_pos and not short_pos and alloc > 10:
-            # Cek korelasi dengan posisi yang sudah ada
             if not check_correlation(name, positions) or not check_correlation(name, shorts):
-                print(f"  [{name}] Diblokir oleh correlation filter (korelasi tinggi dengan posisi lain)")
+                print(f"  [{name}] Diblokir oleh correlation filter")
                 continue
             qty = alloc / price
             positions[name] = {"entry_price": price, "qty": qty, "amount": alloc/LEVERAGE, "time": now}
@@ -306,12 +310,13 @@ async def main():
             print(f"  [BUY] {name}")
             tg(msg)
 
-        # Close Long (tetap bisa dilakukan meskipun drawdown tinggi)
+        # Close Long
         elif signal == "SELL" and long_pos:
             pnl = (price - long_pos["entry_price"]) * long_pos["qty"]
             data["balance"] += long_pos["amount"] + pnl
             data["trades"].append({**long_pos, "asset": name, "type": "long",
-                                   "exit_price": price, "pnl": round(pnl,2), "exit_time": now})
+                                   "exit_price": price, "pnl": round(pnl,2), "exit_time": now,
+                                   "strategy": strategy_used})
             del positions[name]
             emoji = "✅" if pnl > 0 else "🔴"
             msg = (f"{emoji} SELL (Close Long) {info['name']}\n"
@@ -320,11 +325,10 @@ async def main():
             print(f"  [SELL] {name} PnL: ${round(pnl,2)}")
             tg(msg)
 
-        # Open Short hanya jika can_open_new
+        # Open Short
         elif can_open_new and signal == "SHORT" and conf >= 0.55 and votes >= 3 and not short_pos and not long_pos and alloc > 10:
-            # Cek korelasi dengan posisi yang sudah ada
             if not check_correlation(name, positions) or not check_correlation(name, shorts):
-                print(f"  [{name}] Diblokir oleh correlation filter (korelasi tinggi dengan posisi lain)")
+                print(f"  [{name}] Diblokir oleh correlation filter")
                 continue
             qty = alloc / price
             shorts[name] = {"entry_price": price, "qty": qty, "amount": alloc/LEVERAGE, "time": now}
@@ -338,12 +342,13 @@ async def main():
             print(f"  [SHORT] {name}")
             tg(msg)
 
-        # Close Short (tetap bisa)
+        # Close Short
         elif signal == "COVER" and short_pos:
             pnl = (short_pos["entry_price"] - price) * short_pos["qty"]
             data["balance"] += short_pos["amount"] + pnl
             data["trades"].append({**short_pos, "asset": name, "type": "short",
-                                   "exit_price": price, "pnl": round(pnl,2), "exit_time": now})
+                                   "exit_price": price, "pnl": round(pnl,2), "exit_time": now,
+                                   "strategy": strategy_used})
             del shorts[name]
             emoji = "✅" if pnl > 0 else "🔴"
             msg = (f"{emoji} COVER (Close Short) {info['name']}\n"
@@ -356,10 +361,8 @@ async def main():
     data["shorts"] = shorts
     save_trades(data)
 
-    # Generate dashboard HTML
     generate_dashboard(data, perf, equity, drawdown)
 
-    # Status ringkasan
     trades = data["trades"]
     wins = sum(1 for t in trades if t.get("pnl",0) > 0)
     winrate = str(round(wins/len(trades)*100))+"%" if trades else "N/A"
@@ -376,7 +379,6 @@ async def main():
               f"Trade: {len(trades)} | Winrate: {winrate}\n"
               f"Total PnL: ${round(total_pnl,2)}")
     
-    # Tambahkan link dashboard
     dashboard_url = "https://htmlpreview.github.io/?https://github.com/ihzaikrm/trading-bot/blob/main/dashboard/index.html"
     status += f"\n\n📈 Monitor: {dashboard_url}"
     
