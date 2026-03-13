@@ -207,7 +207,19 @@ async def main():
         msg = f"⚠️ CIRCUIT BREAKER: Drawdown {round(drawdown,1)}% > 3%! Hanya akan menutup posisi, tidak membuka baru."
         print(msg); tg(msg)
 
-    alloc = data["balance"] / len(ASSETS) * LEVERAGE
+    # Regime detection: VIX-based Kelly scaling
+    try:
+        vix_data = await get_asset_data("VIX", {"type":"index","symbol":"^VIX","name":"VIX"})
+        vix = vix_data.get("price", 20) if vix_data else 20
+    except Exception:
+        vix = 20
+    if vix < 15:   regime = "BULL";   kelly_mult = 1.0
+    elif vix < 25: regime = "NORMAL"; kelly_mult = 0.8
+    elif vix < 35: regime = "FEAR";   kelly_mult = 0.5
+    else:          regime = "PANIC";  kelly_mult = 0.0
+    print(f"  [Regime] VIX={vix:.1f} → {regime} (kelly_mult={kelly_mult})")
+
+    alloc = data["balance"] / len(ASSETS) * LEVERAGE * kelly_mult
 
     print("\nAnalisa 3 aset (MTF)...")
     summary = []
