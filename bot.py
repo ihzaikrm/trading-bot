@@ -413,7 +413,7 @@ async def main():
               f"Trade: {len(trades)} | Winrate: {winrate}\n"
               f"Total PnL: ${round(total_pnl,2)}")
     
-    dashboard_url = "https://htmlpreview.github.io/?https://github.com/ihzaikrm/trading-bot/blob/main/dashboard/index.html"
+    dashboard_url = "https://ihzaikrm.github.io/trading-bot/"
     status += f"\n\n📈 Monitor: {dashboard_url}"
     
     print("\n"+status)
