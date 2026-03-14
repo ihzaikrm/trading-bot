@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-14T22:57:04.092356",
+  "timestamp": "2026-03-14T23:54:20.010412",
   "results": {
     "1h": {
       "label": "BREAKING",
@@ -7,55 +7,55 @@
       "verified_count": 2,
       "news": [
         {
-          "title": "Cracks emerged in a resilient US economy before war in Iran sent oil prices rocketing - AP News",
-          "sources": [
-            "newsapi_business",
-            "investing_com"
-          ],
-          "source_count": 2,
-          "publisher": "Associated Press",
-          "time": "2026-03-13T17:31:00Z",
-          "verified": true
-        },
-        {
-          "title": "15 stocks in the S&P 500 showing double-digit gains since the attack on Iran began - MarketWatch",
-          "sources": [
-            "newsapi_business",
-            "investing_com"
-          ],
-          "source_count": 2,
-          "publisher": "MarketWatch",
-          "time": "2026-03-13T15:08:00Z",
-          "verified": true
-        },
-        {
-          "title": "Oil only accounts for half the cost of a gallon of gas. Here's where the rest comes from. - CBS News",
-          "sources": [
-            "newsapi_business"
-          ],
-          "source_count": 1,
-          "publisher": "CBS News",
-          "time": "2026-03-13T20:16:50Z",
-          "verified": false
-        },
-        {
           "title": "Wall Street warns Iran war will trigger prolonged energy crisis - Financial Times",
           "sources": [
-            "newsapi_business"
+            "newsapi_business",
+            "investing_com"
           ],
-          "source_count": 1,
+          "source_count": 2,
           "publisher": "Financial Times",
           "time": "2026-03-13T18:30:34Z",
-          "verified": false
+          "verified": true
         },
         {
-          "title": "Stock Market Today: Dow Fades On Inflation, GDP Surprise; Nvidia Turns Lower (Live Coverage) - Investor's Business Daily",
+          "title": "BofA\u2019s Hartnett Warns Markets Are Starting to Look Like 2008 - Bloomberg.com",
+          "sources": [
+            "newsapi_business",
+            "investing_com"
+          ],
+          "source_count": 2,
+          "publisher": "Bloomberg",
+          "time": "2026-03-13T14:57:45Z",
+          "verified": true
+        },
+        {
+          "title": "A flying taxi crossed the Golden Gate Bridge. Could it soon take you from S.F. to Wine Country? - San Francisco Chronicle",
           "sources": [
             "newsapi_business"
           ],
           "source_count": 1,
-          "publisher": "Investor's Business Daily",
-          "time": "2026-03-13T17:23:25Z",
+          "publisher": "San Francisco Chronicle",
+          "time": "2026-03-13T19:07:50Z",
+          "verified": false
+        },
+        {
+          "title": "Mortgage Rates Surge to 7-Month Highs - Mortgage News Daily",
+          "sources": [
+            "newsapi_business"
+          ],
+          "source_count": 1,
+          "publisher": "Mortgage News Daily",
+          "time": "2026-03-13T18:12:34Z",
+          "verified": false
+        },
+        {
+          "title": "Key inflation gauge worsened in January, before Iran war lifted gas prices - AP News",
+          "sources": [
+            "newsapi_business"
+          ],
+          "source_count": 1,
+          "publisher": "Associated Press",
+          "time": "2026-03-13T17:11:00Z",
           "verified": false
         }
       ]
@@ -63,26 +63,14 @@
     "6h": {
       "label": "PENTING",
       "weight": 0.7,
-      "verified_count": 4,
+      "verified_count": 3,
       "news": [
-        {
-          "title": "Oil only accounts for half the cost of a gallon of gas. Here's where the rest comes from. - CBS News",
-          "sources": [
-            "newsapi_business",
-            "yahoo_gold",
-            "yahoo_btc"
-          ],
-          "source_count": 3,
-          "publisher": "CBS News",
-          "time": "2026-03-13T20:16:50Z",
-          "verified": true
-        },
         {
           "title": "BofA\u2019s Hartnett Warns Markets Are Starting to Look Like 2008 - Bloomberg.com",
           "sources": [
-            "yahoo_spx",
             "newsapi_business",
-            "marketwatch"
+            "yahoo_spx",
+            "investing_com"
           ],
           "source_count": 3,
           "publisher": "Bloomberg",
@@ -90,45 +78,35 @@
           "verified": true
         },
         {
-          "title": "Cracks emerged in a resilient US economy before war in Iran sent oil prices rocketing - AP News",
-          "sources": [
-            "newsapi_business",
-            "investing_com"
-          ],
-          "source_count": 2,
-          "publisher": "Associated Press",
-          "time": "2026-03-13T17:31:00Z",
-          "verified": true
-        },
-        {
-          "title": "15 stocks in the S&P 500 showing double-digit gains since the attack on Iran began - MarketWatch",
-          "sources": [
-            "newsapi_business",
-            "investing_com"
-          ],
-          "source_count": 2,
-          "publisher": "MarketWatch",
-          "time": "2026-03-13T15:08:00Z",
-          "verified": true
-        },
-        {
           "title": "Wall Street warns Iran war will trigger prolonged energy crisis - Financial Times",
           "sources": [
-            "newsapi_business"
+            "newsapi_business",
+            "investing_com"
           ],
-          "source_count": 1,
+          "source_count": 2,
           "publisher": "Financial Times",
           "time": "2026-03-13T18:30:34Z",
-          "verified": false
+          "verified": true
         },
         {
-          "title": "Stock Market Today: Dow Fades On Inflation, GDP Surprise; Nvidia Turns Lower (Live Coverage) - Investor's Business Daily",
+          "title": "Mortgage Rates Surge to 7-Month Highs - Mortgage News Daily",
+          "sources": [
+            "newsapi_business",
+            "marketwatch"
+          ],
+          "source_count": 2,
+          "publisher": "Mortgage News Daily",
+          "time": "2026-03-13T18:12:34Z",
+          "verified": true
+        },
+        {
+          "title": "A flying taxi crossed the Golden Gate Bridge. Could it soon take you from S.F. to Wine Country? - San Francisco Chronicle",
           "sources": [
             "newsapi_business"
           ],
           "source_count": 1,
-          "publisher": "Investor's Business Daily",
-          "time": "2026-03-13T17:23:25Z",
+          "publisher": "San Francisco Chronicle",
+          "time": "2026-03-13T19:07:50Z",
           "verified": false
         },
         {
@@ -139,6 +117,16 @@
           "source_count": 1,
           "publisher": "Associated Press",
           "time": "2026-03-13T17:11:00Z",
+          "verified": false
+        },
+        {
+          "title": "Iran war oil shock stokes fears of 1970s-style stagflation \u2014 why this time could be different - CNBC",
+          "sources": [
+            "newsapi_business"
+          ],
+          "source_count": 1,
+          "publisher": "CNBC",
+          "time": "2026-03-13T14:20:38Z",
           "verified": false
         }
       ]
@@ -146,42 +134,15 @@
     "24h": {
       "label": "KONTEKS",
       "weight": 0.4,
-      "verified_count": 8,
+      "verified_count": 11,
       "news": [
-        {
-          "title": "15 stocks in the S&P 500 showing double-digit gains since the attack on Iran began - MarketWatch",
-          "sources": [
-            "yahoo_spx",
-            "newsapi_business",
-            "google_fed",
-            "google_crypto",
-            "investing_com"
-          ],
-          "source_count": 5,
-          "publisher": "MarketWatch",
-          "time": "2026-03-13T15:08:00Z",
-          "verified": true
-        },
-        {
-          "title": "Oil only accounts for half the cost of a gallon of gas. Here's where the rest comes from. - CBS News",
-          "sources": [
-            "yahoo_btc",
-            "newsapi_business",
-            "yahoo_gold",
-            "google_gold"
-          ],
-          "source_count": 4,
-          "publisher": "CBS News",
-          "time": "2026-03-13T20:16:50Z",
-          "verified": true
-        },
         {
           "title": "BofA\u2019s Hartnett Warns Markets Are Starting to Look Like 2008 - Bloomberg.com",
           "sources": [
-            "yahoo_spx",
             "newsapi_business",
+            "investing_com",
             "yahoo_btc",
-            "marketwatch"
+            "yahoo_spx"
           ],
           "source_count": 4,
           "publisher": "Bloomberg",
@@ -189,22 +150,34 @@
           "verified": true
         },
         {
-          "title": "Cracks emerged in a resilient US economy before war in Iran sent oil prices rocketing - AP News",
+          "title": "Bitcoin beat the S&P 500, Nasdaq Composite and gold since the start of the Iran war - CNBC",
+          "sources": [
+            "yahoo_gold",
+            "yahoo_btc",
+            "yahoo_spx",
+            "google_crypto"
+          ],
+          "source_count": 4,
+          "publisher": "google_crypto",
+          "time": "Sat, 14 Mar 2026 15:00:01 GMT",
+          "verified": true
+        },
+        {
+          "title": "A flying taxi crossed the Golden Gate Bridge. Could it soon take you from S.F. to Wine Country? - San Francisco Chronicle",
           "sources": [
             "newsapi_business",
-            "investing_com",
-            "google_gold"
+            "yahoo_gold"
           ],
-          "source_count": 3,
-          "publisher": "Associated Press",
-          "time": "2026-03-13T17:31:00Z",
+          "source_count": 2,
+          "publisher": "San Francisco Chronicle",
+          "time": "2026-03-13T19:07:50Z",
           "verified": true
         },
         {
           "title": "Wall Street warns Iran war will trigger prolonged energy crisis - Financial Times",
           "sources": [
-            "yahoo_spx",
-            "newsapi_business"
+            "newsapi_business",
+            "investing_com"
           ],
           "source_count": 2,
           "publisher": "Financial Times",
@@ -212,23 +185,24 @@
           "verified": true
         },
         {
-          "title": "Stock Market Today: Dow Fades On Inflation, GDP Surprise; Nvidia Turns Lower (Live Coverage) - Investor's Business Daily",
+          "title": "Mortgage Rates Surge to 7-Month Highs - Mortgage News Daily",
           "sources": [
-            "newsapi_business"
+            "newsapi_business",
+            "marketwatch"
           ],
-          "source_count": 1,
-          "publisher": "Investor's Business Daily",
-          "time": "2026-03-13T17:23:25Z",
-          "verified": false
+          "source_count": 2,
+          "publisher": "Mortgage News Daily",
+          "time": "2026-03-13T18:12:34Z",
+          "verified": true
         },
         {
-          "title": "Key inflation gauge worsened in January, before Iran war lifted gas prices - AP News",
+          "title": "Live Updates: Iran war nears 2-week mark as military plane crash in Iraq brings U.S. toll to 13 - CBS News",
           "sources": [
-            "newsapi_business"
+            "newsapi_general"
           ],
           "source_count": 1,
-          "publisher": "Associated Press",
-          "time": "2026-03-13T17:11:00Z",
+          "publisher": "CBS News",
+          "time": "2026-03-13T20:11:00Z",
           "verified": false
         },
         {
@@ -239,6 +213,16 @@
           "source_count": 1,
           "publisher": "Politico",
           "time": "2026-03-13T18:22:01Z",
+          "verified": false
+        },
+        {
+          "title": "Mortgage Rates Surge to 7-Month Highs - Mortgage News Daily",
+          "sources": [
+            "newsapi_general"
+          ],
+          "source_count": 1,
+          "publisher": "Mortgage News Daily",
+          "time": "2026-03-13T18:12:34Z",
           "verified": false
         }
       ]
