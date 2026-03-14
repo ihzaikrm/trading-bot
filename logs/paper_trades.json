@@ -1,5 +1,15 @@
 {
-  "balance": 1000.0,
+  "balance": 650.0,
   "trades": [],
-  "positions": {}
+  "positions": {
+    "BTC/USDT": {
+      "entry_price": 70566.5,
+      "qty": 0.004959860557063196,
+      "amount": 350.0,
+      "time": "2026-03-14 17:51",
+      "narrative": "INFLATION_HEDGE",
+      "tp_pct": 25,
+      "sl_pct": 10
+    }
+  }
 }

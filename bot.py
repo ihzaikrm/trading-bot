@@ -278,9 +278,8 @@ async def main():
         import json as _json, os as _os
         _cache = _os.path.join("logs","news_cache.json")
         try:
-try:
             _news = _json.load(open(_cache, encoding="utf-8")) if _os.path.exists(_cache) else {}
-            _titles = [a.get("title","") for a in _news.get("1h",[])[:3]] + [a.get("title","") for a in _news.get("6h",[])[:2]]
+            _results = _news.get("results",{}); _1h = _results.get("1h",{}).get("news",[]); _6h = _results.get("6h",{}).get("news",[]); _titles = [n.get("title","") for n in _1h[:3]] + [n.get("title","") for n in _6h[:3]]
             news_text_for_narr = " ".join(_titles)
         except:
             news_text_for_narr = ""

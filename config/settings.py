@@ -39,14 +39,14 @@ LLM_CONFIGS = {
     ),
     "gpt": LLMConfig(
         name="Llama 3.1 8B",
-        model="qwen/qwen3-next-80b-a3b-instruct:free",
+        model="microsoft/phi-4:free",
         role="pattern_analyst",
         weight=0.20,
         api_key=OPENROUTER_API_KEY,
     ),
     "grok": LLMConfig(
         name="Mistral 7B",
-        model="mistralai/mistral-small-3.1-24b-instruct:free",
+        model="google/gemma-3-4b-it:free",
         role="sentiment_analyst",
         weight=0.15,
         api_key=OPENROUTER_API_KEY,
