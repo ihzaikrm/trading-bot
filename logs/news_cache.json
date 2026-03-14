@@ -1,61 +1,50 @@
 {
-  "timestamp": "2026-03-14T08:24:48.544195",
+  "timestamp": "2026-03-14T05:02:51.634065",
   "results": {
     "1h": {
       "label": "BREAKING",
       "weight": 1.0,
-      "verified_count": 2,
+      "verified_count": 1,
       "news": [
         {
-          "title": "S&P 500 futures are flat ahead of key inflation data; traders monitor oil prices and Iran war: Live updates - CNBC",
+          "title": "S&P 500 futures edge up ahead of key inflation data; traders monitor oil prices and Iran war: Live updates - CNBC",
           "sources": [
             "newsapi_business",
-            "yahoo_spx"
+            "yahoo_btc"
           ],
           "source_count": 2,
           "publisher": "CNBC",
-          "time": "2026-03-13T00:22:00Z",
+          "time": "2026-03-13T04:39:00Z",
           "verified": true
         },
         {
-          "title": "Why The Iran War Is Fueling A Rally In Fertilizer Stocks - Investor's Business Daily",
-          "sources": [
-            "newsapi_business",
-            "investing_com"
-          ],
-          "source_count": 2,
-          "publisher": "Investor's Business Daily",
-          "time": "2026-03-12T14:06:00Z",
-          "verified": true
-        },
-        {
-          "title": "Brent Oil Closes Above $100 for First Time Since August 2022 - Bloomberg.com",
+          "title": "Trump and Iran Strike Defiant Tone as Oil Markets See Little Relief - Bloomberg.com",
           "sources": [
             "newsapi_business"
           ],
           "source_count": 1,
           "publisher": "Bloomberg",
-          "time": "2026-03-12T20:13:47Z",
+          "time": "2026-03-12T22:09:35Z",
           "verified": false
         },
         {
-          "title": "A software CEO called me on the weekend recently with painful predictions. One is already coming true. - Business Insider",
+          "title": "Federal Reserve to loosen capital requirements for big US banks - Financial Times",
           "sources": [
             "newsapi_business"
           ],
           "source_count": 1,
-          "publisher": "Business Insider",
-          "time": "2026-03-12T18:37:24Z",
+          "publisher": "Financial Times",
+          "time": "2026-03-12T20:40:20Z",
           "verified": false
         },
         {
-          "title": "The market is starting to see the Iran war as a gamechanger, not a temporary disruption - investingLive",
+          "title": "A key gauge of inflation expectations just logged its highest reading in almost 4 years - MarketWatch",
           "sources": [
             "newsapi_business"
           ],
           "source_count": 1,
-          "publisher": "Investinglive.com",
-          "time": "2026-03-12T16:47:22Z",
+          "publisher": "Google News",
+          "time": "2026-03-12T17:25:00Z",
           "verified": false
         }
       ]
@@ -63,93 +52,71 @@
     "6h": {
       "label": "PENTING",
       "weight": 0.7,
-      "verified_count": 7,
+      "verified_count": 3,
       "news": [
         {
-          "title": "Brent Oil Closes Above $100 for First Time Since August 2022 - Bloomberg.com",
+          "title": "S&P 500 futures edge up ahead of key inflation data; traders monitor oil prices and Iran war: Live updates - CNBC",
           "sources": [
-            "google_gold",
+            "yahoo_spx",
             "newsapi_business",
-            "yahoo_spx"
+            "yahoo_btc"
           ],
           "source_count": 3,
-          "publisher": "Bloomberg",
-          "time": "2026-03-12T20:13:47Z",
-          "verified": true
-        },
-        {
-          "title": "Why The Iran War Is Fueling A Rally In Fertilizer Stocks - Investor's Business Daily",
-          "sources": [
-            "newsapi_business",
-            "marketwatch",
-            "investing_com"
-          ],
-          "source_count": 3,
-          "publisher": "Investor's Business Daily",
-          "time": "2026-03-12T14:06:00Z",
-          "verified": true
-        },
-        {
-          "title": "S&P 500 futures are flat ahead of key inflation data; traders monitor oil prices and Iran war: Live updates - CNBC",
-          "sources": [
-            "newsapi_business",
-            "yahoo_spx"
-          ],
-          "source_count": 2,
           "publisher": "CNBC",
-          "time": "2026-03-13T00:22:00Z",
+          "time": "2026-03-13T04:39:00Z",
           "verified": true
         },
         {
           "title": "What the Iran war could mean for gas prices, flights and your wallet - The Washington Post",
           "sources": [
-            "newsapi_business",
-            "marketwatch"
+            "yahoo_spx",
+            "google_crypto",
+            "newsapi_business"
           ],
-          "source_count": 2,
+          "source_count": 3,
           "publisher": "The Washington Post",
           "time": "2026-03-12T16:17:24Z",
           "verified": true
         },
         {
-          "title": "Customer sues Costco for tariff refunds - BBC",
+          "title": "U.S. Air Force refueler crashes in Iraq while supporting Iran war - The Washington Post",
           "sources": [
-            "yahoo_gold",
-            "newsapi_business"
+            "google_gold",
+            "newsapi_general"
           ],
           "source_count": 2,
-          "publisher": "BBC News",
-          "time": "2026-03-12T16:08:37Z",
+          "publisher": "The Washington Post",
+          "time": "2026-03-13T01:23:46Z",
           "verified": true
         },
         {
-          "title": "A software CEO called me on the weekend recently with painful predictions. One is already coming true. - Business Insider",
+          "title": "Trump and Iran Strike Defiant Tone as Oil Markets See Little Relief - Bloomberg.com",
           "sources": [
             "newsapi_business"
           ],
           "source_count": 1,
-          "publisher": "Business Insider",
-          "time": "2026-03-12T18:37:24Z",
+          "publisher": "Bloomberg",
+          "time": "2026-03-12T22:09:35Z",
           "verified": false
         },
         {
-          "title": "The market is starting to see the Iran war as a gamechanger, not a temporary disruption - investingLive",
+          "title": "Federal Reserve to loosen capital requirements for big US banks - Financial Times",
           "sources": [
             "newsapi_business"
           ],
           "source_count": 1,
-          "publisher": "Investinglive.com",
-          "time": "2026-03-12T16:47:22Z",
+          "publisher": "Financial Times",
+          "time": "2026-03-12T20:40:20Z",
           "verified": false
         },
         {
-          "title": "Palantir Unveils Nvidia Software Pact, Defense Partnerships At AI Conference - Investor's Business Daily",
+          "title": "A key gauge of inflation expectations just logged its highest reading in almost 4 years - MarketWatch",
           "sources": [
             "newsapi_business"
           ],
           "source_count": 1,
-          "publisher": "Investor's Business Daily",
-          "time": "2026-03-12T15:07:00Z",
+          "publisher": "Google News",
+          "time": "2026-03-12T17:25:00Z",
           "verified": false
         }
       ]
@@ -157,56 +124,46 @@
     "24h": {
       "label": "KONTEKS",
       "weight": 0.4,
-      "verified_count": 15,
+      "verified_count": 14,
       "news": [
         {
-          "title": "Brent Oil Closes Above $100 for First Time Since August 2022 - Bloomberg.com",
+          "title": "Trump and Iran Strike Defiant Tone as Oil Markets See Little Relief - Bloomberg.com",
           "sources": [
-            "google_gold",
-            "newsapi_business",
-            "yahoo_gold",
             "google_crypto",
-            "yahoo_spx"
+            "newsapi_business",
+            "google_gold",
+            "yahoo_gold",
+            "google_stocks",
+            "google_fed"
           ],
-          "source_count": 5,
+          "source_count": 6,
           "publisher": "Bloomberg",
-          "time": "2026-03-12T20:13:47Z",
+          "time": "2026-03-12T22:09:35Z",
           "verified": true
         },
         {
-          "title": "S&P 500 futures are flat ahead of key inflation data; traders monitor oil prices and Iran war: Live updates - CNBC",
+          "title": "S&P 500 futures edge up ahead of key inflation data; traders monitor oil prices and Iran war: Live updates - CNBC",
           "sources": [
-            "yahoo_gold",
-            "newsapi_business",
             "yahoo_spx",
+            "newsapi_business",
+            "yahoo_gold",
+            "yahoo_btc",
             "google_macro"
           ],
-          "source_count": 4,
+          "source_count": 5,
           "publisher": "CNBC",
-          "time": "2026-03-13T00:22:00Z",
-          "verified": true
-        },
-        {
-          "title": "Why The Iran War Is Fueling A Rally In Fertilizer Stocks - Investor's Business Daily",
-          "sources": [
-            "yahoo_gold",
-            "newsapi_business",
-            "marketwatch",
-            "investing_com"
-          ],
-          "source_count": 4,
-          "publisher": "Investor's Business Daily",
-          "time": "2026-03-12T14:06:00Z",
+          "time": "2026-03-13T04:39:00Z",
           "verified": true
         },
         {
           "title": "The market is starting to see the Iran war as a gamechanger, not a temporary disruption - investingLive",
           "sources": [
             "google_gold",
+            "google_crypto",
             "newsapi_business",
             "yahoo_btc"
           ],
-          "source_count": 3,
+          "source_count": 4,
           "publisher": "Investinglive.com",
           "time": "2026-03-12T16:47:22Z",
           "verified": true
@@ -214,43 +171,57 @@
         {
           "title": "What the Iran war could mean for gas prices, flights and your wallet - The Washington Post",
           "sources": [
+            "yahoo_spx",
+            "google_crypto",
             "newsapi_business",
-            "marketwatch",
-            "yahoo_btc"
+            "marketwatch"
           ],
-          "source_count": 3,
+          "source_count": 4,
           "publisher": "The Washington Post",
           "time": "2026-03-12T16:17:24Z",
           "verified": true
         },
         {
-          "title": "A software CEO called me on the weekend recently with painful predictions. One is already coming true. - Business Insider",
+          "title": "Iran war is the largest oil supply disruption in history, report finds - Politico",
           "sources": [
-            "newsapi_business"
+            "google_gold",
+            "newsapi_business",
+            "marketwatch",
+            "yahoo_gold"
           ],
-          "source_count": 1,
-          "publisher": "Business Insider",
-          "time": "2026-03-12T18:37:24Z",
-          "verified": false
+          "source_count": 4,
+          "publisher": "Politico",
+          "time": "2026-03-12T14:49:50Z",
+          "verified": true
         },
         {
-          "title": "CFTC Staff Issues Prediction Markets Advisory - Commodity Futures Trading Commission | CFTC (.gov)",
-          "sources": [
-            "newsapi_business"
-          ],
-          "source_count": 1,
-          "publisher": "Cftc.gov",
-          "time": "2026-03-12T14:31:16Z",
-          "verified": false
-        },
-        {
-          "title": "Brent Oil Closes Above $100 for First Time Since August 2022 - Bloomberg.com",
+          "title": "Singapore Disputes US Trade Surplus Data as New Tariffs Loom - Bloomberg.com",
           "sources": [
             "newsapi_general"
           ],
           "source_count": 1,
           "publisher": "Bloomberg",
-          "time": "2026-03-12T20:13:47Z",
+          "time": "2026-03-13T00:47:00Z",
+          "verified": false
+        },
+        {
+          "title": "Trump and Iran Strike Defiant Tone as Oil Markets See Little Relief - Bloomberg.com",
+          "sources": [
+            "newsapi_general"
+          ],
+          "source_count": 1,
+          "publisher": "Bloomberg",
+          "time": "2026-03-12T22:09:35Z",
+          "verified": false
+        },
+        {
+          "title": "Michael Saylor slams Boris Johnson's harsh warnings on Bitcoin - thestreet.com",
+          "sources": [
+            "google_crypto"
+          ],
+          "source_count": 1,
+          "publisher": "google_crypto",
+          "time": "Fri, 13 Mar 2026 21:30:30 GMT",
           "verified": false
         }
       ]
