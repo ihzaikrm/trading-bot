@@ -44,6 +44,7 @@ jobs:
         run: |
           git config user.email "bot@github.com"
           git config user.name "Trading Bot"
+          git pull --rebase origin main || true
           git add logs/ dashboard/ 2>/dev/null || echo "No logs to add"
           git diff --cached --quiet || git commit -m "Auto: logs $(date -u '+%Y-%m-%d %H:%M')"
           git push
