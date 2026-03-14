@@ -1,73 +1,50 @@
 {
-  "timestamp": "2026-03-14T17:01:33.866449",
+  "timestamp": "2026-03-14T19:17:38.096099",
   "results": {
     "1h": {
       "label": "BREAKING",
       "weight": 1.0,
-      "verified_count": 3,
+      "verified_count": 1,
       "news": [
         {
-          "title": "European stocks set to slide further as oil prices stay above $100 a barrel - CNBC",
+          "title": "Oil only accounts for half the cost of a gallon of gas. Here's where the rest comes from. - CBS News",
           "sources": [
-            "yahoo_spx",
             "newsapi_business",
             "yahoo_gold"
           ],
-          "source_count": 3,
-          "publisher": "CNBC",
-          "time": "2026-03-13T07:16:07Z",
-          "verified": true
-        },
-        {
-          "title": "Asia-Pacific markets tumble as investors brace for a prolonged war in Middle East - CNBC",
-          "sources": [
-            "investing_com",
-            "newsapi_business"
-          ],
           "source_count": 2,
-          "publisher": "CNBC",
-          "time": "2026-03-12T23:54:58Z",
+          "publisher": "CBS News",
+          "time": "2026-03-13T20:16:50Z",
           "verified": true
         },
         {
-          "title": "This ETF Has Given Investors a Golden Opportunity",
-          "sources": [
-            "marketwatch",
-            "yahoo_gold"
-          ],
-          "source_count": 2,
-          "publisher": "yahoo_gold",
-          "time": "Sat, 14 Mar 2026 16:29:00 +0000",
-          "verified": true
-        },
-        {
-          "title": "Stocks bounce as oil eases slightly, but S&P 500 heads for third-straight losing week: Live updates - CNBC",
+          "title": "Wall Street warns Iran war will trigger prolonged energy crisis - Financial Times",
           "sources": [
             "newsapi_business"
           ],
           "source_count": 1,
-          "publisher": "CNBC",
-          "time": "2026-03-13T12:10:00Z",
+          "publisher": "Financial Times",
+          "time": "2026-03-13T18:30:34Z",
           "verified": false
         },
         {
-          "title": "Investors Hunt for Hedges as War Shatters Decades-Old Strategies - Yahoo Finance",
+          "title": "Cracks emerged in a resilient US economy before war in Iran sent oil prices rocketing - AP News",
           "sources": [
             "newsapi_business"
           ],
           "source_count": 1,
-          "publisher": "Yahoo Entertainment",
-          "time": "2026-03-13T06:04:00Z",
+          "publisher": "Associated Press",
+          "time": "2026-03-13T17:31:00Z",
           "verified": false
         },
         {
-          "title": "Teamsters Call on DOJ to Stop Paramount-Warner Bros. Merger: \u201cWe\u2019ve Seen What Happens When Corporations Consolidate Power\u201d - The Hollywood Reporter",
+          "title": "Stock Market Today: Dow Fades On Inflation, GDP Surprise; Nvidia Turns Lower (Live Coverage) - Investor's Business Daily",
           "sources": [
             "newsapi_business"
           ],
           "source_count": 1,
-          "publisher": "Hollywood Reporter",
-          "time": "2026-03-13T01:21:23Z",
+          "publisher": "Investor's Business Daily",
+          "time": "2026-03-13T17:23:25Z",
           "verified": false
         }
       ]
@@ -75,95 +52,83 @@
     "6h": {
       "label": "PENTING",
       "weight": 0.7,
-      "verified_count": 10,
+      "verified_count": 4,
       "news": [
         {
-          "title": "Investors Hunt for Hedges as War Shatters Decades-Old Strategies - Yahoo Finance",
+          "title": "Oil only accounts for half the cost of a gallon of gas. Here's where the rest comes from. - CBS News",
           "sources": [
-            "google_fed",
             "newsapi_business",
-            "google_crypto",
-            "yahoo_spx"
-          ],
-          "source_count": 4,
-          "publisher": "Yahoo Entertainment",
-          "time": "2026-03-13T06:04:00Z",
-          "verified": true
-        },
-        {
-          "title": "European stocks set to slide further as oil prices stay above $100 a barrel - CNBC",
-          "sources": [
-            "yahoo_spx",
-            "newsapi_business",
+            "google_gold",
             "yahoo_gold"
           ],
           "source_count": 3,
-          "publisher": "CNBC",
-          "time": "2026-03-13T07:16:07Z",
+          "publisher": "CBS News",
+          "time": "2026-03-13T20:16:50Z",
           "verified": true
         },
         {
-          "title": "Asia-Pacific markets tumble as investors brace for a prolonged war in Middle East - CNBC",
+          "title": "15 stocks in the S&P 500 showing double-digit gains since the attack on Iran began - MarketWatch",
           "sources": [
             "yahoo_spx",
-            "investing_com",
+            "google_crypto",
             "newsapi_business"
           ],
           "source_count": 3,
-          "publisher": "CNBC",
-          "time": "2026-03-12T23:54:58Z",
+          "publisher": "MarketWatch",
+          "time": "2026-03-13T15:08:00Z",
           "verified": true
         },
         {
-          "title": "Stocks bounce as oil eases slightly, but S&P 500 heads for third-straight losing week: Live updates - CNBC",
-          "sources": [
-            "newsapi_business",
-            "google_crypto"
-          ],
-          "source_count": 2,
-          "publisher": "CNBC",
-          "time": "2026-03-13T12:10:00Z",
-          "verified": true
-        },
-        {
-          "title": "How Trump\u2019s Iran War Could Actually Worsen Climate Change - The Bulwark",
+          "title": "BofA\u2019s Hartnett Warns Markets Are Starting to Look Like 2008 - Bloomberg.com",
           "sources": [
             "yahoo_spx",
-            "newsapi_business"
+            "newsapi_business",
+            "marketwatch"
           ],
-          "source_count": 2,
-          "publisher": "The Bulwark",
-          "time": "2026-03-13T01:07:10Z",
+          "source_count": 3,
+          "publisher": "Bloomberg",
+          "time": "2026-03-13T14:57:45Z",
           "verified": true
         },
         {
-          "title": "Teamsters Call on DOJ to Stop Paramount-Warner Bros. Merger: \u201cWe\u2019ve Seen What Happens When Corporations Consolidate Power\u201d - The Hollywood Reporter",
+          "title": "Veteran analyst drops surprising gold price prediction - thestreet.com",
+          "sources": [
+            "google_gold",
+            "yahoo_gold"
+          ],
+          "source_count": 2,
+          "publisher": "google_gold",
+          "time": "Sat, 14 Mar 2026 13:47:00 GMT",
+          "verified": true
+        },
+        {
+          "title": "Wall Street warns Iran war will trigger prolonged energy crisis - Financial Times",
           "sources": [
             "newsapi_business"
           ],
           "source_count": 1,
-          "publisher": "Hollywood Reporter",
-          "time": "2026-03-13T01:21:23Z",
+          "publisher": "Financial Times",
+          "time": "2026-03-13T18:30:34Z",
           "verified": false
         },
         {
-          "title": "Stocks bounce as oil eases slightly, but S&P 500 heads for third-straight losing week: Live updates - CNBC",
+          "title": "Cracks emerged in a resilient US economy before war in Iran sent oil prices rocketing - AP News",
           "sources": [
-            "newsapi_general"
+            "newsapi_business"
           ],
           "source_count": 1,
-          "publisher": "CNBC",
-          "time": "2026-03-13T12:10:00Z",
+          "publisher": "Associated Press",
+          "time": "2026-03-13T17:31:00Z",
           "verified": false
         },
         {
-          "title": "4 dead after U.S. Air Force refueler crashes in Iraq while supporting Iran war - The Washington Post",
+          "title": "Stock Market Today: Dow Fades On Inflation, GDP Surprise; Nvidia Turns Lower (Live Coverage) - Investor's Business Daily",
           "sources": [
-            "newsapi_general"
+            "newsapi_business"
           ],
           "source_count": 1,
-          "publisher": "The Washington Post",
-          "time": "2026-03-13T11:49:15Z",
+          "publisher": "Investor's Business Daily",
+          "time": "2026-03-13T17:23:25Z",
           "verified": false
         }
       ]
@@ -171,100 +136,98 @@
     "24h": {
       "label": "KONTEKS",
       "weight": 0.4,
-      "verified_count": 12,
+      "verified_count": 8,
       "news": [
         {
-          "title": "European stocks set to slide further as oil prices stay above $100 a barrel - CNBC",
+          "title": "15 stocks in the S&P 500 showing double-digit gains since the attack on Iran began - MarketWatch",
           "sources": [
-            "yahoo_gold",
             "yahoo_spx",
-            "newsapi_business",
-            "google_gold",
-            "google_crypto"
-          ],
-          "source_count": 5,
-          "publisher": "CNBC",
-          "time": "2026-03-13T07:16:07Z",
-          "verified": true
-        },
-        {
-          "title": "Investors Hunt for Hedges as War Shatters Decades-Old Strategies - Yahoo Finance",
-          "sources": [
-            "google_fed",
-            "newsapi_business",
             "google_crypto",
-            "yahoo_spx"
+            "newsapi_business",
+            "google_fed"
           ],
           "source_count": 4,
-          "publisher": "Yahoo Entertainment",
-          "time": "2026-03-13T06:04:00Z",
+          "publisher": "MarketWatch",
+          "time": "2026-03-13T15:08:00Z",
           "verified": true
         },
         {
-          "title": "Asia-Pacific markets tumble as investors brace for a prolonged war in Middle East - CNBC",
+          "title": "BofA\u2019s Hartnett Warns Markets Are Starting to Look Like 2008 - Bloomberg.com",
           "sources": [
             "yahoo_spx",
-            "investing_com",
+            "newsapi_business",
+            "marketwatch",
+            "yahoo_btc"
+          ],
+          "source_count": 4,
+          "publisher": "Bloomberg",
+          "time": "2026-03-13T14:57:45Z",
+          "verified": true
+        },
+        {
+          "title": "Oil only accounts for half the cost of a gallon of gas. Here's where the rest comes from. - CBS News",
+          "sources": [
+            "newsapi_business",
+            "google_gold",
+            "yahoo_gold"
+          ],
+          "source_count": 3,
+          "publisher": "CBS News",
+          "time": "2026-03-13T20:16:50Z",
+          "verified": true
+        },
+        {
+          "title": "Wall Street warns Iran war will trigger prolonged energy crisis - Financial Times",
+          "sources": [
+            "yahoo_spx",
             "newsapi_business",
             "google_gold"
           ],
-          "source_count": 4,
-          "publisher": "CNBC",
-          "time": "2026-03-12T23:54:58Z",
+          "source_count": 3,
+          "publisher": "Financial Times",
+          "time": "2026-03-13T18:30:34Z",
           "verified": true
         },
         {
-          "title": "Stocks bounce as oil eases slightly, but S&P 500 heads for third-straight losing week: Live updates - CNBC",
+          "title": "Cracks emerged in a resilient US economy before war in Iran sent oil prices rocketing - AP News",
           "sources": [
-            "google_fed",
+            "google_crypto",
             "newsapi_business",
-            "google_crypto"
+            "google_gold"
           ],
           "source_count": 3,
-          "publisher": "CNBC",
-          "time": "2026-03-13T12:10:00Z",
+          "publisher": "Associated Press",
+          "time": "2026-03-13T17:31:00Z",
           "verified": true
         },
         {
-          "title": "How Trump\u2019s Iran War Could Actually Worsen Climate Change - The Bulwark",
+          "title": "Iran war oil shock stokes fears of 1970s-style stagflation \u2014 why this time could be different - CNBC",
           "sources": [
-            "yahoo_spx",
-            "newsapi_business",
-            "google_crypto"
+            "newsapi_business"
           ],
-          "source_count": 3,
-          "publisher": "The Bulwark",
-          "time": "2026-03-13T01:07:10Z",
-          "verified": true
+          "source_count": 1,
+          "publisher": "CNBC",
+          "time": "2026-03-13T14:20:38Z",
+          "verified": false
         },
         {
-          "title": "Stocks bounce as oil eases slightly, but S&P 500 heads for third-straight losing week: Live updates - CNBC",
+          "title": "Trump: Iran war will end when I \u2018feel it in my bones\u2019 - Politico",
           "sources": [
             "newsapi_general"
           ],
           "source_count": 1,
-          "publisher": "CNBC",
-          "time": "2026-03-13T12:10:00Z",
+          "publisher": "Politico",
+          "time": "2026-03-13T18:22:01Z",
           "verified": false
         },
         {
-          "title": "4 dead after U.S. Air Force refueler crashes in Iraq while supporting Iran war - The Washington Post",
+          "title": "FBI Announces Steam Investigation Into Indie Game Malware - Kotaku",
           "sources": [
             "newsapi_general"
           ],
           "source_count": 1,
-          "publisher": "The Washington Post",
-          "time": "2026-03-13T11:49:15Z",
-          "verified": false
-        },
-        {
-          "title": "Bitcoin vs. Solana: Which Crypto Is the Better Buy Right Now? - The Motley Fool",
-          "sources": [
-            "google_crypto"
-          ],
-          "source_count": 1,
-          "publisher": "google_crypto",
-          "time": "Sat, 14 Mar 2026 03:09:00 GMT",
+          "publisher": "Kotaku",
+          "time": "2026-03-13T18:19:55Z",
           "verified": false
         }
       ]
