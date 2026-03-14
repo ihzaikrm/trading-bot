@@ -1,52 +1,84 @@
 {
-  "timestamp": "2026-03-14T11:48:41.815137",
+  "timestamp": "2026-03-14T13:57:25.782669",
   "results": {
     "1h": {
       "label": "BREAKING",
       "weight": 1.0,
-      "verified_count": 2,
+      "verified_count": 6,
       "news": [
         {
-          "title": "Live Updates: Iran war paralyzes oil trade, U.S. military plane crashes in Iraq - CBS News",
+          "title": "Dow Jones Futures Rise As Oil Prices Retreat; Dell, Micron Lead 7 Stocks To Watch - Investor's Business Daily",
           "sources": [
-            "yahoo_spx",
-            "newsapi_general",
-            "investing_com"
-          ],
-          "source_count": 3,
-          "publisher": "CBS News",
-          "time": "2026-03-13T08:06:00Z",
-          "verified": true
-        },
-        {
-          "title": "Asia stocks fall, head for weekly losses amid little relief from Iran war - Investing.com",
-          "sources": [
-            "newsapi_business",
-            "marketwatch"
+            "investing_com",
+            "newsapi_business"
           ],
           "source_count": 2,
-          "publisher": "Investing.com",
-          "time": "2026-03-13T03:04:21Z",
+          "publisher": "Investor's Business Daily",
+          "time": "2026-03-13T11:19:07Z",
           "verified": true
         },
         {
           "title": "European stocks set to slide further as oil prices stay above $100 a barrel - CNBC",
           "sources": [
+            "investing_com",
+            "newsapi_business"
+          ],
+          "source_count": 2,
+          "publisher": "CNBC",
+          "time": "2026-03-13T07:16:07Z",
+          "verified": true
+        },
+        {
+          "title": "Investors Hunt for Hedges as War Shatters Decades-Old Strategies - Yahoo Finance",
+          "sources": [
+            "yahoo_spx",
+            "newsapi_business"
+          ],
+          "source_count": 2,
+          "publisher": "Yahoo Entertainment",
+          "time": "2026-03-13T06:04:00Z",
+          "verified": true
+        },
+        {
+          "title": "How Trump\u2019s Iran War Could Actually Worsen Climate Change - The Bulwark",
+          "sources": [
+            "investing_com",
+            "newsapi_business"
+          ],
+          "source_count": 2,
+          "publisher": "The Bulwark",
+          "time": "2026-03-13T01:07:10Z",
+          "verified": true
+        },
+        {
+          "title": "Donald Trump Makes Chilling Iran War Boast in Late-Night Meltdown - The Daily Beast",
+          "sources": [
+            "investing_com",
+            "newsapi_general"
+          ],
+          "source_count": 2,
+          "publisher": "Daily Beast",
+          "time": "2026-03-13T07:32:00Z",
+          "verified": true
+        },
+        {
+          "title": "Teamsters Call on DOJ to Stop Paramount-Warner Bros. Merger: \u201cWe\u2019ve Seen What Happens When Corporations Consolidate Power\u201d - The Hollywood Reporter",
+          "sources": [
             "newsapi_business"
           ],
           "source_count": 1,
-          "publisher": "CNBC",
-          "time": "2026-03-13T07:16:07Z",
+          "publisher": "Hollywood Reporter",
+          "time": "2026-03-13T01:21:23Z",
           "verified": false
         },
         {
-          "title": "S&P 500 futures edge up ahead of key inflation data; traders monitor oil prices and Iran war: Live updates - CNBC",
+          "title": "Asia-Pacific markets tumble as investors brace for a prolonged war in Middle East - CNBC",
           "sources": [
             "newsapi_business"
           ],
           "source_count": 1,
           "publisher": "CNBC",
-          "time": "2026-03-13T04:39:00Z",
+          "time": "2026-03-12T23:54:58Z",
           "verified": false
         },
         {
@@ -64,64 +96,77 @@
     "6h": {
       "label": "PENTING",
       "weight": 0.7,
-      "verified_count": 5,
+      "verified_count": 8,
       "news": [
         {
-          "title": "Asia stocks fall, head for weekly losses amid little relief from Iran war - Investing.com",
+          "title": "Dow Jones Futures Rise As Oil Prices Retreat; Dell, Micron Lead 7 Stocks To Watch - Investor's Business Daily",
           "sources": [
-            "google_gold",
-            "newsapi_business",
-            "marketwatch"
-          ],
-          "source_count": 3,
-          "publisher": "Investing.com",
-          "time": "2026-03-13T03:04:21Z",
-          "verified": true
-        },
-        {
-          "title": "Live Updates: Iran war paralyzes oil trade, U.S. military plane crashes in Iraq - CBS News",
-          "sources": [
+            "investing_com",
             "yahoo_spx",
-            "newsapi_general",
-            "investing_com"
+            "newsapi_business"
           ],
           "source_count": 3,
-          "publisher": "CBS News",
-          "time": "2026-03-13T08:06:00Z",
+          "publisher": "Investor's Business Daily",
+          "time": "2026-03-13T11:19:07Z",
           "verified": true
         },
         {
           "title": "European stocks set to slide further as oil prices stay above $100 a barrel - CNBC",
           "sources": [
-            "newsapi_business",
-            "yahoo_spx"
+            "investing_com",
+            "yahoo_spx",
+            "newsapi_business"
           ],
-          "source_count": 2,
+          "source_count": 3,
           "publisher": "CNBC",
           "time": "2026-03-13T07:16:07Z",
           "verified": true
         },
         {
-          "title": "S&P 500 futures edge up ahead of key inflation data; traders monitor oil prices and Iran war: Live updates - CNBC",
+          "title": "Investors Hunt for Hedges as War Shatters Decades-Old Strategies - Yahoo Finance",
           "sources": [
+            "yahoo_spx",
             "newsapi_business",
             "google_fed"
           ],
-          "source_count": 2,
-          "publisher": "CNBC",
-          "time": "2026-03-13T04:39:00Z",
+          "source_count": 3,
+          "publisher": "Yahoo Entertainment",
+          "time": "2026-03-13T06:04:00Z",
           "verified": true
         },
         {
-          "title": "It was unthinkable a couple of weeks ago, but could the next move by the Fed be a rate hike? - MarketWatch",
+          "title": "How Trump\u2019s Iran War Could Actually Worsen Climate Change - The Bulwark",
           "sources": [
+            "investing_com",
             "yahoo_spx",
-            "google_fed"
+            "newsapi_business"
           ],
-          "source_count": 2,
-          "publisher": "google_fed",
-          "time": "Sat, 14 Mar 2026 11:30:00 GMT",
+          "source_count": 3,
+          "publisher": "The Bulwark",
+          "time": "2026-03-13T01:07:10Z",
           "verified": true
+        },
+        {
+          "title": "The Senate passed its first major housing bill since the subprime mortgage crisis. Can it actually become law? - Yahoo Finance",
+          "sources": [
+            "yahoo_gold",
+            "yahoo_spx",
+            "newsapi_general"
+          ],
+          "source_count": 3,
+          "publisher": "Yahoo Entertainment",
+          "time": "2026-03-13T09:14:16Z",
+          "verified": true
+        },
+        {
+          "title": "Teamsters Call on DOJ to Stop Paramount-Warner Bros. Merger: \u201cWe\u2019ve Seen What Happens When Corporations Consolidate Power\u201d - The Hollywood Reporter",
+          "sources": [
+            "newsapi_business"
+          ],
+          "source_count": 1,
+          "publisher": "Hollywood Reporter",
+          "time": "2026-03-13T01:21:23Z",
+          "verified": false
         },
         {
           "title": "A flying taxi crossed the Golden Gate. Could it soon take you from S.F. to Wine Country? - San Francisco Chronicle",
@@ -142,47 +187,36 @@
           "publisher": "Financial Times",
           "time": "2026-03-12T20:40:20Z",
           "verified": false
-        },
-        {
-          "title": "Five reasons oil prices won't snap back from Iran war - Politico",
-          "sources": [
-            "newsapi_business"
-          ],
-          "source_count": 1,
-          "publisher": "Politico",
-          "time": "2026-03-12T19:13:48Z",
-          "verified": false
         }
       ]
     },
     "24h": {
       "label": "KONTEKS",
       "weight": 0.4,
-      "verified_count": 16,
+      "verified_count": 13,
       "news": [
         {
-          "title": "Asia stocks fall, head for weekly losses amid little relief from Iran war - Investing.com",
+          "title": "Dow Jones Futures Rise As Oil Prices Retreat; Dell, Micron Lead 7 Stocks To Watch - Investor's Business Daily",
           "sources": [
-            "google_gold",
-            "google_crypto",
-            "yahoo_gold",
+            "investing_com",
             "newsapi_business",
-            "marketwatch",
-            "google_fed"
+            "google_gold",
+            "yahoo_spx",
+            "google_crypto"
           ],
-          "source_count": 6,
-          "publisher": "Investing.com",
-          "time": "2026-03-13T03:04:21Z",
+          "source_count": 5,
+          "publisher": "Investor's Business Daily",
+          "time": "2026-03-13T11:19:07Z",
           "verified": true
         },
         {
           "title": "European stocks set to slide further as oil prices stay above $100 a barrel - CNBC",
           "sources": [
-            "google_gold",
-            "google_crypto",
+            "investing_com",
             "newsapi_business",
-            "marketwatch",
-            "yahoo_spx"
+            "google_gold",
+            "yahoo_spx",
+            "google_crypto"
           ],
           "source_count": 5,
           "publisher": "CNBC",
@@ -190,43 +224,65 @@
           "verified": true
         },
         {
-          "title": "S&P 500 futures edge up ahead of key inflation data; traders monitor oil prices and Iran war: Live updates - CNBC",
+          "title": "Investors Hunt for Hedges as War Shatters Decades-Old Strategies - Yahoo Finance",
           "sources": [
             "yahoo_gold",
             "newsapi_business",
             "google_fed",
-            "yahoo_btc",
-            "google_macro"
+            "yahoo_spx",
+            "google_crypto"
           ],
           "source_count": 5,
-          "publisher": "CNBC",
-          "time": "2026-03-13T04:39:00Z",
+          "publisher": "Yahoo Entertainment",
+          "time": "2026-03-13T06:04:00Z",
           "verified": true
         },
         {
-          "title": "Crypto Rally Today: Why are BTC and Altcoins Rising as the Stock Market Crashes? - BanklessTimes",
+          "title": "How Trump\u2019s Iran War Could Actually Worsen Climate Change - The Bulwark",
           "sources": [
-            "google_stocks",
-            "marketwatch",
+            "investing_com",
+            "newsapi_business",
+            "google_gold",
             "yahoo_spx",
-            "yahoo_btc"
+            "google_crypto"
+          ],
+          "source_count": 5,
+          "publisher": "The Bulwark",
+          "time": "2026-03-13T01:07:10Z",
+          "verified": true
+        },
+        {
+          "title": "The Senate passed its first major housing bill since the subprime mortgage crisis. Can it actually become law? - Yahoo Finance",
+          "sources": [
+            "yahoo_gold",
+            "yahoo_spx",
+            "google_crypto",
+            "newsapi_general"
           ],
           "source_count": 4,
-          "publisher": "google_stocks",
-          "time": "Fri, 13 Mar 2026 16:27:39 GMT",
+          "publisher": "Yahoo Entertainment",
+          "time": "2026-03-13T09:14:16Z",
           "verified": true
         },
         {
           "title": "A flying taxi crossed the Golden Gate. Could it soon take you from S.F. to Wine Country? - San Francisco Chronicle",
           "sources": [
-            "newsapi_business",
-            "google_crypto",
-            "yahoo_btc"
+            "newsapi_business"
           ],
-          "source_count": 3,
+          "source_count": 1,
           "publisher": "San Francisco Chronicle",
           "time": "2026-03-12T22:08:44Z",
-          "verified": true
+          "verified": false
+        },
+        {
+          "title": "4 dead after U.S. Air Force refueler crashes in Iraq while supporting Iran war - The Washington Post",
+          "sources": [
+            "newsapi_general"
+          ],
+          "source_count": 1,
+          "publisher": "The Washington Post",
+          "time": "2026-03-13T11:49:15Z",
+          "verified": false
         },
         {
           "title": "European stocks set to slide further as oil prices stay above $100 a barrel - CNBC",
@@ -236,26 +292,6 @@
           "source_count": 1,
           "publisher": "CNBC",
           "time": "2026-03-13T07:16:07Z",
-          "verified": false
-        },
-        {
-          "title": "Gold Price Today [14 March, 2026]: Gold Drops 2% to $5,023 on Stronger Dollar Amid Middle East Crisis; Domestic Rates Plunge to \u20b91.60 Lakh/10g | Check City-Wise Rates of 24K, 22K & 18K - The Sunday Guardian",
-          "sources": [
-            "google_gold"
-          ],
-          "source_count": 1,
-          "publisher": "google_gold",
-          "time": "Fri, 13 Mar 2026 23:57:37 GMT",
-          "verified": false
-        },
-        {
-          "title": "Gold price per ounce on March 13, 2026 - USA Today",
-          "sources": [
-            "google_gold"
-          ],
-          "source_count": 1,
-          "publisher": "google_gold",
-          "time": "Fri, 13 Mar 2026 17:20:00 GMT",
           "verified": false
         }
       ]
