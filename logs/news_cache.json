@@ -1,31 +1,20 @@
 {
-  "timestamp": "2026-03-14T07:51:18.781272",
+  "timestamp": "2026-03-14T16:09:05.115235",
   "results": {
     "1h": {
       "label": "BREAKING",
       "weight": 1.0,
-      "verified_count": 2,
+      "verified_count": 1,
       "news": [
         {
           "title": "S&P 500 futures edge up ahead of key inflation data; traders monitor oil prices and Iran war: Live updates - CNBC",
           "sources": [
-            "investing_com",
-            "newsapi_business"
+            "newsapi_business",
+            "investing_com"
           ],
           "source_count": 2,
           "publisher": "CNBC",
           "time": "2026-03-13T04:39:00Z",
-          "verified": true
-        },
-        {
-          "title": "Customer sues Costco for tariff refunds - BBC",
-          "sources": [
-            "investing_com",
-            "newsapi_business"
-          ],
-          "source_count": 2,
-          "publisher": "BBC News",
-          "time": "2026-03-12T16:08:37Z",
           "verified": true
         },
         {
@@ -63,15 +52,15 @@
     "6h": {
       "label": "PENTING",
       "weight": 0.7,
-      "verified_count": 3,
+      "verified_count": 2,
       "news": [
         {
           "title": "S&P 500 futures edge up ahead of key inflation data; traders monitor oil prices and Iran war: Live updates - CNBC",
           "sources": [
-            "google_fed",
-            "investing_com",
             "yahoo_spx",
+            "google_fed",
             "newsapi_business",
+            "investing_com",
             "yahoo_btc"
           ],
           "source_count": 5,
@@ -82,24 +71,13 @@
         {
           "title": "What the Iran war could mean for gas prices, flights and your wallet - The Washington Post",
           "sources": [
-            "google_crypto",
+            "yahoo_spx",
             "newsapi_business",
-            "yahoo_spx"
+            "google_crypto"
           ],
           "source_count": 3,
           "publisher": "The Washington Post",
           "time": "2026-03-12T16:17:24Z",
-          "verified": true
-        },
-        {
-          "title": "Customer sues Costco for tariff refunds - BBC",
-          "sources": [
-            "investing_com",
-            "newsapi_business"
-          ],
-          "source_count": 2,
-          "publisher": "BBC News",
-          "time": "2026-03-12T16:08:37Z",
           "verified": true
         },
         {
@@ -137,17 +115,17 @@
     "24h": {
       "label": "KONTEKS",
       "weight": 0.4,
-      "verified_count": 15,
+      "verified_count": 16,
       "news": [
         {
           "title": "S&P 500 futures edge up ahead of key inflation data; traders monitor oil prices and Iran war: Live updates - CNBC",
           "sources": [
-            "google_fed",
-            "yahoo_gold",
-            "investing_com",
             "yahoo_spx",
-            "newsapi_business",
             "google_macro",
+            "yahoo_gold",
+            "google_fed",
+            "newsapi_business",
+            "investing_com",
             "yahoo_btc"
           ],
           "source_count": 7,
@@ -158,14 +136,13 @@
         {
           "title": "Trump and Iran Strike Defiant Tone as Oil Markets See Little Relief - Bloomberg.com",
           "sources": [
-            "google_fed",
-            "google_stocks",
             "yahoo_gold",
+            "google_crypto",
+            "google_fed",
             "newsapi_business",
-            "google_gold",
-            "google_crypto"
+            "google_stocks"
           ],
-          "source_count": 6,
+          "source_count": 5,
           "publisher": "Bloomberg",
           "time": "2026-03-12T22:09:35Z",
           "verified": true
@@ -173,10 +150,10 @@
         {
           "title": "What the Iran war could mean for gas prices, flights and your wallet - The Washington Post",
           "sources": [
-            "marketwatch",
-            "google_crypto",
+            "yahoo_spx",
             "newsapi_business",
-            "yahoo_spx"
+            "marketwatch",
+            "google_crypto"
           ],
           "source_count": 4,
           "publisher": "The Washington Post",
@@ -186,10 +163,10 @@
         {
           "title": "Iran war is the largest oil supply disruption in history, report finds - Politico",
           "sources": [
-            "marketwatch",
             "google_gold",
-            "yahoo_gold",
-            "newsapi_business"
+            "newsapi_business",
+            "marketwatch",
+            "yahoo_gold"
           ],
           "source_count": 4,
           "publisher": "Politico",
@@ -197,25 +174,25 @@
           "verified": true
         },
         {
-          "title": "Middle East war live: US to ease Russian oil sanctions as energy prices soar - Financial Times",
+          "title": "Asia-Pacific markets tumble as investors brace for a prolonged war in Middle East - CNBC",
           "sources": [
-            "yahoo_gold",
-            "google_crypto",
-            "newsapi_general"
+            "newsapi_business",
+            "google_stocks",
+            "yahoo_btc"
           ],
           "source_count": 3,
-          "publisher": "Financial Times",
-          "time": "2026-03-13T05:57:26Z",
+          "publisher": "CNBC",
+          "time": "2026-03-12T23:54:58Z",
           "verified": true
         },
         {
-          "title": "Live Updates: Iran war paralyzes oil trade, U.S. military plane crashes in Iraq - CBS News",
+          "title": "Customer sues Costco for tariff refunds - BBC",
           "sources": [
-            "newsapi_general"
+            "newsapi_business"
           ],
           "source_count": 1,
-          "publisher": "CBS News",
-          "time": "2026-03-13T05:27:00Z",
+          "publisher": "BBC News",
+          "time": "2026-03-12T16:08:37Z",
           "verified": false
         },
         {
