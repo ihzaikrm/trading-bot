@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-14T19:17:38.096099",
+  "timestamp": "2026-03-14T20:56:09.628857",
   "results": {
     "1h": {
       "label": "BREAKING",
@@ -7,15 +7,25 @@
       "verified_count": 1,
       "news": [
         {
-          "title": "Oil only accounts for half the cost of a gallon of gas. Here's where the rest comes from. - CBS News",
+          "title": "15 stocks in the S&P 500 showing double-digit gains since the attack on Iran began - MarketWatch",
           "sources": [
             "newsapi_business",
-            "yahoo_gold"
+            "investing_com"
           ],
           "source_count": 2,
+          "publisher": "MarketWatch",
+          "time": "2026-03-13T15:08:00Z",
+          "verified": true
+        },
+        {
+          "title": "Oil only accounts for half the cost of a gallon of gas. Here's where the rest comes from. - CBS News",
+          "sources": [
+            "newsapi_business"
+          ],
+          "source_count": 1,
           "publisher": "CBS News",
           "time": "2026-03-13T20:16:50Z",
-          "verified": true
+          "verified": false
         },
         {
           "title": "Wall Street warns Iran war will trigger prolonged energy crisis - Financial Times",
@@ -36,32 +46,24 @@
           "publisher": "Associated Press",
           "time": "2026-03-13T17:31:00Z",
           "verified": false
-        },
-        {
-          "title": "Stock Market Today: Dow Fades On Inflation, GDP Surprise; Nvidia Turns Lower (Live Coverage) - Investor's Business Daily",
-          "sources": [
-            "newsapi_business"
-          ],
-          "source_count": 1,
-          "publisher": "Investor's Business Daily",
-          "time": "2026-03-13T17:23:25Z",
-          "verified": false
         }
       ]
     },
     "6h": {
       "label": "PENTING",
       "weight": 0.7,
-      "verified_count": 4,
+      "verified_count": 3,
       "news": [
         {
           "title": "Oil only accounts for half the cost of a gallon of gas. Here's where the rest comes from. - CBS News",
           "sources": [
-            "newsapi_business",
+            "yahoo_gold",
+            "google_crypto",
+            "yahoo_btc",
             "google_gold",
-            "yahoo_gold"
+            "newsapi_business"
           ],
-          "source_count": 3,
+          "source_count": 5,
           "publisher": "CBS News",
           "time": "2026-03-13T20:16:50Z",
           "verified": true
@@ -69,9 +71,9 @@
         {
           "title": "15 stocks in the S&P 500 showing double-digit gains since the attack on Iran began - MarketWatch",
           "sources": [
-            "yahoo_spx",
-            "google_crypto",
-            "newsapi_business"
+            "newsapi_business",
+            "investing_com",
+            "google_crypto"
           ],
           "source_count": 3,
           "publisher": "MarketWatch",
@@ -81,24 +83,13 @@
         {
           "title": "BofA\u2019s Hartnett Warns Markets Are Starting to Look Like 2008 - Bloomberg.com",
           "sources": [
-            "yahoo_spx",
             "newsapi_business",
+            "yahoo_spx",
             "marketwatch"
           ],
           "source_count": 3,
           "publisher": "Bloomberg",
           "time": "2026-03-13T14:57:45Z",
-          "verified": true
-        },
-        {
-          "title": "Veteran analyst drops surprising gold price prediction - thestreet.com",
-          "sources": [
-            "google_gold",
-            "yahoo_gold"
-          ],
-          "source_count": 2,
-          "publisher": "google_gold",
-          "time": "Sat, 14 Mar 2026 13:47:00 GMT",
           "verified": true
         },
         {
@@ -139,14 +130,29 @@
       "verified_count": 8,
       "news": [
         {
+          "title": "Oil only accounts for half the cost of a gallon of gas. Here's where the rest comes from. - CBS News",
+          "sources": [
+            "yahoo_gold",
+            "google_crypto",
+            "yahoo_btc",
+            "google_gold",
+            "newsapi_business"
+          ],
+          "source_count": 5,
+          "publisher": "CBS News",
+          "time": "2026-03-13T20:16:50Z",
+          "verified": true
+        },
+        {
           "title": "15 stocks in the S&P 500 showing double-digit gains since the attack on Iran began - MarketWatch",
           "sources": [
+            "google_fed",
             "yahoo_spx",
             "google_crypto",
             "newsapi_business",
-            "google_fed"
+            "investing_com"
           ],
-          "source_count": 4,
+          "source_count": 5,
           "publisher": "MarketWatch",
           "time": "2026-03-13T15:08:00Z",
           "verified": true
@@ -154,10 +160,10 @@
         {
           "title": "BofA\u2019s Hartnett Warns Markets Are Starting to Look Like 2008 - Bloomberg.com",
           "sources": [
-            "yahoo_spx",
             "newsapi_business",
+            "yahoo_btc",
             "marketwatch",
-            "yahoo_btc"
+            "yahoo_spx"
           ],
           "source_count": 4,
           "publisher": "Bloomberg",
@@ -165,25 +171,12 @@
           "verified": true
         },
         {
-          "title": "Oil only accounts for half the cost of a gallon of gas. Here's where the rest comes from. - CBS News",
-          "sources": [
-            "newsapi_business",
-            "google_gold",
-            "yahoo_gold"
-          ],
-          "source_count": 3,
-          "publisher": "CBS News",
-          "time": "2026-03-13T20:16:50Z",
-          "verified": true
-        },
-        {
           "title": "Wall Street warns Iran war will trigger prolonged energy crisis - Financial Times",
           "sources": [
-            "yahoo_spx",
             "newsapi_business",
-            "google_gold"
+            "yahoo_spx"
           ],
-          "source_count": 3,
+          "source_count": 2,
           "publisher": "Financial Times",
           "time": "2026-03-13T18:30:34Z",
           "verified": true
@@ -191,23 +184,22 @@
         {
           "title": "Cracks emerged in a resilient US economy before war in Iran sent oil prices rocketing - AP News",
           "sources": [
-            "google_crypto",
             "newsapi_business",
-            "google_gold"
+            "google_crypto"
           ],
-          "source_count": 3,
+          "source_count": 2,
           "publisher": "Associated Press",
           "time": "2026-03-13T17:31:00Z",
           "verified": true
         },
         {
-          "title": "Iran war oil shock stokes fears of 1970s-style stagflation \u2014 why this time could be different - CNBC",
+          "title": "Key inflation gauge worsened in January, before Iran war lifted gas prices - AP News",
           "sources": [
             "newsapi_business"
           ],
           "source_count": 1,
-          "publisher": "CNBC",
-          "time": "2026-03-13T14:20:38Z",
+          "publisher": "Associated Press",
+          "time": "2026-03-13T17:11:00Z",
           "verified": false
         },
         {
