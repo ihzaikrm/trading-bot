@@ -1,6 +1,6 @@
 {
   "active_narratives": [],
-  "last_scan": "2026-03-14 11:11",
+  "last_scan": "2026-03-14 11:49",
   "history": [
     {
       "time": "2026-03-14 08:57",
@@ -73,6 +73,11 @@
       "time": "2026-03-14 11:11",
       "narratives": [],
       "risk": "moderate"
+    },
+    {
+      "time": "2026-03-14 11:49",
+      "narratives": [],
+      "risk": "moderate"
     }
   ],
   "risk_profile": "moderate",
@@ -84,5 +89,5 @@
     "commodities": 15,
     "cash": 15
   },
-  "rotation_needed": true
+  "rotation_needed": false
 }
