@@ -1,22 +1,11 @@
 {
-  "timestamp": "2026-03-14T17:51:42.915549",
+  "timestamp": "2026-03-14T10:58:48.843605",
   "results": {
     "1h": {
       "label": "BREAKING",
       "weight": 1.0,
-      "verified_count": 2,
+      "verified_count": 1,
       "news": [
-        {
-          "title": "European stocks set to slide further as oil prices stay above $100 a barrel - CNBC",
-          "sources": [
-            "investing_com",
-            "newsapi_business"
-          ],
-          "source_count": 2,
-          "publisher": "CNBC",
-          "time": "2026-03-13T07:16:07Z",
-          "verified": true
-        },
         {
           "title": "S&P 500 futures edge up ahead of key inflation data; traders monitor oil prices and Iran war: Live updates - CNBC",
           "sources": [
@@ -27,6 +16,16 @@
           "publisher": "CNBC",
           "time": "2026-03-13T04:39:00Z",
           "verified": true
+        },
+        {
+          "title": "European stocks set to slide further as oil prices stay above $100 a barrel - CNBC",
+          "sources": [
+            "newsapi_business"
+          ],
+          "source_count": 1,
+          "publisher": "CNBC",
+          "time": "2026-03-13T07:16:07Z",
+          "verified": false
         },
         {
           "title": "Asia stocks fall, head for weekly losses amid little relief from Iran war - Investing.com",
@@ -47,16 +46,6 @@
           "publisher": "San Francisco Chronicle",
           "time": "2026-03-12T22:08:44Z",
           "verified": false
-        },
-        {
-          "title": "Federal Reserve to loosen capital requirements for big US banks - Financial Times",
-          "sources": [
-            "newsapi_business"
-          ],
-          "source_count": 1,
-          "publisher": "Financial Times",
-          "time": "2026-03-12T20:40:20Z",
-          "verified": false
         }
       ]
     },
@@ -66,28 +55,25 @@
       "verified_count": 3,
       "news": [
         {
-          "title": "S&P 500 futures edge up ahead of key inflation data; traders monitor oil prices and Iran war: Live updates - CNBC",
-          "sources": [
-            "yahoo_btc",
-            "newsapi_business",
-            "investing_com",
-            "google_fed"
-          ],
-          "source_count": 4,
-          "publisher": "CNBC",
-          "time": "2026-03-13T04:39:00Z",
-          "verified": true
-        },
-        {
           "title": "European stocks set to slide further as oil prices stay above $100 a barrel - CNBC",
           "sources": [
-            "investing_com",
             "newsapi_business",
             "yahoo_spx"
           ],
-          "source_count": 3,
+          "source_count": 2,
           "publisher": "CNBC",
           "time": "2026-03-13T07:16:07Z",
+          "verified": true
+        },
+        {
+          "title": "S&P 500 futures edge up ahead of key inflation data; traders monitor oil prices and Iran war: Live updates - CNBC",
+          "sources": [
+            "investing_com",
+            "newsapi_business"
+          ],
+          "source_count": 2,
+          "publisher": "CNBC",
+          "time": "2026-03-13T04:39:00Z",
           "verified": true
         },
         {
@@ -136,20 +122,19 @@
     "24h": {
       "label": "KONTEKS",
       "weight": 0.4,
-      "verified_count": 14,
+      "verified_count": 15,
       "news": [
         {
           "title": "European stocks set to slide further as oil prices stay above $100 a barrel - CNBC",
           "sources": [
-            "google_fed",
-            "yahoo_spx",
-            "investing_com",
             "newsapi_business",
-            "google_gold",
             "marketwatch",
+            "yahoo_spx",
+            "google_fed",
+            "google_gold",
             "google_crypto"
           ],
-          "source_count": 7,
+          "source_count": 6,
           "publisher": "CNBC",
           "time": "2026-03-13T07:16:07Z",
           "verified": true
@@ -157,12 +142,12 @@
         {
           "title": "S&P 500 futures edge up ahead of key inflation data; traders monitor oil prices and Iran war: Live updates - CNBC",
           "sources": [
-            "yahoo_btc",
-            "google_fed",
-            "investing_com",
             "newsapi_business",
+            "google_fed",
+            "yahoo_btc",
+            "yahoo_gold",
             "google_macro",
-            "yahoo_gold"
+            "investing_com"
           ],
           "source_count": 6,
           "publisher": "CNBC",
@@ -172,8 +157,8 @@
         {
           "title": "Asia stocks fall, head for weekly losses amid little relief from Iran war - Investing.com",
           "sources": [
-            "google_fed",
             "newsapi_business",
+            "google_fed",
             "google_gold",
             "yahoo_gold",
             "google_crypto"
@@ -184,23 +169,23 @@
           "verified": true
         },
         {
-          "title": "Five reasons oil prices won't snap back from Iran war - Politico",
+          "title": "A flying taxi crossed the Golden Gate. Could it soon take you from S.F. to Wine Country? - San Francisco Chronicle",
           "sources": [
-            "yahoo_btc",
+            "google_crypto",
             "newsapi_business",
-            "yahoo_spx"
+            "yahoo_btc"
           ],
           "source_count": 3,
-          "publisher": "Politico",
-          "time": "2026-03-12T19:13:48Z",
+          "publisher": "San Francisco Chronicle",
+          "time": "2026-03-12T22:08:44Z",
           "verified": true
         },
         {
           "title": "The Senate passed its first major housing bill since the subprime mortgage crisis. Can it actually become law? - Yahoo Finance",
           "sources": [
-            "google_gold",
+            "google_crypto",
             "newsapi_general",
-            "google_crypto"
+            "google_gold"
           ],
           "source_count": 3,
           "publisher": "Yahoo Entertainment",
@@ -228,13 +213,13 @@
           "verified": false
         },
         {
-          "title": "Bitcoin Edges Higher in Asia Despite Middle East Jitters - Bloomberg.com",
+          "title": "Gold Price Today [14 March, 2026]: Gold Drops 2% to $5,023 on Stronger Dollar Amid Middle East Crisis; Domestic Rates Plunge to \u20b91.60 Lakh/10g | Check City-Wise Rates of 24K, 22K & 18K - The Sunday Guardian",
           "sources": [
-            "google_crypto"
+            "google_gold"
           ],
           "source_count": 1,
-          "publisher": "google_crypto",
-          "time": "Fri, 13 Mar 2026 17:15:44 GMT",
+          "publisher": "google_gold",
+          "time": "Fri, 13 Mar 2026 23:57:37 GMT",
           "verified": false
         }
       ]
