@@ -1,32 +1,50 @@
 {
   "claude": {
-    "correct": 0,
-    "total": 0,
-    "accuracy": 0.5
+    "elo": 1296,
+    "wins": 2,
+    "losses": 0,
+    "total_pnl": 23.0,
+    "predictions": 2,
+    "correct": 2
   },
   "gemini": {
-    "correct": 0,
-    "total": 0,
-    "accuracy": 0.5
+    "elo": 1064,
+    "wins": 0,
+    "losses": 2,
+    "total_pnl": -5.0,
+    "predictions": 2,
+    "correct": 0
   },
   "gpt": {
-    "correct": 0,
-    "total": 0,
-    "accuracy": 0.5
+    "elo": 1156,
+    "wins": 1,
+    "losses": 1,
+    "total_pnl": 15.0,
+    "predictions": 2,
+    "correct": 1
   },
   "grok": {
-    "correct": 0,
-    "total": 0,
-    "accuracy": 0.5
+    "elo": 1054,
+    "wins": 0,
+    "losses": 2,
+    "total_pnl": -5.0,
+    "predictions": 2,
+    "correct": 0
   },
   "deepseek": {
-    "correct": 0,
-    "total": 0,
-    "accuracy": 0.5
+    "elo": 1308,
+    "wins": 2,
+    "losses": 0,
+    "total_pnl": 23.0,
+    "predictions": 2,
+    "correct": 2
   },
   "qwen": {
-    "correct": 0,
-    "total": 0,
-    "accuracy": 0.5
+    "elo": 1322,
+    "wins": 2,
+    "losses": 0,
+    "total_pnl": 23.0,
+    "predictions": 2,
+    "correct": 2
   }
 }

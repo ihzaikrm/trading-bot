@@ -1,432 +1,265 @@
-﻿import asyncio, json, os, sys
+﻿import asyncio, json, os, sys, re, requests
 from datetime import datetime
 from collections import Counter
+import ccxt
+import pandas as pd
 
 sys.path.insert(0, os.getcwd())
 from dotenv import load_dotenv
 load_dotenv()
-
-from config.assets import ASSETS
-from config.trading_params import STOP_LOSS_PCT, TAKE_PROFIT_PCT, LEVERAGE
-from core.market_data import get_asset_data, is_market_open
-from core.signal_engine import get_signal, mtf_bias, get_strategy_status_text
-from core.risk_manager import force_close_position, is_in_cooldown, set_cooldown
-from core.indicators import calc_atr
-from config.assets import get_adaptive_sl_tp
-from core.notifier import tg
 from core.llm_clients import call_all_llms
-from core.llm_performance import evaluate_predictions
-from core.command_handler import handle_commands
-from core.daily_report import send_daily_report
-from core.strategy_manager import run_scheduled_reports
-from core.correlation import check_correlation
-from core.liquidation import calculate_liquidation_price, check_margin_call
+from core.dynamic_weights import get_current_weights, record_prediction, print_leaderboard, get_leaderboard
+from core.news_pipeline import get_multi_timeframe_news
 
+BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 PAPER_FILE = "logs/paper_trades.json"
+
+ASSETS = {
+    "BTC/USDT": {"type": "crypto", "symbol": "BTC/USDT", "name": "Bitcoin"},
+    "XAUUSD":   {"type": "stock",  "symbol": "GC=F",     "name": "Gold"},
+    "SPX":      {"type": "stock",  "symbol": "^GSPC",    "name": "S&P 500"},
+}
+
+def tg(msg):
+    try:
+        requests.post(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
+            json={"chat_id": CHAT_ID, "text": msg, "parse_mode": "Markdown"}, timeout=10)
+    except Exception as e:
+        print(f"[TG] Gagal: {e}")
 
 def load_trades():
     if os.path.exists(PAPER_FILE):
         with open(PAPER_FILE) as f:
             return json.load(f)
-    return {"balance": 1000.0, "trades": [], "positions": {}, "shorts": {}}
+    return {"balance": 1000.0, "trades": [], "positions": {}}
 
 def save_trades(data):
     os.makedirs("logs", exist_ok=True)
     with open(PAPER_FILE, "w") as f:
         json.dump(data, f, indent=2)
 
-def calculate_equity(data, current_prices):
-    equity = data["balance"]
-    positions = data.get("positions", {})
-    shorts = data.get("shorts", {})
-    
-    for symbol, pos in positions.items():
-        if symbol in current_prices:
-            price = current_prices[symbol]
-            pnl = (price - pos["entry_price"]) * pos["qty"]
-            equity += pnl
-    for symbol, pos in shorts.items():
-        if symbol in current_prices:
-            price = current_prices[symbol]
-            pnl = (pos["entry_price"] - price) * pos["qty"]
-            equity += pnl
-    return equity
+def calc_indicators(closes):
+    s = pd.Series(closes)
+    delta = s.diff()
+    gain = delta.clip(lower=0).rolling(14).mean()
+    loss = -delta.clip(upper=0).rolling(14).mean()
+    rs = gain / loss.replace(0, 1)
+    rsi = round(float((100 - 100/(1+rs)).iloc[-1]), 2)
+    ema12 = s.ewm(span=12).mean()
+    ema26 = s.ewm(span=26).mean()
+    macd = ema12 - ema26
+    signal = macd.ewm(span=9).mean()
+    macd_hist = round(float((macd - signal).iloc[-1]), 4)
+    macd_cross = "BULLISH" if macd.iloc[-1] > signal.iloc[-1] else "BEARISH"
+    return rsi, macd_hist, macd_cross
 
-def generate_dashboard(data, perf, equity, drawdown):
-    import os
-    from datetime import datetime
-    dashboard_dir = "dashboard"
-    os.makedirs(dashboard_dir, exist_ok=True)
-    
-    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    html = f"""<!DOCTYPE html>
-<html>
-<head>
-    <title>Trading Bot Dashboard</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body {{ font-family: Arial; margin: 20px; background: #f5f5f5; }}
-        .container {{ max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 8px; }}
-        h1 {{ color: #333; }}
-        .status {{ background: #e3f2fd; padding: 15px; border-radius: 5px; }}
-        .position {{ border-left: 4px solid #ff9800; padding: 10px; margin: 10px 0; }}
-        .table {{ width: 100%; border-collapse: collapse; }}
-        .table th, .table td {{ border: 1px solid #ddd; padding: 8px; text-align: left; }}
-        .table th {{ background-color: #f2f2f2; }}
-        .good {{ color: green; }}
-        .bad {{ color: red; }}
-    </style>
-</head>
-<body>
-<div class="container">
-    <h1>Trading Bot Dashboard</h1>
-    <p>Last updated: {now} UTC</p>
-    
-    <div class="status">
-        <h2>Account Summary</h2>
-        <p>Balance: ${data.get('balance',0):.2f}</p>
-        <p>Equity: ${equity:.2f}</p>
-        <p>Drawdown: {drawdown:.1f}%</p>
-    </div>
-    
-    <h2>Open Positions</h2>
-    <div id="positions">
-"""
-    for sym, pos in data.get('positions',{}).items():
-        html += f"""
-        <div class="position">
-            <strong>{sym}</strong> (Long) - Entry: ${pos['entry_price']:.2f}, Qty: {pos['qty']:.4f}
-        </div>"""
-    for sym, pos in data.get('shorts',{}).items():
-        html += f"""
-        <div class="position">
-            <strong>{sym}</strong> (Short) - Entry: ${pos['entry_price']:.2f}, Qty: {pos['qty']:.4f}
-        </div>"""
-    if not data.get('positions') and not data.get('shorts'):
-        html += "<p>No open positions.</p>"
-    
-    html += """
-    </div>
-    
-    <h2>Recent Trades</h2>
-    <table class="table">
-        <tr><th>Asset</th><th>Type</th><th>Entry</th><th>Exit</th><th>PnL</th><th>Strategy</th></tr>
-"""
-    for trade in data.get('trades',[])[-10:]:
-        pnl = trade.get('pnl',0)
-        cls = "good" if pnl > 0 else "bad"
-        strategy = trade.get('strategy', 'unknown')
-        html += f"""
-        <tr>
-            <td>{trade.get('asset','')}</td>
-            <td>{trade.get('type','')}</td>
-            <td>${trade.get('entry_price',0):.2f}</td>
-            <td>${trade.get('exit_price',0):.2f}</td>
-            <td class="{cls}">${pnl:.2f}</td>
-            <td>{strategy}</td>
-        </tr>"""
-    html += """
-    </table>
-    
-    <h2>LLM Performance</h2>
-    <table class="table">
-        <tr><th>LLM</th><th>Correct</th><th>Total</th><th>Accuracy</th></tr>
-"""
-    for llm, stats in perf.items():
-        acc = stats.get('accuracy',0)*100
-        html += f"""
-        <tr>
-            <td>{llm}</td>
-            <td>{stats.get('correct',0)}</td>
-            <td>{stats.get('total',0)}</td>
-            <td>{acc:.1f}%</td>
-        </tr>"""
-    html += """
-    </table>
-</div>
-</body>
-</html>"""
-    with open(os.path.join(dashboard_dir, "index.html"), "w") as f:
-        f.write(html)
-    print("[Dashboard] Generated dashboard/index.html")
+def get_crypto_data(symbol):
+    ex = ccxt.gate()
+    t = ex.fetch_ticker(symbol)
+    price = float(t.get("last") or t.get("close") or 0)
+    change = float(t.get("percentage") or 0)
+    ohlcv = ex.fetch_ohlcv(symbol, "1d", limit=50)
+    closes = [c[4] for c in ohlcv]
+    rsi, macd_hist, macd_cross = calc_indicators(closes)
+    return round(price,2), round(change,2), rsi, macd_hist, macd_cross
+
+def get_stock_data(symbol):
+    import yfinance as yf
+    hist = yf.Ticker(symbol).history(period="60d")
+    if hist.empty:
+        return None
+    price = round(float(hist["Close"].iloc[-1]), 2)
+    change = round((price - float(hist["Close"].iloc[-2])) / float(hist["Close"].iloc[-2]) * 100, 2)
+    rsi, macd_hist, macd_cross = calc_indicators(hist["Close"].tolist())
+    return price, change, rsi, macd_hist, macd_cross
+
+def get_asset_data(name, info):
+    try:
+        if info["type"] == "crypto":
+            return get_crypto_data(info["symbol"])
+        else:
+            return get_stock_data(info["symbol"])
+    except Exception as e:
+        print(f"  Error {name}: {e}")
+        return None
+
+def filter_news_for_asset(news_results, asset_name):
+    """Filter berita yang relevan untuk aset tertentu"""
+    asset_keywords = {
+        "Bitcoin":  ["bitcoin", "btc", "crypto", "cryptocurrency", "satoshi"],
+        "Gold":     ["gold", "xau", "precious metal", "commodity", "silver"],
+        "S&P 500":  ["s&p", "sp500", "nasdaq", "dow", "stock market", "equities", "fed", "inflation"]
+    }
+    keywords = asset_keywords.get(asset_name, [])
+    relevant = []
+    for tf, data in news_results.items():
+        for n in data["news"]:
+            title_lower = n["title"].lower()
+            if any(kw in title_lower for kw in keywords):
+                weight = data["weight"]
+                if n["verified"]:
+                    weight *= 1.5
+                relevant.append({**n, "timeframe": tf, "weight": weight})
+    relevant.sort(key=lambda x: x["weight"], reverse=True)
+    return relevant[:5]
+
+async def get_signal_weighted(name, price, change, rsi, macd_hist, macd_cross, news_text):
+    """Voting dengan dynamic weighting + news context"""
+    weights = get_current_weights()
+    prompt = (name+" | Harga: "+str(price)+" | 24h: "+str(change)+"%\n"
+             "RSI: "+str(rsi)+" | MACD: "+str(macd_hist)+" ("+macd_cross+")\n\n"
+             +news_text+"\n\n"
+             "Pertimbangkan data teknikal DAN berita di atas.\n"
+             'Balas JSON: {"signal":"BUY/SELL/HOLD","confidence":0.0-1.0,"reason":"max 10 kata"}')
+    results = await call_all_llms("Analis trading profesional. Balas JSON saja.", prompt)
+
+    weighted_votes = {"BUY": 0.0, "SELL": 0.0, "HOLD": 0.0}
+    details = []
+    llm_signals = {}
+
+    for llm, (ok, resp) in results.items():
+        if ok:
+            try:
+                r = json.loads(re.search(r"\{.*\}", resp, re.DOTALL).group())
+                sig = r.get("signal", "HOLD")
+                if sig not in weighted_votes:
+                    sig = "HOLD"
+                conf = float(r.get("confidence", 0.5))
+                w = weights.get(llm, 1/6)
+                weighted_votes[sig] += conf * w
+                llm_signals[llm] = sig
+                details.append(llm+"("+str(round(w*100))+"%) → "+sig+" ("+str(round(conf*100))+"%)")
+            except: pass
+
+    final_signal = max(weighted_votes, key=weighted_votes.get)
+    total_weight = sum(weighted_votes.values())
+    confidence = round(weighted_votes[final_signal] / total_weight, 2) if total_weight > 0 else 0.5
+    return final_signal, confidence, weighted_votes, details, llm_signals
 
 async def main():
     now = datetime.now().strftime("%Y-%m-%d %H:%M")
-    print("=== MULTI-ASSET BOT (MTF + LONG/SHORT) | "+now+" ===")
+    print("=== TRADING BOT | "+now+" ===")
     data = load_trades()
-    
-    handle_commands(data, os.getenv("TELEGRAM_CHAT_ID"))
-    send_daily_report()
-    await run_scheduled_reports()
-
     positions = data.get("positions", {})
-    shorts = data.get("shorts", {})
 
-    # Kumpulkan harga terkini secara paralel
-    current_prices = {}
-    tasks = []
-    asset_list = []
-    for name, info in ASSETS.items():
-        if not is_market_open(info["type"]):
-            continue
-        tasks.append(get_asset_data(name, info))
-        asset_list.append(name)
-    
-    if tasks:
-        results = await asyncio.gather(*tasks)
-        asset_data_dict = {}
-        for name, asset_data in zip(asset_list, results):
-            if asset_data and "price" in asset_data:
-                current_prices[name] = asset_data["price"]
-                asset_data_dict[name] = asset_data
-
-    # Evaluasi prediksi dan dapatkan performa terbaru
-    perf = evaluate_predictions(current_prices)
-
-    # Hitung equity dan drawdown
-    initial = 1000.0
-    equity = calculate_equity(data, current_prices)
-    drawdown = max(0, (initial - equity) / initial * 100)
-
-    # Cek margin call
-    margin_warning = check_margin_call(equity, data["balance"], positions, shorts, current_prices)
-    if margin_warning:
-        tg(margin_warning)
-        print(margin_warning)
-
-    # Cek pause
-    if os.path.exists("logs/pause.txt"):
-        print("⏸️ Bot dalam mode pause. Tidak melakukan trading baru.")
-        tg("⏸️ Bot dalam mode pause. Hanya akan memonitor posisi.")
-        can_open_new = False
-    else:
-        can_open_new = drawdown <= 3.0
-
-    if drawdown > 3 and not os.path.exists("logs/pause.txt"):
-        msg = f"⚠️ CIRCUIT BREAKER: Drawdown {round(drawdown,1)}% > 3%! Hanya akan menutup posisi, tidak membuka baru."
-        print(msg); tg(msg)
-
-    # Regime detection: VIX-based Kelly scaling
+    # Ambil berita multi-timeframe
+    print("\n[1] Scan berita...")
     try:
-        vix_data = await get_asset_data("VIX", {"type":"index","symbol":"^VIX","name":"VIX"})
-        vix = vix_data.get("price", 20) if vix_data else 20
-    except Exception:
-        vix = 20
-    if vix < 15:   regime = "BULL";   kelly_mult = 1.0
-    elif vix < 25: regime = "NORMAL"; kelly_mult = 0.8
-    elif vix < 35: regime = "FEAR";   kelly_mult = 0.5
-    else:          regime = "PANIC";  kelly_mult = 0.0
-    print(f"  [Regime] VIX={vix:.1f} → {regime} (kelly_mult={kelly_mult})")
+        news_results, news_summary = get_multi_timeframe_news()
+        verified_total = sum(v["verified_count"] for v in news_results.values())
+        print(f"  Total verified: {verified_total}")
+    except Exception as e:
+        print(f"  News error: {e}")
+        news_results = {}
+        news_summary = "Berita tidak tersedia."
 
-    alloc = data["balance"] / len(ASSETS) * LEVERAGE * kelly_mult
+    # Circuit breaker
+    initial = 1000.0
+    current = data["balance"]
+    for name, pos in positions.items():
+        result = get_asset_data(name, ASSETS.get(name, {"type":"stock","symbol":name}))
+        if result:
+            price = result[0]
+            current += pos["amount"] + (price - pos["entry_price"]) * pos["qty"]
+    drawdown = max(0, (initial - current) / initial * 100)
 
-    print("\nAnalisa 3 aset (MTF)...")
+    if drawdown > 5:
+        msg = "CIRCUIT BREAKER: Drawdown "+str(round(drawdown,1))+"% > 5%!"
+        print(msg); tg(msg)
+        return
+
+    alloc = data["balance"] / len(ASSETS)
     summary = []
+
+    print("\n[2] Analisa aset...")
     for name, info in ASSETS.items():
-        if not is_market_open(info["type"]):
-            print(f"  [{name}] Pasar tutup (weekend), lewati")
-            summary.append(f"{name}: SKIP (market closed)")
+        result = get_asset_data(name, info)
+        if not result:
             continue
+        price, change, rsi, macd_hist, macd_cross = result
+        print(f"  {name}: ${price} | RSI:{rsi} | MACD:{macd_cross}")
 
-        asset_data = asset_data_dict.get(name)
-        if not asset_data:
-            print(f"  {name}: tidak ada data")
-            continue
-
-        price = asset_data["price"]
-        change = asset_data["change"]
-        bias = mtf_bias(asset_data)
-
-        # Cek SL/TP untuk posisi existing
-        long_pos = positions.get(name)
-        short_pos = shorts.get(name)
-
-        # H3: ATR-based adaptive SL/TP
-        _closes = asset_data.get("closes", [])
-        _highs  = asset_data.get("highs",  _closes)
-        _lows   = asset_data.get("lows",   _closes)
-        _atr    = calc_atr(_closes, _highs, _lows, period=14)
-        sl_pct = info.get("sl_pct", STOP_LOSS_PCT)
-        tp_pct = info.get("tp_pct", TAKE_PROFIT_PCT)
-        if _atr > 0 and price > 0:
-            sl_pct, tp_pct = get_adaptive_sl_tp(name, price, _atr, sl_pct, tp_pct)
-
-
-        if long_pos:
-            entry = long_pos["entry_price"]
-            pnl_pct = (price - entry) / entry * 100 * LEVERAGE
-            if pnl_pct <= -sl_pct:
-                data = force_close_position(data, name, price, "STOP_LOSS")
-                set_cooldown(name)  # B4: cooldown 3 siklus
-                positions = data.get("positions", {})
-                shorts = data.get("shorts", {})
-                equity = calculate_equity(data, current_prices)
-                drawdown = max(0, (initial - equity) / initial * 100)
-                continue
-            elif pnl_pct >= tp_pct:
-                data = force_close_position(data, name, price, "TAKE_PROFIT")
-                positions = data.get("positions", {})
-                shorts = data.get("shorts", {})
-                equity = calculate_equity(data, current_prices)
-                drawdown = max(0, (initial - equity) / initial * 100)
-                continue
-
-        if short_pos:
-            entry = short_pos["entry_price"]
-            pnl_pct = (entry - price) / entry * 100 * LEVERAGE
-            if pnl_pct <= -sl_pct:
-                data = force_close_position(data, name, price, "STOP_LOSS")
-                set_cooldown(name)  # B4: cooldown 3 siklus
-                positions = data.get("positions", {})
-                shorts = data.get("shorts", {})
-                equity = calculate_equity(data, current_prices)
-                drawdown = max(0, (initial - equity) / initial * 100)
-                continue
-            elif pnl_pct >= tp_pct:
-                data = force_close_position(data, name, price, "TAKE_PROFIT")
-                positions = data.get("positions", {})
-                shorts = data.get("shorts", {})
-                equity = calculate_equity(data, current_prices)
-                drawdown = max(0, (initial - equity) / initial * 100)
-                continue
-
-        # Cetak ringkasan teknikal
-        for tf in ["1d", "4h", "1h"]:
-            if tf in asset_data:
-                ind = asset_data[tf]
-                print(f"    {tf}: RSI:{ind['rsi']} | MACD:{ind['macd_cross']} | EMA:{ind['ema_trend']} | BB:{ind['bb_pos']}")
-        print(f"    Bias MTF: {bias}")
-
-        # Dapatkan sinyal dengan closes & volumes
-        closes = asset_data.get("closes", [])
-        volumes = asset_data.get("volumes", [])
-        signal, conf, votes, details, bias = await get_signal(
-            info["name"], asset_data, now, perf, closes=closes, volumes=volumes
-        )
-        print(f"  -> {signal} conf:{conf} votes:{votes}")
-        summary.append(f"{name}: {signal} ({conf}) [{bias}]")
-
-        long_pos = positions.get(name)
-        short_pos = shorts.get(name)
-
-        # Tentukan strategi untuk dicatat di trade
-        if name == "BTC/USDT":
-            strategy_used = "vol_tsmom"
-        elif name == "XAUUSD":
-            strategy_used = "smart_hold"
-        elif name == "SPX":
-            strategy_used = "monthly_seasonal"
+        # Filter berita untuk aset ini
+        asset_news = filter_news_for_asset(news_results, info["name"])
+        if asset_news:
+            news_text = "BERITA RELEVAN:\n"
+            for n in asset_news:
+                status = "✅" if n["verified"] else "⚠️"
+                news_text += status+" ["+n["timeframe"]+"] "+n["title"][:70]+"\n"
         else:
-            strategy_used = "llm"
+            news_text = "Tidak ada berita spesifik untuk aset ini."
 
-        # Open Long
+        signal, conf, wvotes, details, llm_signals = await get_signal_weighted(
+            info["name"], price, change, rsi, macd_hist, macd_cross, news_text)
+        print(f"  -> {signal} conf:{conf}")
+        summary.append(name+": "+signal+" ("+str(conf)+")")
 
-        # B4: Skip jika aset masih dalam cooldown pasca SL
-        if is_in_cooldown(name):
-            print(f"  [{name}] SKIP - cooldown aktif")
-            summary.append(f"{name}: SKIP (cooldown)")
-            continue
+        pos = positions.get(name)
 
-        # H2: Konfirmasi MTF 4h + 1d sebelum open long
-        _ind_1d = asset_data.get("1d", {})
-        _ind_4h = asset_data.get("4h", {})
-        _1d_bull = _ind_1d.get("ema_trend") == "BULLISH" or _ind_1d.get("rsi", 50) > 50
-        _4h_bull = _ind_4h.get("ema_trend") == "BULLISH" or _ind_4h.get("rsi", 50) > 50
-        _mtf_confirmed_long = _1d_bull and _4h_bull
-
-        if can_open_new and signal == "BUY" and _mtf_confirmed_long and conf >= 0.55 and votes >= 3 and not long_pos and not short_pos and alloc > 10:
-            if not check_correlation(name, positions) or not check_correlation(name, shorts):
-                print(f"  [{name}] Diblokir oleh correlation filter")
-                continue
+        if signal == "BUY" and conf >= 0.6 and not pos and alloc > 10:
             qty = alloc / price
-            positions[name] = {"entry_price": price, "qty": qty, "amount": alloc/LEVERAGE, "time": now}
-            data["balance"] -= alloc/LEVERAGE
-            msg = (f"🟢 BUY {info['name']} (Leverage {LEVERAGE}x)\n"
-                   f"Harga: ${price} | 24h: {change}%\n"
-                   f"Qty: {round(qty,6)} | Notional: ${round(alloc,2)}\n"
-                   f"MTF Bias: {bias}\n"
-                   f"Conf: {conf} ({votes} votes)\n\n"
-                   + "\n".join(details))
-            print(f"  [BUY] {name}")
+            positions[name] = {
+                "entry_price": price, "qty": qty,
+                "amount": alloc, "time": now,
+                "pending_llm_signals": llm_signals
+            }
+            data["balance"] -= alloc
+            msg = ("BUY "+info["name"]+"\n"
+                  "Harga: $"+str(price)+"\n"
+                  "Qty: "+str(round(qty,6))+"\n"
+                  "Amount: $"+str(round(alloc,2))+"\n"
+                  "RSI: "+str(rsi)+" | MACD: "+macd_cross+"\n"
+                  "Conf: "+str(conf)+"\n\n"
+                  "Voting:\n"+"\n".join(details)+"\n\n"
+                  "News:\n"+news_text[:200])
             tg(msg)
 
-        # Close Long
-        elif signal == "SELL" and long_pos:
-            pnl = (price - long_pos["entry_price"]) * long_pos["qty"]
-            data["balance"] += long_pos["amount"] + pnl
-            data["trades"].append({**long_pos, "asset": name, "type": "long",
-                                   "exit_price": price, "pnl": round(pnl,2), "exit_time": now,
-                                   "strategy": strategy_used})
+        elif signal == "SELL" and pos:
+            pnl = (price - pos["entry_price"]) * pos["qty"]
+            data["balance"] += pos["amount"] + pnl
+            if "pending_llm_signals" in pos:
+                for llm, sig in pos["pending_llm_signals"].items():
+                    if sig == "BUY":
+                        outcome = "correct" if pnl > 0 else "wrong"
+                        record_prediction(llm, sig, outcome, pnl/6)
+            data["trades"].append({
+                **{k:v for k,v in pos.items() if k!="pending_llm_signals"},
+                "asset": name, "exit_price": price,
+                "pnl": round(pnl,2), "exit_time": now
+            })
             del positions[name]
             emoji = "✅" if pnl > 0 else "🔴"
-            msg = (f"{emoji} SELL (Close Long) {info['name']}\n"
-                   f"Entry: ${long_pos['entry_price']} | Exit: ${price}\n"
-                   f"PnL: ${round(pnl,2)} | Balance: ${round(data['balance'],2)}")
-            print(f"  [SELL] {name} PnL: ${round(pnl,2)}")
-            tg(msg)
-
-        # Open Short
-
-        elif can_open_new and signal == "SHORT" and conf >= 0.55 and votes >= 3 and not short_pos and not long_pos and alloc > 10:
-            if not check_correlation(name, positions) or not check_correlation(name, shorts):
-                print(f"  [{name}] Diblokir oleh correlation filter")
-                continue
-            qty = alloc / price
-            shorts[name] = {"entry_price": price, "qty": qty, "amount": alloc/LEVERAGE, "time": now}
-            data["balance"] -= alloc/LEVERAGE
-            msg = (f"🔴 SHORT {info['name']} (Leverage {LEVERAGE}x)\n"
-                   f"Harga: ${price} | 24h: {change}%\n"
-                   f"Qty: {round(qty,6)} | Notional: ${round(alloc,2)}\n"
-                   f"MTF Bias: {bias}\n"
-                   f"Conf: {conf} ({votes} votes)\n\n"
-                   + "\n".join(details))
-            print(f"  [SHORT] {name}")
-            tg(msg)
-
-        # Close Short
-        elif signal == "COVER" and short_pos:
-            pnl = (short_pos["entry_price"] - price) * short_pos["qty"]
-            data["balance"] += short_pos["amount"] + pnl
-            data["trades"].append({**short_pos, "asset": name, "type": "short",
-                                   "exit_price": price, "pnl": round(pnl,2), "exit_time": now,
-                                   "strategy": strategy_used})
-            del shorts[name]
-            emoji = "✅" if pnl > 0 else "🔴"
-            msg = (f"{emoji} COVER (Close Short) {info['name']}\n"
-                   f"Entry: ${short_pos['entry_price']} | Exit: ${price}\n"
-                   f"PnL: ${round(pnl,2)} | Balance: ${round(data['balance'],2)}")
-            print(f"  [COVER] {name} PnL: ${round(pnl,2)}")
+            msg = (emoji+" SELL "+info["name"]+"\nPnL: $"+str(round(pnl,2))+
+                   "\nBalance: $"+str(round(data["balance"],2)))
             tg(msg)
 
     data["positions"] = positions
-    data["shorts"] = shorts
     save_trades(data)
 
-    generate_dashboard(data, perf, equity, drawdown)
+    # Leaderboard top 3
+    board = get_leaderboard()
+    lb_text = "TOP LLM:\n"
+    for b in board[:3]:
+        lb_text += b["llm"]+" W:"+str(round(b["weight"]*100))+"% ELO:"+str(b["elo"])+"\n"
 
     trades = data["trades"]
     wins = sum(1 for t in trades if t.get("pnl",0) > 0)
     winrate = str(round(wins/len(trades)*100))+"%" if trades else "N/A"
     total_pnl = sum(t.get("pnl",0) for t in trades)
-    open_long = ", ".join(positions.keys()) if positions else "Tidak ada"
-    open_short = ", ".join(shorts.keys()) if shorts else "Tidak ada"
+    open_pos = ", ".join(positions.keys()) if positions else "Tidak ada"
 
-    status = (f"📊 MULTI-ASSET STATUS {now}\n"
-              f"Equity: ${round(equity,2)} (Balance: ${round(data['balance'],2)})\n"
-              f"Drawdown: {round(drawdown,1)}%\n"
-              f"Long: {open_long}\n"
-              f"Short: {open_short}\n\n"
-              + "\n".join(summary) + "\n\n"
-              f"Trade: {len(trades)} | Winrate: {winrate}\n"
-              f"Total PnL: ${round(total_pnl,2)}")
-    
-    dashboard_url = "https://ihzaikrm.github.io/trading-bot/"
-    status += f"\n\n📈 Monitor: {dashboard_url}"
-    
+    status = ("STATUS "+now+"\n"
+             "Balance: $"+str(round(data["balance"],2))+"\n"
+             "Drawdown: "+str(round(drawdown,1))+"%\n"
+             "Posisi: "+open_pos+"\n\n"
+             +"\n".join(summary)+"\n\n"
+             +lb_text+"\n"
+             "Trade: "+str(len(trades))+" | Winrate: "+winrate+"\n"
+             "PnL: $"+str(round(total_pnl,2)))
     print("\n"+status)
     tg(status)
-    print("\n=== SELESAI ===")
+    print_leaderboard()
+    print("=== SELESAI ===")
 
-if __name__ == "__main__":
-    asyncio.run(main())
+asyncio.run(main())

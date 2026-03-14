@@ -1,0 +1,259 @@
+{
+  "timestamp": "2026-03-14T08:24:48.544195",
+  "results": {
+    "1h": {
+      "label": "BREAKING",
+      "weight": 1.0,
+      "verified_count": 2,
+      "news": [
+        {
+          "title": "S&P 500 futures are flat ahead of key inflation data; traders monitor oil prices and Iran war: Live updates - CNBC",
+          "sources": [
+            "newsapi_business",
+            "yahoo_spx"
+          ],
+          "source_count": 2,
+          "publisher": "CNBC",
+          "time": "2026-03-13T00:22:00Z",
+          "verified": true
+        },
+        {
+          "title": "Why The Iran War Is Fueling A Rally In Fertilizer Stocks - Investor's Business Daily",
+          "sources": [
+            "newsapi_business",
+            "investing_com"
+          ],
+          "source_count": 2,
+          "publisher": "Investor's Business Daily",
+          "time": "2026-03-12T14:06:00Z",
+          "verified": true
+        },
+        {
+          "title": "Brent Oil Closes Above $100 for First Time Since August 2022 - Bloomberg.com",
+          "sources": [
+            "newsapi_business"
+          ],
+          "source_count": 1,
+          "publisher": "Bloomberg",
+          "time": "2026-03-12T20:13:47Z",
+          "verified": false
+        },
+        {
+          "title": "A software CEO called me on the weekend recently with painful predictions. One is already coming true. - Business Insider",
+          "sources": [
+            "newsapi_business"
+          ],
+          "source_count": 1,
+          "publisher": "Business Insider",
+          "time": "2026-03-12T18:37:24Z",
+          "verified": false
+        },
+        {
+          "title": "The market is starting to see the Iran war as a gamechanger, not a temporary disruption - investingLive",
+          "sources": [
+            "newsapi_business"
+          ],
+          "source_count": 1,
+          "publisher": "Investinglive.com",
+          "time": "2026-03-12T16:47:22Z",
+          "verified": false
+        }
+      ]
+    },
+    "6h": {
+      "label": "PENTING",
+      "weight": 0.7,
+      "verified_count": 7,
+      "news": [
+        {
+          "title": "Brent Oil Closes Above $100 for First Time Since August 2022 - Bloomberg.com",
+          "sources": [
+            "google_gold",
+            "newsapi_business",
+            "yahoo_spx"
+          ],
+          "source_count": 3,
+          "publisher": "Bloomberg",
+          "time": "2026-03-12T20:13:47Z",
+          "verified": true
+        },
+        {
+          "title": "Why The Iran War Is Fueling A Rally In Fertilizer Stocks - Investor's Business Daily",
+          "sources": [
+            "newsapi_business",
+            "marketwatch",
+            "investing_com"
+          ],
+          "source_count": 3,
+          "publisher": "Investor's Business Daily",
+          "time": "2026-03-12T14:06:00Z",
+          "verified": true
+        },
+        {
+          "title": "S&P 500 futures are flat ahead of key inflation data; traders monitor oil prices and Iran war: Live updates - CNBC",
+          "sources": [
+            "newsapi_business",
+            "yahoo_spx"
+          ],
+          "source_count": 2,
+          "publisher": "CNBC",
+          "time": "2026-03-13T00:22:00Z",
+          "verified": true
+        },
+        {
+          "title": "What the Iran war could mean for gas prices, flights and your wallet - The Washington Post",
+          "sources": [
+            "newsapi_business",
+            "marketwatch"
+          ],
+          "source_count": 2,
+          "publisher": "The Washington Post",
+          "time": "2026-03-12T16:17:24Z",
+          "verified": true
+        },
+        {
+          "title": "Customer sues Costco for tariff refunds - BBC",
+          "sources": [
+            "yahoo_gold",
+            "newsapi_business"
+          ],
+          "source_count": 2,
+          "publisher": "BBC News",
+          "time": "2026-03-12T16:08:37Z",
+          "verified": true
+        },
+        {
+          "title": "A software CEO called me on the weekend recently with painful predictions. One is already coming true. - Business Insider",
+          "sources": [
+            "newsapi_business"
+          ],
+          "source_count": 1,
+          "publisher": "Business Insider",
+          "time": "2026-03-12T18:37:24Z",
+          "verified": false
+        },
+        {
+          "title": "The market is starting to see the Iran war as a gamechanger, not a temporary disruption - investingLive",
+          "sources": [
+            "newsapi_business"
+          ],
+          "source_count": 1,
+          "publisher": "Investinglive.com",
+          "time": "2026-03-12T16:47:22Z",
+          "verified": false
+        },
+        {
+          "title": "Palantir Unveils Nvidia Software Pact, Defense Partnerships At AI Conference - Investor's Business Daily",
+          "sources": [
+            "newsapi_business"
+          ],
+          "source_count": 1,
+          "publisher": "Investor's Business Daily",
+          "time": "2026-03-12T15:07:00Z",
+          "verified": false
+        }
+      ]
+    },
+    "24h": {
+      "label": "KONTEKS",
+      "weight": 0.4,
+      "verified_count": 15,
+      "news": [
+        {
+          "title": "Brent Oil Closes Above $100 for First Time Since August 2022 - Bloomberg.com",
+          "sources": [
+            "google_gold",
+            "newsapi_business",
+            "yahoo_gold",
+            "google_crypto",
+            "yahoo_spx"
+          ],
+          "source_count": 5,
+          "publisher": "Bloomberg",
+          "time": "2026-03-12T20:13:47Z",
+          "verified": true
+        },
+        {
+          "title": "S&P 500 futures are flat ahead of key inflation data; traders monitor oil prices and Iran war: Live updates - CNBC",
+          "sources": [
+            "yahoo_gold",
+            "newsapi_business",
+            "yahoo_spx",
+            "google_macro"
+          ],
+          "source_count": 4,
+          "publisher": "CNBC",
+          "time": "2026-03-13T00:22:00Z",
+          "verified": true
+        },
+        {
+          "title": "Why The Iran War Is Fueling A Rally In Fertilizer Stocks - Investor's Business Daily",
+          "sources": [
+            "yahoo_gold",
+            "newsapi_business",
+            "marketwatch",
+            "investing_com"
+          ],
+          "source_count": 4,
+          "publisher": "Investor's Business Daily",
+          "time": "2026-03-12T14:06:00Z",
+          "verified": true
+        },
+        {
+          "title": "The market is starting to see the Iran war as a gamechanger, not a temporary disruption - investingLive",
+          "sources": [
+            "google_gold",
+            "newsapi_business",
+            "yahoo_btc"
+          ],
+          "source_count": 3,
+          "publisher": "Investinglive.com",
+          "time": "2026-03-12T16:47:22Z",
+          "verified": true
+        },
+        {
+          "title": "What the Iran war could mean for gas prices, flights and your wallet - The Washington Post",
+          "sources": [
+            "newsapi_business",
+            "marketwatch",
+            "yahoo_btc"
+          ],
+          "source_count": 3,
+          "publisher": "The Washington Post",
+          "time": "2026-03-12T16:17:24Z",
+          "verified": true
+        },
+        {
+          "title": "A software CEO called me on the weekend recently with painful predictions. One is already coming true. - Business Insider",
+          "sources": [
+            "newsapi_business"
+          ],
+          "source_count": 1,
+          "publisher": "Business Insider",
+          "time": "2026-03-12T18:37:24Z",
+          "verified": false
+        },
+        {
+          "title": "CFTC Staff Issues Prediction Markets Advisory - Commodity Futures Trading Commission | CFTC (.gov)",
+          "sources": [
+            "newsapi_business"
+          ],
+          "source_count": 1,
+          "publisher": "Cftc.gov",
+          "time": "2026-03-12T14:31:16Z",
+          "verified": false
+        },
+        {
+          "title": "Brent Oil Closes Above $100 for First Time Since August 2022 - Bloomberg.com",
+          "sources": [
+            "newsapi_general"
+          ],
+          "source_count": 1,
+          "publisher": "Bloomberg",
+          "time": "2026-03-12T20:13:47Z",
+          "verified": false
+        }
+      ]
+    }
+  }
+}
