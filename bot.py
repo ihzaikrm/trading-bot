@@ -274,7 +274,15 @@ async def main():
         )
         print("\n[3] Narrative scan...")
         market_ctx = "BTC: "+str(current_prices.get("BTC/USDT","?"))+" | XAUUSD: "+str(current_prices.get("XAUUSD","?"))+" | SPX: "+str(current_prices.get("SPX","?"))
-        news_text_for_narr = " ".join([a.get("title","") for a in data.get("news",[])[:5]]) if "news" in data else ""
+        # Ambil news dari cache file
+import json as _json, os as _os
+_cache = _os.path.join("logs","news_cache.json")
+try:
+            _news = _json.load(open(_cache, encoding="utf-8")) if _os.path.exists(_cache) else {}
+            _titles = [a.get("title","") for a in _news.get("1h",[])[:3]] + [a.get("title","") for a in _news.get("6h",[])[:2]]
+            news_text_for_narr = " ".join(_titles)
+        except:
+            news_text_for_narr = ""
         narrative_state = await run_narrative_scan(news_text_for_narr, market_ctx)
         top_narr = [(n,v) for n,v in narrative_state.get("active_narratives",[])]
         print("  Top narratives:", top_narr[:3])
