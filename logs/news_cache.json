@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-14T15:53:28.129633",
+  "timestamp": "2026-03-14T17:01:33.866449",
   "results": {
     "1h": {
       "label": "BREAKING",
@@ -9,34 +9,35 @@
         {
           "title": "European stocks set to slide further as oil prices stay above $100 a barrel - CNBC",
           "sources": [
+            "yahoo_spx",
             "newsapi_business",
-            "yahoo_spx"
+            "yahoo_gold"
           ],
-          "source_count": 2,
+          "source_count": 3,
           "publisher": "CNBC",
           "time": "2026-03-13T07:16:07Z",
           "verified": true
         },
         {
-          "title": "How Trump\u2019s Iran War Could Actually Worsen Climate Change - The Bulwark",
-          "sources": [
-            "newsapi_business",
-            "investing_com"
-          ],
-          "source_count": 2,
-          "publisher": "The Bulwark",
-          "time": "2026-03-13T01:07:10Z",
-          "verified": true
-        },
-        {
           "title": "Asia-Pacific markets tumble as investors brace for a prolonged war in Middle East - CNBC",
           "sources": [
-            "newsapi_business",
-            "investing_com"
+            "investing_com",
+            "newsapi_business"
           ],
           "source_count": 2,
           "publisher": "CNBC",
           "time": "2026-03-12T23:54:58Z",
+          "verified": true
+        },
+        {
+          "title": "This ETF Has Given Investors a Golden Opportunity",
+          "sources": [
+            "marketwatch",
+            "yahoo_gold"
+          ],
+          "source_count": 2,
+          "publisher": "yahoo_gold",
+          "time": "Sat, 14 Mar 2026 16:29:00 +0000",
           "verified": true
         },
         {
@@ -74,15 +75,15 @@
     "6h": {
       "label": "PENTING",
       "weight": 0.7,
-      "verified_count": 8,
+      "verified_count": 10,
       "news": [
         {
           "title": "Investors Hunt for Hedges as War Shatters Decades-Old Strategies - Yahoo Finance",
           "sources": [
-            "google_crypto",
+            "google_fed",
             "newsapi_business",
-            "yahoo_spx",
-            "google_fed"
+            "google_crypto",
+            "yahoo_spx"
           ],
           "source_count": 4,
           "publisher": "Yahoo Entertainment",
@@ -90,23 +91,23 @@
           "verified": true
         },
         {
-          "title": "How Trump\u2019s Iran War Could Actually Worsen Climate Change - The Bulwark",
+          "title": "European stocks set to slide further as oil prices stay above $100 a barrel - CNBC",
           "sources": [
-            "investing_com",
+            "yahoo_spx",
             "newsapi_business",
-            "yahoo_spx"
+            "yahoo_gold"
           ],
           "source_count": 3,
-          "publisher": "The Bulwark",
-          "time": "2026-03-13T01:07:10Z",
+          "publisher": "CNBC",
+          "time": "2026-03-13T07:16:07Z",
           "verified": true
         },
         {
           "title": "Asia-Pacific markets tumble as investors brace for a prolonged war in Middle East - CNBC",
           "sources": [
+            "yahoo_spx",
             "investing_com",
-            "newsapi_business",
-            "yahoo_spx"
+            "newsapi_business"
           ],
           "source_count": 3,
           "publisher": "CNBC",
@@ -117,7 +118,7 @@
           "title": "Stocks bounce as oil eases slightly, but S&P 500 heads for third-straight losing week: Live updates - CNBC",
           "sources": [
             "newsapi_business",
-            "google_fed"
+            "google_crypto"
           ],
           "source_count": 2,
           "publisher": "CNBC",
@@ -125,14 +126,14 @@
           "verified": true
         },
         {
-          "title": "European stocks set to slide further as oil prices stay above $100 a barrel - CNBC",
+          "title": "How Trump\u2019s Iran War Could Actually Worsen Climate Change - The Bulwark",
           "sources": [
-            "newsapi_business",
-            "yahoo_spx"
+            "yahoo_spx",
+            "newsapi_business"
           ],
           "source_count": 2,
-          "publisher": "CNBC",
-          "time": "2026-03-13T07:16:07Z",
+          "publisher": "The Bulwark",
+          "time": "2026-03-13T01:07:10Z",
           "verified": true
         },
         {
@@ -170,42 +171,42 @@
     "24h": {
       "label": "KONTEKS",
       "weight": 0.4,
-      "verified_count": 14,
+      "verified_count": 12,
       "news": [
-        {
-          "title": "Investors Hunt for Hedges as War Shatters Decades-Old Strategies - Yahoo Finance",
-          "sources": [
-            "google_crypto",
-            "google_fed",
-            "yahoo_spx",
-            "newsapi_business",
-            "yahoo_gold"
-          ],
-          "source_count": 5,
-          "publisher": "Yahoo Entertainment",
-          "time": "2026-03-13T06:04:00Z",
-          "verified": true
-        },
         {
           "title": "European stocks set to slide further as oil prices stay above $100 a barrel - CNBC",
           "sources": [
-            "google_crypto",
-            "newsapi_business",
+            "yahoo_gold",
             "yahoo_spx",
-            "google_gold"
+            "newsapi_business",
+            "google_gold",
+            "google_crypto"
           ],
-          "source_count": 4,
+          "source_count": 5,
           "publisher": "CNBC",
           "time": "2026-03-13T07:16:07Z",
           "verified": true
         },
         {
+          "title": "Investors Hunt for Hedges as War Shatters Decades-Old Strategies - Yahoo Finance",
+          "sources": [
+            "google_fed",
+            "newsapi_business",
+            "google_crypto",
+            "yahoo_spx"
+          ],
+          "source_count": 4,
+          "publisher": "Yahoo Entertainment",
+          "time": "2026-03-13T06:04:00Z",
+          "verified": true
+        },
+        {
           "title": "Asia-Pacific markets tumble as investors brace for a prolonged war in Middle East - CNBC",
           "sources": [
-            "google_gold",
-            "newsapi_business",
             "yahoo_spx",
-            "investing_com"
+            "investing_com",
+            "newsapi_business",
+            "google_gold"
           ],
           "source_count": 4,
           "publisher": "CNBC",
@@ -213,24 +214,23 @@
           "verified": true
         },
         {
-          "title": "Iran war: What is happening on day 14 of US-Israel attacks? - Al Jazeera",
+          "title": "Stocks bounce as oil eases slightly, but S&P 500 heads for third-straight losing week: Live updates - CNBC",
           "sources": [
-            "marketwatch",
-            "newsapi_general",
-            "yahoo_btc",
-            "google_stocks"
+            "google_fed",
+            "newsapi_business",
+            "google_crypto"
           ],
-          "source_count": 4,
-          "publisher": "Al Jazeera English",
-          "time": "2026-03-13T06:16:09Z",
+          "source_count": 3,
+          "publisher": "CNBC",
+          "time": "2026-03-13T12:10:00Z",
           "verified": true
         },
         {
           "title": "How Trump\u2019s Iran War Could Actually Worsen Climate Change - The Bulwark",
           "sources": [
-            "investing_com",
+            "yahoo_spx",
             "newsapi_business",
-            "yahoo_spx"
+            "google_crypto"
           ],
           "source_count": 3,
           "publisher": "The Bulwark",
@@ -248,6 +248,16 @@
           "verified": false
         },
         {
+          "title": "4 dead after U.S. Air Force refueler crashes in Iraq while supporting Iran war - The Washington Post",
+          "sources": [
+            "newsapi_general"
+          ],
+          "source_count": 1,
+          "publisher": "The Washington Post",
+          "time": "2026-03-13T11:49:15Z",
+          "verified": false
+        },
+        {
           "title": "Bitcoin vs. Solana: Which Crypto Is the Better Buy Right Now? - The Motley Fool",
           "sources": [
             "google_crypto"
@@ -255,16 +265,6 @@
           "source_count": 1,
           "publisher": "google_crypto",
           "time": "Sat, 14 Mar 2026 03:09:00 GMT",
-          "verified": false
-        },
-        {
-          "title": "Gold Price Today [14 March, 2026]: Gold Drops 2% to $5,023 on Stronger Dollar Amid Middle East Crisis; Domestic Rates Plunge to \u20b91.60 Lakh/10g | Check City-Wise Rates of 24K, 22K & 18K - The Sunday Guardian",
-          "sources": [
-            "google_gold"
-          ],
-          "source_count": 1,
-          "publisher": "google_gold",
-          "time": "Fri, 13 Mar 2026 23:57:37 GMT",
           "verified": false
         }
       ]
