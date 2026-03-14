@@ -1,21 +1,42 @@
 {
-  "timestamp": "2026-03-14T05:02:51.634065",
+  "timestamp": "2026-03-14T07:51:18.781272",
   "results": {
     "1h": {
       "label": "BREAKING",
       "weight": 1.0,
-      "verified_count": 1,
+      "verified_count": 2,
       "news": [
         {
           "title": "S&P 500 futures edge up ahead of key inflation data; traders monitor oil prices and Iran war: Live updates - CNBC",
           "sources": [
-            "newsapi_business",
-            "yahoo_btc"
+            "investing_com",
+            "newsapi_business"
           ],
           "source_count": 2,
           "publisher": "CNBC",
           "time": "2026-03-13T04:39:00Z",
           "verified": true
+        },
+        {
+          "title": "Customer sues Costco for tariff refunds - BBC",
+          "sources": [
+            "investing_com",
+            "newsapi_business"
+          ],
+          "source_count": 2,
+          "publisher": "BBC News",
+          "time": "2026-03-12T16:08:37Z",
+          "verified": true
+        },
+        {
+          "title": "Asia-Pacific markets tumble as investors brace for a prolonged war in Middle East - CNBC",
+          "sources": [
+            "newsapi_business"
+          ],
+          "source_count": 1,
+          "publisher": "CNBC",
+          "time": "2026-03-12T23:54:58Z",
+          "verified": false
         },
         {
           "title": "Trump and Iran Strike Defiant Tone as Oil Markets See Little Relief - Bloomberg.com",
@@ -28,23 +49,13 @@
           "verified": false
         },
         {
-          "title": "Federal Reserve to loosen capital requirements for big US banks - Financial Times",
+          "title": "A flying taxi crossed the Golden Gate. Could it soon take you from S.F. to Wine Country? - San Francisco Chronicle",
           "sources": [
             "newsapi_business"
           ],
           "source_count": 1,
-          "publisher": "Financial Times",
-          "time": "2026-03-12T20:40:20Z",
-          "verified": false
-        },
-        {
-          "title": "A key gauge of inflation expectations just logged its highest reading in almost 4 years - MarketWatch",
-          "sources": [
-            "newsapi_business"
-          ],
-          "source_count": 1,
-          "publisher": "Google News",
-          "time": "2026-03-12T17:25:00Z",
+          "publisher": "San Francisco Chronicle",
+          "time": "2026-03-12T22:08:44Z",
           "verified": false
         }
       ]
@@ -57,98 +68,11 @@
         {
           "title": "S&P 500 futures edge up ahead of key inflation data; traders monitor oil prices and Iran war: Live updates - CNBC",
           "sources": [
+            "google_fed",
+            "investing_com",
             "yahoo_spx",
             "newsapi_business",
             "yahoo_btc"
-          ],
-          "source_count": 3,
-          "publisher": "CNBC",
-          "time": "2026-03-13T04:39:00Z",
-          "verified": true
-        },
-        {
-          "title": "What the Iran war could mean for gas prices, flights and your wallet - The Washington Post",
-          "sources": [
-            "yahoo_spx",
-            "google_crypto",
-            "newsapi_business"
-          ],
-          "source_count": 3,
-          "publisher": "The Washington Post",
-          "time": "2026-03-12T16:17:24Z",
-          "verified": true
-        },
-        {
-          "title": "U.S. Air Force refueler crashes in Iraq while supporting Iran war - The Washington Post",
-          "sources": [
-            "google_gold",
-            "newsapi_general"
-          ],
-          "source_count": 2,
-          "publisher": "The Washington Post",
-          "time": "2026-03-13T01:23:46Z",
-          "verified": true
-        },
-        {
-          "title": "Trump and Iran Strike Defiant Tone as Oil Markets See Little Relief - Bloomberg.com",
-          "sources": [
-            "newsapi_business"
-          ],
-          "source_count": 1,
-          "publisher": "Bloomberg",
-          "time": "2026-03-12T22:09:35Z",
-          "verified": false
-        },
-        {
-          "title": "Federal Reserve to loosen capital requirements for big US banks - Financial Times",
-          "sources": [
-            "newsapi_business"
-          ],
-          "source_count": 1,
-          "publisher": "Financial Times",
-          "time": "2026-03-12T20:40:20Z",
-          "verified": false
-        },
-        {
-          "title": "A key gauge of inflation expectations just logged its highest reading in almost 4 years - MarketWatch",
-          "sources": [
-            "newsapi_business"
-          ],
-          "source_count": 1,
-          "publisher": "Google News",
-          "time": "2026-03-12T17:25:00Z",
-          "verified": false
-        }
-      ]
-    },
-    "24h": {
-      "label": "KONTEKS",
-      "weight": 0.4,
-      "verified_count": 14,
-      "news": [
-        {
-          "title": "Trump and Iran Strike Defiant Tone as Oil Markets See Little Relief - Bloomberg.com",
-          "sources": [
-            "google_crypto",
-            "newsapi_business",
-            "google_gold",
-            "yahoo_gold",
-            "google_stocks",
-            "google_fed"
-          ],
-          "source_count": 6,
-          "publisher": "Bloomberg",
-          "time": "2026-03-12T22:09:35Z",
-          "verified": true
-        },
-        {
-          "title": "S&P 500 futures edge up ahead of key inflation data; traders monitor oil prices and Iran war: Live updates - CNBC",
-          "sources": [
-            "yahoo_spx",
-            "newsapi_business",
-            "yahoo_gold",
-            "yahoo_btc",
-            "google_macro"
           ],
           "source_count": 5,
           "publisher": "CNBC",
@@ -156,25 +80,103 @@
           "verified": true
         },
         {
-          "title": "The market is starting to see the Iran war as a gamechanger, not a temporary disruption - investingLive",
+          "title": "What the Iran war could mean for gas prices, flights and your wallet - The Washington Post",
           "sources": [
-            "google_gold",
             "google_crypto",
             "newsapi_business",
+            "yahoo_spx"
+          ],
+          "source_count": 3,
+          "publisher": "The Washington Post",
+          "time": "2026-03-12T16:17:24Z",
+          "verified": true
+        },
+        {
+          "title": "Customer sues Costco for tariff refunds - BBC",
+          "sources": [
+            "investing_com",
+            "newsapi_business"
+          ],
+          "source_count": 2,
+          "publisher": "BBC News",
+          "time": "2026-03-12T16:08:37Z",
+          "verified": true
+        },
+        {
+          "title": "Asia-Pacific markets tumble as investors brace for a prolonged war in Middle East - CNBC",
+          "sources": [
+            "newsapi_business"
+          ],
+          "source_count": 1,
+          "publisher": "CNBC",
+          "time": "2026-03-12T23:54:58Z",
+          "verified": false
+        },
+        {
+          "title": "Trump and Iran Strike Defiant Tone as Oil Markets See Little Relief - Bloomberg.com",
+          "sources": [
+            "newsapi_business"
+          ],
+          "source_count": 1,
+          "publisher": "Bloomberg",
+          "time": "2026-03-12T22:09:35Z",
+          "verified": false
+        },
+        {
+          "title": "A flying taxi crossed the Golden Gate. Could it soon take you from S.F. to Wine Country? - San Francisco Chronicle",
+          "sources": [
+            "newsapi_business"
+          ],
+          "source_count": 1,
+          "publisher": "San Francisco Chronicle",
+          "time": "2026-03-12T22:08:44Z",
+          "verified": false
+        }
+      ]
+    },
+    "24h": {
+      "label": "KONTEKS",
+      "weight": 0.4,
+      "verified_count": 15,
+      "news": [
+        {
+          "title": "S&P 500 futures edge up ahead of key inflation data; traders monitor oil prices and Iran war: Live updates - CNBC",
+          "sources": [
+            "google_fed",
+            "yahoo_gold",
+            "investing_com",
+            "yahoo_spx",
+            "newsapi_business",
+            "google_macro",
             "yahoo_btc"
           ],
-          "source_count": 4,
-          "publisher": "Investinglive.com",
-          "time": "2026-03-12T16:47:22Z",
+          "source_count": 7,
+          "publisher": "CNBC",
+          "time": "2026-03-13T04:39:00Z",
+          "verified": true
+        },
+        {
+          "title": "Trump and Iran Strike Defiant Tone as Oil Markets See Little Relief - Bloomberg.com",
+          "sources": [
+            "google_fed",
+            "google_stocks",
+            "yahoo_gold",
+            "newsapi_business",
+            "google_gold",
+            "google_crypto"
+          ],
+          "source_count": 6,
+          "publisher": "Bloomberg",
+          "time": "2026-03-12T22:09:35Z",
           "verified": true
         },
         {
           "title": "What the Iran war could mean for gas prices, flights and your wallet - The Washington Post",
           "sources": [
-            "yahoo_spx",
+            "marketwatch",
             "google_crypto",
             "newsapi_business",
-            "marketwatch"
+            "yahoo_spx"
           ],
           "source_count": 4,
           "publisher": "The Washington Post",
@@ -184,10 +186,10 @@
         {
           "title": "Iran war is the largest oil supply disruption in history, report finds - Politico",
           "sources": [
-            "google_gold",
-            "newsapi_business",
             "marketwatch",
-            "yahoo_gold"
+            "google_gold",
+            "yahoo_gold",
+            "newsapi_business"
           ],
           "source_count": 4,
           "publisher": "Politico",
@@ -195,13 +197,25 @@
           "verified": true
         },
         {
-          "title": "Singapore Disputes US Trade Surplus Data as New Tariffs Loom - Bloomberg.com",
+          "title": "Middle East war live: US to ease Russian oil sanctions as energy prices soar - Financial Times",
+          "sources": [
+            "yahoo_gold",
+            "google_crypto",
+            "newsapi_general"
+          ],
+          "source_count": 3,
+          "publisher": "Financial Times",
+          "time": "2026-03-13T05:57:26Z",
+          "verified": true
+        },
+        {
+          "title": "Live Updates: Iran war paralyzes oil trade, U.S. military plane crashes in Iraq - CBS News",
           "sources": [
             "newsapi_general"
           ],
           "source_count": 1,
-          "publisher": "Bloomberg",
-          "time": "2026-03-13T00:47:00Z",
+          "publisher": "CBS News",
+          "time": "2026-03-13T05:27:00Z",
           "verified": false
         },
         {
@@ -215,13 +229,13 @@
           "verified": false
         },
         {
-          "title": "Michael Saylor slams Boris Johnson's harsh warnings on Bitcoin - thestreet.com",
+          "title": "BlackRock Launched a Bitcoin ETF That Dominated Inflows. Then It Launched a Second Product That Changes What a Crypto ETF Can Do. - FinTech Weekly",
           "sources": [
             "google_crypto"
           ],
           "source_count": 1,
           "publisher": "google_crypto",
-          "time": "Fri, 13 Mar 2026 21:30:30 GMT",
+          "time": "Fri, 13 Mar 2026 09:43:00 GMT",
           "verified": false
         }
       ]
