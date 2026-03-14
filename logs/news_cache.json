@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-14T19:05:15.874391",
+  "timestamp": "2026-03-14T11:11:19.610547",
   "results": {
     "1h": {
       "label": "BREAKING",
@@ -7,26 +7,25 @@
       "verified_count": 2,
       "news": [
         {
-          "title": "Live Updates: Iran war paralyzes oil trade, U.S. military plane crashes in Iraq - CBS News",
-          "sources": [
-            "newsapi_general",
-            "investing_com",
-            "yahoo_spx"
-          ],
-          "source_count": 3,
-          "publisher": "CBS News",
-          "time": "2026-03-13T08:06:00Z",
-          "verified": true
-        },
-        {
           "title": "S&P 500 futures edge up ahead of key inflation data; traders monitor oil prices and Iran war: Live updates - CNBC",
           "sources": [
-            "investing_com",
-            "newsapi_business"
+            "newsapi_business",
+            "investing_com"
           ],
           "source_count": 2,
           "publisher": "CNBC",
           "time": "2026-03-13T04:39:00Z",
+          "verified": true
+        },
+        {
+          "title": "Live Updates: Iran war paralyzes oil trade, U.S. military plane crashes in Iraq - CBS News",
+          "sources": [
+            "yahoo_spx",
+            "newsapi_general"
+          ],
+          "source_count": 2,
+          "publisher": "CBS News",
+          "time": "2026-03-13T08:06:00Z",
           "verified": true
         },
         {
@@ -67,22 +66,10 @@
       "verified_count": 4,
       "news": [
         {
-          "title": "Live Updates: Iran war paralyzes oil trade, U.S. military plane crashes in Iraq - CBS News",
-          "sources": [
-            "newsapi_general",
-            "investing_com",
-            "yahoo_spx"
-          ],
-          "source_count": 3,
-          "publisher": "CBS News",
-          "time": "2026-03-13T08:06:00Z",
-          "verified": true
-        },
-        {
           "title": "European stocks set to slide further as oil prices stay above $100 a barrel - CNBC",
           "sources": [
-            "yahoo_spx",
-            "newsapi_business"
+            "newsapi_business",
+            "yahoo_spx"
           ],
           "source_count": 2,
           "publisher": "CNBC",
@@ -92,8 +79,8 @@
         {
           "title": "S&P 500 futures edge up ahead of key inflation data; traders monitor oil prices and Iran war: Live updates - CNBC",
           "sources": [
-            "investing_com",
-            "newsapi_business"
+            "newsapi_business",
+            "investing_com"
           ],
           "source_count": 2,
           "publisher": "CNBC",
@@ -103,12 +90,23 @@
         {
           "title": "Asia stocks fall, head for weekly losses amid little relief from Iran war - Investing.com",
           "sources": [
-            "google_gold",
-            "newsapi_business"
+            "newsapi_business",
+            "google_gold"
           ],
           "source_count": 2,
           "publisher": "Investing.com",
           "time": "2026-03-13T03:04:21Z",
+          "verified": true
+        },
+        {
+          "title": "Live Updates: Iran war paralyzes oil trade, U.S. military plane crashes in Iraq - CBS News",
+          "sources": [
+            "yahoo_spx",
+            "newsapi_general"
+          ],
+          "source_count": 2,
+          "publisher": "CBS News",
+          "time": "2026-03-13T08:06:00Z",
           "verified": true
         },
         {
@@ -151,12 +149,12 @@
         {
           "title": "S&P 500 futures edge up ahead of key inflation data; traders monitor oil prices and Iran war: Live updates - CNBC",
           "sources": [
-            "google_fed",
-            "google_macro",
-            "investing_com",
-            "yahoo_gold",
             "yahoo_btc",
-            "newsapi_business"
+            "newsapi_business",
+            "investing_com",
+            "google_macro",
+            "yahoo_gold",
+            "google_fed"
           ],
           "source_count": 6,
           "publisher": "CNBC",
@@ -166,11 +164,11 @@
         {
           "title": "European stocks set to slide further as oil prices stay above $100 a barrel - CNBC",
           "sources": [
-            "google_gold",
-            "yahoo_spx",
+            "newsapi_business",
             "google_crypto",
+            "yahoo_spx",
             "marketwatch",
-            "newsapi_business"
+            "google_gold"
           ],
           "source_count": 5,
           "publisher": "CNBC",
@@ -180,11 +178,11 @@
         {
           "title": "Asia stocks fall, head for weekly losses amid little relief from Iran war - Investing.com",
           "sources": [
-            "google_gold",
-            "google_fed",
-            "yahoo_gold",
+            "newsapi_business",
             "google_crypto",
-            "newsapi_business"
+            "yahoo_gold",
+            "google_gold",
+            "google_fed"
           ],
           "source_count": 5,
           "publisher": "Investing.com",
@@ -194,10 +192,10 @@
         {
           "title": "Crypto Rally Today: Why are BTC and Altcoins Rising as the Stock Market Crashes? - BanklessTimes",
           "sources": [
-            "marketwatch",
-            "yahoo_btc",
+            "yahoo_spx",
             "google_stocks",
-            "yahoo_spx"
+            "marketwatch",
+            "yahoo_btc"
           ],
           "source_count": 4,
           "publisher": "google_stocks",
@@ -207,9 +205,9 @@
         {
           "title": "A flying taxi crossed the Golden Gate. Could it soon take you from S.F. to Wine Country? - San Francisco Chronicle",
           "sources": [
+            "newsapi_business",
             "google_crypto",
-            "yahoo_btc",
-            "newsapi_business"
+            "yahoo_btc"
           ],
           "source_count": 3,
           "publisher": "San Francisco Chronicle",
