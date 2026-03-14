@@ -1,20 +1,42 @@
 {
-  "timestamp": "2026-03-14T16:09:05.115235",
+  "timestamp": "2026-03-14T09:04:35.406914",
   "results": {
     "1h": {
       "label": "BREAKING",
       "weight": 1.0,
-      "verified_count": 1,
+      "verified_count": 3,
       "news": [
         {
           "title": "S&P 500 futures edge up ahead of key inflation data; traders monitor oil prices and Iran war: Live updates - CNBC",
           "sources": [
-            "newsapi_business",
-            "investing_com"
+            "investing_com",
+            "newsapi_business"
           ],
           "source_count": 2,
           "publisher": "CNBC",
           "time": "2026-03-13T04:39:00Z",
+          "verified": true
+        },
+        {
+          "title": "What the Iran war could mean for gas prices, flights and your wallet - The Washington Post",
+          "sources": [
+            "newsapi_business",
+            "yahoo_spx"
+          ],
+          "source_count": 2,
+          "publisher": "The Washington Post",
+          "time": "2026-03-12T16:17:24Z",
+          "verified": true
+        },
+        {
+          "title": "Geopolitical risk shocks S&P 500 as Goldman warns of oil-driven GDP drag",
+          "sources": [
+            "investing_com",
+            "yahoo_spx"
+          ],
+          "source_count": 2,
+          "publisher": "yahoo_spx",
+          "time": "Sat, 14 Mar 2026 08:15:22 +0000",
           "verified": true
         },
         {
@@ -52,16 +74,16 @@
     "6h": {
       "label": "PENTING",
       "weight": 0.7,
-      "verified_count": 2,
+      "verified_count": 4,
       "news": [
         {
           "title": "S&P 500 futures edge up ahead of key inflation data; traders monitor oil prices and Iran war: Live updates - CNBC",
           "sources": [
-            "yahoo_spx",
-            "google_fed",
-            "newsapi_business",
             "investing_com",
-            "yahoo_btc"
+            "google_fed",
+            "yahoo_btc",
+            "newsapi_business",
+            "yahoo_spx"
           ],
           "source_count": 5,
           "publisher": "CNBC",
@@ -71,8 +93,8 @@
         {
           "title": "What the Iran war could mean for gas prices, flights and your wallet - The Washington Post",
           "sources": [
-            "yahoo_spx",
             "newsapi_business",
+            "yahoo_spx",
             "google_crypto"
           ],
           "source_count": 3,
@@ -83,12 +105,24 @@
         {
           "title": "Asia-Pacific markets tumble as investors brace for a prolonged war in Middle East - CNBC",
           "sources": [
+            "google_gold",
             "newsapi_business"
           ],
-          "source_count": 1,
+          "source_count": 2,
           "publisher": "CNBC",
           "time": "2026-03-12T23:54:58Z",
-          "verified": false
+          "verified": true
+        },
+        {
+          "title": "Geopolitical risk shocks S&P 500 as Goldman warns of oil-driven GDP drag",
+          "sources": [
+            "investing_com",
+            "yahoo_spx"
+          ],
+          "source_count": 2,
+          "publisher": "yahoo_spx",
+          "time": "Sat, 14 Mar 2026 08:15:22 +0000",
+          "verified": true
         },
         {
           "title": "Trump and Iran Strike Defiant Tone as Oil Markets See Little Relief - Bloomberg.com",
@@ -109,24 +143,34 @@
           "publisher": "San Francisco Chronicle",
           "time": "2026-03-12T22:08:44Z",
           "verified": false
+        },
+        {
+          "title": "Federal Reserve to loosen capital requirements for big US banks - Financial Times",
+          "sources": [
+            "newsapi_business"
+          ],
+          "source_count": 1,
+          "publisher": "Financial Times",
+          "time": "2026-03-12T20:40:20Z",
+          "verified": false
         }
       ]
     },
     "24h": {
       "label": "KONTEKS",
       "weight": 0.4,
-      "verified_count": 16,
+      "verified_count": 15,
       "news": [
         {
           "title": "S&P 500 futures edge up ahead of key inflation data; traders monitor oil prices and Iran war: Live updates - CNBC",
           "sources": [
-            "yahoo_spx",
             "google_macro",
-            "yahoo_gold",
-            "google_fed",
-            "newsapi_business",
             "investing_com",
-            "yahoo_btc"
+            "google_fed",
+            "yahoo_btc",
+            "yahoo_gold",
+            "newsapi_business",
+            "yahoo_spx"
           ],
           "source_count": 7,
           "publisher": "CNBC",
@@ -136,11 +180,11 @@
         {
           "title": "Trump and Iran Strike Defiant Tone as Oil Markets See Little Relief - Bloomberg.com",
           "sources": [
-            "yahoo_gold",
-            "google_crypto",
             "google_fed",
-            "newsapi_business",
-            "google_stocks"
+            "yahoo_gold",
+            "google_gold",
+            "google_stocks",
+            "newsapi_business"
           ],
           "source_count": 5,
           "publisher": "Bloomberg",
@@ -150,12 +194,13 @@
         {
           "title": "What the Iran war could mean for gas prices, flights and your wallet - The Washington Post",
           "sources": [
-            "yahoo_spx",
-            "newsapi_business",
+            "google_gold",
             "marketwatch",
+            "newsapi_business",
+            "yahoo_spx",
             "google_crypto"
           ],
-          "source_count": 4,
+          "source_count": 5,
           "publisher": "The Washington Post",
           "time": "2026-03-12T16:17:24Z",
           "verified": true
@@ -163,10 +208,10 @@
         {
           "title": "Iran war is the largest oil supply disruption in history, report finds - Politico",
           "sources": [
-            "google_gold",
-            "newsapi_business",
             "marketwatch",
-            "yahoo_gold"
+            "yahoo_gold",
+            "newsapi_business",
+            "google_crypto"
           ],
           "source_count": 4,
           "publisher": "Politico",
@@ -174,15 +219,16 @@
           "verified": true
         },
         {
-          "title": "Asia-Pacific markets tumble as investors brace for a prolonged war in Middle East - CNBC",
+          "title": "Why Oil Is Surging and Gold Isn\u2019t (Yet) - GoldSilver",
           "sources": [
-            "newsapi_business",
-            "google_stocks",
-            "yahoo_btc"
+            "investing_com",
+            "yahoo_gold",
+            "google_gold",
+            "yahoo_spx"
           ],
-          "source_count": 3,
-          "publisher": "CNBC",
-          "time": "2026-03-12T23:54:58Z",
+          "source_count": 4,
+          "publisher": "google_gold",
+          "time": "Fri, 13 Mar 2026 14:51:21 GMT",
           "verified": true
         },
         {
