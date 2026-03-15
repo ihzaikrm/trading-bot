@@ -38,7 +38,6 @@ from core.llm_clients import call_all_llms
 from core.momentum_filter import get_momentum_signal
 from core.dxy_filter import get_dxy_signal
 from core.screener import run_screener
-from core.screener import run_screener
 from core.smc_context import get_smc_context
 from core.smc_context import get_smc_context
 
@@ -574,6 +573,33 @@ async def get_signal_weighted(name, price, change, rsi, macd_hist, macd_cross, n
 
 
 
+
+
+def build_dynamic_assets(narratives=None, balance=1000, kelly_mult=0.5):
+    assets = dict(ASSETS)
+    try:
+        candidates = run_screener(
+            active_narratives=narratives or ['INFLATION_HEDGE','RISK_OFF'],
+            balance=balance, kelly_mult=kelly_mult
+        )
+        SYMBOL_MAP = {
+            'BTC': ('BTC/USDT','crypto','BTC/USDT','Bitcoin'),
+            'ETH': ('ETH/USDT','crypto','ETH/USDT','Ethereum'),
+            'SOL': ('SOL/USDT','crypto','SOL/USDT','Solana'),
+        }
+        for item in candidates:
+            sym = item['symbol']
+            if sym in SYMBOL_MAP:
+                key, atype, symbol, name = SYMBOL_MAP[sym]
+            else:
+                key, atype, symbol, name = sym, item['type'], sym, sym
+            if key not in assets:
+                assets[key] = {'type': atype, 'symbol': symbol, 'name': name,
+                               'alloc': item.get('alloc',0)}
+        print(f'  Dynamic assets: {list(assets.keys())}')
+    except Exception as e:
+        print(f'  Screener error: {e}')
+    return assets
 async def main():
 
 
