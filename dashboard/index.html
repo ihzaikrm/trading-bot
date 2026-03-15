@@ -517,10 +517,10 @@ async function fetchPrices() {
 
 async function fetchCandles() {
   try {
-    const r = await fetch('https://api.kraken.com/0/public/OHLC?pair=XBTUSD&interval=1440&since=0');
+    const r = await fetch('https://min-api.cryptocompare.com/data/v2/histoday?fsym=BTC&tsym=USD&limit=14');
     const d = await r.json();
-    const raw = Object.values(d.result).find(v => Array.isArray(v)) || [];
-    return raw.slice(-14).map(k => ({time: k[0], open: parseFloat(k[1]), high: parseFloat(k[2]), low: parseFloat(k[3]), close: parseFloat(k[4])}));
+    const raw = d.Data?.Data || [];
+    return raw.map(k => ({time: k.time, open: k.open, high: k.high, low: k.low, close: k.close}));
   } catch(e) { return []; }
 }
 
