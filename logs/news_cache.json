@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-15T14:42:24.700841",
+  "timestamp": "2026-03-15T14:45:52.938336",
   "results": {
     "1h": {
       "label": "BREAKING",
@@ -91,8 +91,8 @@
         {
           "title": "Dow Jones Futures: Oil Prices, Iran War Drive Stocks Lower; Nvidia GTC, Micron Earnings Due - Investor's Business Daily",
           "sources": [
-            "newsapi_business",
-            "yahoo_spx"
+            "yahoo_spx",
+            "newsapi_business"
           ],
           "source_count": 2,
           "publisher": "Investor's Business Daily",
@@ -173,9 +173,9 @@
           "title": "The Iran War Is Now Disrupting Global Trade - WSJ",
           "sources": [
             "investing_com",
-            "newsapi_business",
             "google_gold",
-            "yahoo_gold"
+            "yahoo_gold",
+            "newsapi_business"
           ],
           "source_count": 4,
           "publisher": "The Wall Street Journal",
@@ -185,9 +185,9 @@
         {
           "title": "Dow Jones Futures: Oil Prices, Iran War Drive Stocks Lower; Nvidia GTC, Micron Earnings Due - Investor's Business Daily",
           "sources": [
-            "newsapi_business",
+            "yahoo_gold",
             "yahoo_spx",
-            "yahoo_gold"
+            "newsapi_business"
           ],
           "source_count": 3,
           "publisher": "Investor's Business Daily",
@@ -209,9 +209,9 @@
         {
           "title": "Explosion shakes Tehran amid state-organised rally after Israeli warning - France 24",
           "sources": [
-            "google_crypto",
             "newsapi_general",
-            "yahoo_spx"
+            "yahoo_spx",
+            "google_crypto"
           ],
           "source_count": 3,
           "publisher": "FRANCE 24 English",
@@ -222,8 +222,8 @@
           "title": "Is Dogecoin a Millionaire-Maker Cryptocurrency? - The Motley Fool",
           "sources": [
             "investing_com",
-            "google_crypto",
-            "yahoo_btc"
+            "yahoo_btc",
+            "google_crypto"
           ],
           "source_count": 3,
           "publisher": "google_crypto",

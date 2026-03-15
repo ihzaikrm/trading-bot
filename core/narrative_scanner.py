@@ -1,4 +1,4 @@
-﻿"""
+"""
 Sprint A: Narrative Scanner + Asset Universe
 LLM scan narasi dominan setiap 2 jam
 """
@@ -126,7 +126,7 @@ async def scan_narratives_llm(news_text, market_context):
              "BERITA TERKINI:\n" + news_text[:500] + "\n\n"
              "MARKET DATA:\n" + market_context + "\n\n"
              "PILIHAN NARASI:\n" + narrative_list + "\n\n"
-             "Pilih TOP 3 narasi paling dominan saat ini. "
+             "Pilih TOP 3 narasi. "
              "Tentukan juga profil risk: conservative/moderate/aggressive.\n"
              'Balas HANYA JSON:\n'
              '{"narratives":["NARASI1","NARASI2","NARASI3"],'
@@ -275,4 +275,4 @@ if __name__ == "__main__":
     Ethereum ETF approval drives crypto market rally.
     """
     sample_market = "BTC: $70,868 +3% | GOLD: $2,340 +0.5% | SPX: 5,200 -0.3%"
-    asyncio.run(run_narrative_scan(sample_news, sample_market))
+    asyncio.run(run_narrative_scan(sample_news, sample_market))
