@@ -921,6 +921,8 @@ async def main():
         else:
             mom_sig = 'NEUTRAL'
 
+        smc_text = ''
+        delta_text = ''
         # === SMC + DELTA CONTEXT untuk LLM ===
         if info.get('type') == 'crypto':
             sym = info['symbol'].split('/')[0]
