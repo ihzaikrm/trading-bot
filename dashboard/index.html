@@ -517,7 +517,7 @@ async function fetchPrices() {
 
 async function fetchCandles() {
   try {
-    const r = await fetch('https://api.coingecko.com/api/v3/ohlc?vs_currency=usd&id=bitcoin&days=14');
+    const r = await fetch('https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1d&limit=14');
     return await r.json();
   } catch(e) { return []; }
 }
