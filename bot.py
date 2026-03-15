@@ -646,6 +646,7 @@ async def main():
 
 
 
+    ACTIVE_ASSETS = ASSETS_BASE  # default sebelum dynamic build
     initial = 1000.0
 
 
