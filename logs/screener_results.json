@@ -1,0 +1,132 @@
+{
+  "timestamp": "2026-03-16T03:12:01.737607",
+  "narratives": [
+    "INFLATION_HEDGE",
+    "RISK_OFF",
+    "AI_TECH"
+  ],
+  "passed": [
+    {
+      "symbol": "BTC",
+      "type": "crypto",
+      "price": 71438,
+      "mcap": 1428404466889,
+      "vol": 23561632816,
+      "manip_score": 0,
+      "flags": [],
+      "status": "PASS",
+      "alloc": 105.0
+    },
+    {
+      "symbol": "NVDA",
+      "type": "stock",
+      "price": 180.25,
+      "mcap": 4380976250000.0,
+      "manip_score": 0,
+      "flags": [],
+      "status": "PASS",
+      "alloc": 105.0
+    },
+    {
+      "symbol": "AAPL",
+      "type": "stock",
+      "price": 250.12,
+      "mcap": 3676245179352.783,
+      "manip_score": 0,
+      "flags": [],
+      "status": "PASS",
+      "alloc": 105.0
+    },
+    {
+      "symbol": "QQQ",
+      "type": "stock",
+      "price": 593.72,
+      "mcap": 50000000000,
+      "manip_score": 0,
+      "flags": [
+        "ETF whitelisted"
+      ],
+      "status": "PASS",
+      "alloc": 105.0
+    },
+    {
+      "symbol": "SPY",
+      "type": "stock",
+      "price": 662.29,
+      "mcap": 50000000000,
+      "manip_score": 0,
+      "flags": [
+        "ETF whitelisted"
+      ],
+      "status": "PASS",
+      "alloc": 105.0
+    },
+    {
+      "symbol": "GLD",
+      "type": "stock",
+      "price": 460.84,
+      "mcap": 50000000000,
+      "manip_score": 0,
+      "flags": [
+        "ETF whitelisted"
+      ],
+      "status": "PASS",
+      "alloc": 105.0
+    },
+    {
+      "symbol": "SLV",
+      "type": "stock",
+      "price": 72.69,
+      "mcap": 50000000000,
+      "manip_score": 0,
+      "flags": [
+        "ETF whitelisted"
+      ],
+      "status": "PASS",
+      "alloc": 105.0
+    },
+    {
+      "symbol": "USO",
+      "type": "stock",
+      "price": 119.89,
+      "mcap": 50000000000,
+      "manip_score": 0,
+      "flags": [
+        "ETF whitelisted"
+      ],
+      "status": "PASS",
+      "alloc": 105.0
+    },
+    {
+      "symbol": "IONQ",
+      "type": "stock",
+      "price": 32.98,
+      "mcap": 12125883635.552265,
+      "manip_score": 0,
+      "flags": [],
+      "status": "PASS",
+      "alloc": 105.0
+    },
+    {
+      "symbol": "RXRX",
+      "type": "stock",
+      "price": 3.42,
+      "mcap": 1806451940.4986382,
+      "manip_score": 0,
+      "flags": [],
+      "status": "PASS",
+      "alloc": 80.0
+    },
+    {
+      "symbol": "SOUN",
+      "type": "stock",
+      "price": 7.3,
+      "mcap": 3086543704.1454077,
+      "manip_score": 0,
+      "flags": [],
+      "status": "PASS",
+      "alloc": 105.0
+    }
+  ],
+  "rejected": []
+}
