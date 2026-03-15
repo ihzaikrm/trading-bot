@@ -31,12 +31,12 @@ jobs:
         run: python bot.py
         timeout-minutes: 10
       - name: Commit trade logs
-  run: |
-    git config user.email "bot@trading.com"
-    git config user.name "Trading Bot"
-    git add logs/
-    git diff --staged --quiet || git commit -m "bot: update logs"
-    git push || true
+        run: |
+          git config user.email "bot@trading.com"
+          git config user.name "Trading Bot"
+          git add logs/
+          git diff --staged --quiet || git commit -m "bot: update logs"
+          git push || true
 
   telegram-listener:
     if: github.event.schedule == '*/5 * * * *'
