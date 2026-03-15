@@ -1,0 +1,27 @@
+{
+  "btc_onchain": {
+    "data": {
+      "composite_signal": "BULLISH",
+      "composite_score": 2,
+      "fear_greed": {
+        "value": 15,
+        "label": "Extreme Fear",
+        "delta": -3,
+        "signal": "STRONG_BUY"
+      },
+      "long_short": {
+        "ratio": 1.0,
+        "long_pct": 50.0,
+        "signal": "NEUTRAL"
+      },
+      "vol_flow": {
+        "vol_ratio": 1.367,
+        "ret_7d": 0.0481,
+        "signal": "NEUTRAL"
+      },
+      "summary": "FG:15(STRONG_BUY) | L/S:1.0(NEUTRAL) | Vol:1.367(NEUTRAL)",
+      "timestamp": "2026-03-13T16:23:35.741649+00:00"
+    },
+    "timestamp": 1773419015.7416604
+  }
+}

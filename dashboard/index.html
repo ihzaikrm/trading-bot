@@ -496,7 +496,7 @@ async function fetchJSON(url) {
 async function fetchPrices() {
   const p = {};
   try {
-    const r = await fetch('https://api.kraken.com/0/public/Ticker?pair=XBTUSD,ETHUSD');
+    const r = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_24hr_change=true');
     const d = await r.json();
     if (d.bitcoin) { p.BTC = d.bitcoin.usd; p.BTC_CHG = d.bitcoin.usd_24h_change; }
     if (d.ethereum) { p.ETH = d.ethereum.usd; p.ETH_CHG = d.ethereum.usd_24h_change; }
@@ -508,9 +508,9 @@ async function fetchPrices() {
     p.EUR = d2.rates ? (1/d2.rates.EUR).toFixed(4) : null;
   } catch(e) {}
   try {
-    const r3 = await fetch('https://api.metals.live/v1/spot/gold');
-    const d3 = await r3.json();
-    if (d3 && d3[0] && d3[0].gold) p.XAU = d3[0].gold;
+    // gold API tidak tersedia dari Indonesia, skip
+    // const d3 = null;
+    // if (d3) p.XAU = null;
   } catch(e) {}
   return p;
 }

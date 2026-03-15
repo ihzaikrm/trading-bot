@@ -1,11 +1,4 @@
-﻿with open('bot.py', 'rb') as f:
-    raw = f.read()
-c = raw.decode('utf-8-sig')  # strip BOM otomatis
+﻿with open('dashboard/index.html','r',encoding='utf-8') as f: c=f.read()
 lines = c.split('\n')
-
-# Hapus \r dari semua lines
-lines = [l.rstrip('\r') for l in lines]
-
-# Cek sekitar line 279-281
-for i in range(277, 285):
-    print(i, repr(lines[i]))
+for i in range(506, 525):
+    print(i, repr(lines[i].strip()[:100]))
