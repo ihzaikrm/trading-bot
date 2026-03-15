@@ -37,6 +37,8 @@ load_dotenv()
 from core.llm_clients import call_all_llms
 from core.momentum_filter import get_momentum_signal
 from core.dxy_filter import get_dxy_signal
+from core.smc_context import get_smc_context
+from core.smc_context import get_smc_context
 
 
 
@@ -457,6 +459,10 @@ async def get_signal_weighted(name, price, change, rsi, macd_hist, macd_cross, n
 
 
              +news_text+"\n\n"
++smc_text+"\n\n"
++delta_text+"\n\n"
++smc_text+"\n\n"
++delta_text+"\n\n"
 
 
 
@@ -914,6 +920,18 @@ async def main():
                 continue
         else:
             mom_sig = 'NEUTRAL'
+
+        # === SMC + DELTA CONTEXT untuk LLM ===
+        if info.get('type') == 'crypto':
+            sym = info['symbol'].split('/')[0]
+            smc_text = get_smc_context(sym)
+            from core.momentum_filter import get_momentum_signal
+            _, mom_det = get_momentum_signal(sym)
+            delta_bull = mom_det.get('delta_bullish', None)
+            delta_text = 'DELTA: Buying pressure' if delta_bull == True else ('DELTA: Selling pressure' if delta_bull == False else 'DELTA: N/A')
+        else:
+            smc_text = ''
+            delta_text = ''
 
         signal, conf, wvotes, details, llm_signals = await get_signal_weighted(
 
