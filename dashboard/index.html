@@ -226,9 +226,7 @@ async function fetchLivePrices() {
   const prices = {};
   try {
     const btc = await fetch('https://api.coinbase.com/v2/prices/BTC-USD/spot');
-const btcData2 = await btc.json(); const btcData = btcData2;
-if (btcData.data) { prices.BTC = parseFloat(btcData.data.amount); prices.BTC_CHG = 0; }
-    const btcData2 = await btc.json();
+    const btcData = await btc.json();
     if (btcData[0]) { prices.BTC = parseFloat(btcData[0].last); prices.BTC_CHG = parseFloat(btcData[0].change_percentage); }
   } catch(e) {}
   try {
