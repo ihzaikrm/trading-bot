@@ -476,6 +476,9 @@ setInterval(() => {
     now.toLocaleTimeString('en-GB');
 }, 1000);
 
+// Init on load
+loadAll();
+
 // Countdown
 setInterval(() => {
   countdown--;
@@ -858,6 +861,7 @@ function renderFG(fg) {
 }
 
 async function loadAll() {
+  fetchPrices().then(renderTicker);
   document.getElementById('dataStatus').textContent = 'refreshing...';
   try {
     const [T, N, L, NEWS, prices, candles, fg] = await Promise.allSettled([
