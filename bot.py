@@ -36,6 +36,7 @@ load_dotenv()
 
 from core.llm_clients import call_all_llms
 from core.momentum_filter import get_momentum_signal
+from core.dxy_filter import get_dxy_signal
 
 
 
@@ -894,6 +895,14 @@ async def main():
 
 
 
+
+        # === DXY MACRO FILTER ===
+        if info.get('type') == 'crypto':
+            dxy_sig, dxy_det = get_dxy_signal()
+            print(f'  [DXY] {dxy_sig} | DXY={dxy_det.get("dxy")} trend={dxy_det.get("trend")}')
+            dxy_penalty = 0.15 if dxy_sig == 'BEARISH' else 0.0
+        else:
+            dxy_penalty = 0.0
 
         # === MOMENTUM PRE-FILTER (Strategy E) ===
         if info.get('type') == 'crypto':
