@@ -839,7 +839,8 @@ async def main():
         import json as _json
         if os.path.exists("logs/narrative_state.json"):
             ns = _json.load(open("logs/narrative_state.json"))
-            active_narr = [n["name"] for n in ns.get("active_narratives",[])[:3]]
+            raw = ns.get("active_narratives",[])
+            active_narr = [n["name"] if isinstance(n,dict) else n for n in raw[:3]]
         ACTIVE_ASSETS = build_dynamic_assets(active_narr, data["balance"], kelly_mult)
         print(f"  Total aset aktif: {len(ACTIVE_ASSETS)}")
     except Exception as e:
