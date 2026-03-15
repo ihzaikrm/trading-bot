@@ -807,6 +807,7 @@ async def main():
 
 
     # === BUILD DYNAMIC ASSETS dari screener ===
+    global ASSETS
     try:
         active_narr = []
         import json as _json
