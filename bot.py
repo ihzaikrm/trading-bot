@@ -925,7 +925,6 @@ async def main():
         if info.get('type') == 'crypto':
             sym = info['symbol'].split('/')[0]
             smc_text = get_smc_context(sym)
-            from core.momentum_filter import get_momentum_signal
             _, mom_det = get_momentum_signal(sym)
             delta_bull = mom_det.get('delta_bullish', None)
             delta_text = 'DELTA: Buying pressure' if delta_bull == True else ('DELTA: Selling pressure' if delta_bull == False else 'DELTA: N/A')
