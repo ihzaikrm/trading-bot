@@ -1,6 +1,19 @@
 {
-  "active_narratives": [],
-  "last_scan": "2026-03-15 14:46",
+  "active_narratives": [
+    [
+      "INFLATION_HEDGE",
+      15
+    ],
+    [
+      "RISK_OFF",
+      12
+    ],
+    [
+      "AI_TECH",
+      4
+    ]
+  ],
+  "last_scan": "2026-03-15 14:59",
   "history": [
     {
       "time": "2026-03-14 08:57",
@@ -138,16 +151,71 @@
       "time": "2026-03-15 14:46",
       "narratives": [],
       "risk": "moderate"
+    },
+    {
+      "time": "2026-03-15 14:51",
+      "narratives": [],
+      "risk": "moderate"
+    },
+    {
+      "time": "2026-03-15 14:59",
+      "narratives": [
+        "INFLATION_HEDGE",
+        "RISK_OFF",
+        "AI_TECH"
+      ],
+      "risk": "moderate"
     }
   ],
   "risk_profile": "moderate",
-  "rotation_urgency": "low",
-  "selected_assets": [],
+  "rotation_urgency": "medium",
+  "selected_assets": [
+    {
+      "symbol": "GC=F",
+      "narrative": "INFLATION_HEDGE",
+      "category": "commodities",
+      "tp_pct": 25,
+      "sl_pct": 10,
+      "score": 15
+    },
+    {
+      "symbol": "CL=F",
+      "narrative": "INFLATION_HEDGE",
+      "category": "commodities",
+      "tp_pct": 25,
+      "sl_pct": 10,
+      "score": 15
+    },
+    {
+      "symbol": "BTC/USDT",
+      "narrative": "INFLATION_HEDGE",
+      "category": "crypto",
+      "tp_pct": 25,
+      "sl_pct": 10,
+      "score": 15
+    },
+    {
+      "symbol": "GLD",
+      "narrative": "INFLATION_HEDGE",
+      "category": "stocks",
+      "tp_pct": 25,
+      "sl_pct": 10,
+      "score": 15
+    },
+    {
+      "symbol": "SLV",
+      "narrative": "INFLATION_HEDGE",
+      "category": "stocks",
+      "tp_pct": 25,
+      "sl_pct": 10,
+      "score": 15
+    }
+  ],
   "allocation": {
     "crypto": 35,
     "stocks": 35,
     "commodities": 15,
     "cash": 15
   },
-  "rotation_needed": false
+  "rotation_needed": true
 }
