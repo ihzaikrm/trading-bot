@@ -508,19 +508,19 @@ async function fetchPrices() {
     p.EUR = d2.rates ? (1/d2.rates.EUR).toFixed(4) : null;
   } catch(e) {}
   try {
-    const r3 = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=gold&vs_currencies=usd');
+    const r3 = await fetch('https://api.metals.live/v1/spot/gold');
     const d3 = await r3.json();
-    if (d3.gold) p.XAU = d3.gold.usd;
+    if (d3 && d3[0] && d3[0].gold) p.XAU = d3[0].gold;
   } catch(e) {}
   return p;
 }
 
 async function fetchCandles() {
   try {
-    const r = await fetch('https://api.coingecko.com/api/v3/coins/bitcoin/ohlc?vs_currency=usd&days=14');
-    return await r.json();
-  } catch(e) { return []; }
-}
+    const r = await fetch('https://api.kraken.com/0/public/OHLC?pair=XBTUSD&interval=1440&since=0');
+    const d = await r.json();
+    const raw = Object.values(d.result).find(v => Array.isArray(v)) || [];
+    return raw.slice(-14).map(k => ({time: k[0], open: parseFloat(k[1]), high: parseFloat(k[2]), low: parseFloat(k[3]), close: parseFloat(k[4])}));
 
 async function fetchFG() {
   try {
