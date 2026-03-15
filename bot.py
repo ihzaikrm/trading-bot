@@ -438,7 +438,7 @@ def filter_news_for_asset(news_results, asset_name):
 
 
 
-async def get_signal_weighted(name, price, change, rsi, macd_hist, macd_cross, news_text):
+async def get_signal_weighted(name, price, change, rsi, macd_hist, macd_cross, news_text, smc_text='', delta_text=''):
 
 
 
@@ -459,8 +459,6 @@ async def get_signal_weighted(name, price, change, rsi, macd_hist, macd_cross, n
 
 
              +news_text+"\n\n"
-+smc_text+"\n\n"
-+delta_text+"\n\n"
 +smc_text+"\n\n"
 +delta_text+"\n\n"
 
@@ -938,7 +936,7 @@ async def main():
 
 
 
-            info["name"], price, change, rsi, macd_hist, macd_cross, news_text)
+            info["name"], price, change, rsi, macd_hist, macd_cross, news_text, smc_text=smc_text, delta_text=delta_text)
 
 
 
