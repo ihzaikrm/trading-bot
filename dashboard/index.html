@@ -225,20 +225,16 @@ async function fetchJSON(url) {
 async function fetchLivePrices() {
   const prices = {};
   try {
-    const btc = await fetch('https://api.coinbase.com/v2/prices/BTC-USD/spot');
-    const btcData = await btc.json();
-    if (btcData[0]) { prices.BTC = parseFloat(btcData[0].last); prices.BTC_CHG = parseFloat(btcData[0].change_percentage); }
-  } catch(e) {}
+    const r = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_24hr_change=true', {cache:'no-store'});
+    const d = await r.json();
+    if (d.bitcoin) { prices.BTC = d.bitcoin.usd; prices.BTC_CHG = d.bitcoin.usd_24h_change; }
+    if (d.ethereum) { prices.ETH = d.ethereum.usd; prices.ETH_CHG = d.ethereum.usd_24h_change; }
+  } catch(e) { console.log('CoinGecko error:', e); }
   try {
-    const eth = await fetch('https://api.gate.io/api/v4/spot/tickers?currency_pair=ETH_USDT');
-    const ethData = await eth.json();
-    if (ethData[0]) { prices.ETH = parseFloat(ethData[0].last); prices.ETH_CHG = parseFloat(ethData[0].change_percentage); }
-  } catch(e) {}
-  try {
-    const fx = await fetch('https://api.frankfurter.app/latest?from=USD&to=IDR,EUR,JPY');
-    const fxData = await fx.json();
-    prices.USDIDR = fxData.rates?.IDR;
-    prices.EURUSD = fxData.rates ? (1/fxData.rates.EUR).toFixed(4) : null;
+    const fx = await fetch('https://api.frankfurter.app/latest?from=USD&to=IDR,EUR');
+    const fd = await fx.json();
+    prices.USDIDR = fd.rates?.IDR;
+    prices.EURUSD = fd.rates ? (1/fd.rates.EUR).toFixed(4) : null;
   } catch(e) {}
   return prices;
 }
