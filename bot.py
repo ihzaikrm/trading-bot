@@ -896,17 +896,17 @@ async def main():
 
 
         # === MOMENTUM PRE-FILTER (Strategy E) ===
-if info.get('type') == 'crypto':
-    mom_sig, mom_det = get_momentum_signal(info['symbol'].split('/')[0])
-    print(f'  [MomentumFilter] {mom_sig} | {mom_det}')
-    if mom_sig == 'BEARISH':
-        print(f'  -> SKIP LLM (Momentum BEARISH)')
-        summary.append(name+': HOLD (momentum filter)')
-        continue
-else:
-    mom_sig = 'NEUTRAL'
+        if info.get('type') == 'crypto':
+            mom_sig, mom_det = get_momentum_signal(info['symbol'].split('/')[0])
+            print(f'  [MomentumFilter] {mom_sig} | {mom_det}')
+            if mom_sig == 'BEARISH':
+                print(f'  -> SKIP LLM (Momentum BEARISH)')
+                summary.append(name+': HOLD (momentum filter)')
+                continue
+        else:
+            mom_sig = 'NEUTRAL'
 
-signal, conf, wvotes, details, llm_signals = await get_signal_weighted(
+        signal, conf, wvotes, details, llm_signals = await get_signal_weighted(
 
 
 
