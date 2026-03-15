@@ -521,6 +521,8 @@ async function fetchCandles() {
     const d = await r.json();
     const raw = Object.values(d.result).find(v => Array.isArray(v)) || [];
     return raw.slice(-14).map(k => ({time: k[0], open: parseFloat(k[1]), high: parseFloat(k[2]), low: parseFloat(k[3]), close: parseFloat(k[4])}));
+  } catch(e) { return []; }
+}
 
 async function fetchFG() {
   try {
