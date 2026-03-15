@@ -646,7 +646,7 @@ async def main():
 
 
 
-    ACTIVE_ASSETS = ASSETS_BASE  # default sebelum dynamic build
+    ACTIVE_ASSETS = dict(ASSETS)  # default sebelum dynamic build
     initial = 1000.0
 
 
@@ -818,7 +818,7 @@ async def main():
         print(f"  Total aset aktif: {len(ACTIVE_ASSETS)}")
     except Exception as e:
         print(f"  Dynamic assets error: {e}")
-        ACTIVE_ASSETS = ASSETS_BASE
+        ACTIVE_ASSETS = dict(ASSETS)
 
     alloc = data["balance"] / max(len(ACTIVE_ASSETS), 1) * kelly_mult
 
