@@ -658,7 +658,7 @@ async def main():
 
 
 
-        result = get_asset_data(name, ASSETS.get(name, {"type":"stock","symbol":name}))
+        result = get_asset_data(name, ACTIVE_ASSETS.get(name, {"type":"stock","symbol":name}))
 
 
 
@@ -807,20 +807,19 @@ async def main():
 
 
     # === BUILD DYNAMIC ASSETS dari screener ===
-    global ASSETS
     try:
         active_narr = []
         import json as _json
         if os.path.exists("logs/narrative_state.json"):
             ns = _json.load(open("logs/narrative_state.json"))
             active_narr = [n["name"] for n in ns.get("active_narratives",[])[:3]]
-        ASSETS = build_dynamic_assets(active_narr, data["balance"], kelly_mult)
-        print(f"  Total aset aktif: {len(ASSETS)}")
+        ACTIVE_ASSETS = build_dynamic_assets(active_narr, data["balance"], kelly_mult)
+        print(f"  Total aset aktif: {len(ACTIVE_ASSETS)}")
     except Exception as e:
         print(f"  Dynamic assets error: {e}")
-        ASSETS = ASSETS_BASE
+        ACTIVE_ASSETS = ASSETS_BASE
 
-    alloc = data["balance"] / max(len(ASSETS), 1) * kelly_mult
+    alloc = data["balance"] / max(len(ACTIVE_ASSETS), 1) * kelly_mult
 
 
 
@@ -844,7 +843,7 @@ async def main():
 
 
 
-    for name, info in ASSETS.items():
+    for name, info in ACTIVE_ASSETS.items():
 
 
 
