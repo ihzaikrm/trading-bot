@@ -566,7 +566,7 @@ function renderCandles(data) {
   });
   const candles = data.map(d => ({
     time: Math.floor(d[0] / 1000),
-    open: d[1], high: d[2], low: d[3], close: d[4]
+open: parseFloat(d[1]), high: parseFloat(d[2]), low: parseFloat(d[3]), close: parseFloat(d[4])
   }));
   series.setData(candles);
   candleInst.timeScale().fitContent();
