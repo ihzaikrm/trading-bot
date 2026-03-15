@@ -1,72 +1,94 @@
 {
-  "timestamp": "2026-03-15T14:59:13.000444",
+  "timestamp": "2026-03-16T00:13:21.905571",
   "results": {
     "1h": {
       "label": "BREAKING",
       "weight": 1.0,
-      "verified_count": 3,
+      "verified_count": 5,
       "news": [
         {
-          "title": "Dow Jones Futures: Oil Prices, Iran War Drive Stocks Lower; Nvidia GTC, Micron Earnings Due - Investor's Business Daily",
+          "title": "It's not just oil. Here comes Hormuz inflation. - Politico",
           "sources": [
-            "investing_com",
-            "newsapi_business"
+            "newsapi_business",
+            "yahoo_spx"
           ],
           "source_count": 2,
-          "publisher": "Investor's Business Daily",
-          "time": "2026-03-14T01:21:00Z",
+          "publisher": "Politico",
+          "time": "2026-03-14T11:00:00Z",
           "verified": true
         },
         {
-          "title": "Trump turns to California offshore oil to help with Iran war - Axios",
+          "title": "The whole market moves based on fresh assessments of the length of the war - investingLive",
           "sources": [
-            "investing_com",
-            "newsapi_business"
+            "newsapi_business",
+            "investing_com"
           ],
           "source_count": 2,
-          "publisher": "Axios",
-          "time": "2026-03-13T21:31:48Z",
+          "publisher": "Investinglive.com",
+          "time": "2026-03-14T02:31:35Z",
           "verified": true
         },
         {
-          "title": "Yen Slides to Weakest Since July 2024 as Iran War Escalates - Bloomberg.com",
+          "title": "A young dad's colon cancer spread to his lungs with no warning. He says a clinical trial led to a miracle. - CBS News",
           "sources": [
-            "investing_com",
-            "newsapi_business"
+            "newsapi_general",
+            "google_crypto"
+          ],
+          "source_count": 2,
+          "publisher": "CBS News",
+          "time": "2026-03-14T12:12:00Z",
+          "verified": true
+        },
+        {
+          "title": "Trump Strikes Iran\u2019s Kharg Oil Hub and Urges Reopening of Hormuz - Bloomberg.com",
+          "sources": [
+            "newsapi_general",
+            "investing_com"
           ],
           "source_count": 2,
           "publisher": "Bloomberg",
-          "time": "2026-03-13T20:05:04Z",
+          "time": "2026-03-14T11:58:14Z",
           "verified": true
         },
         {
-          "title": "The Iran War Is Now Disrupting Global Trade - WSJ",
+          "title": "These are the casualties and cost of the war in Iran 2 weeks into the conflict - NPR",
+          "sources": [
+            "newsapi_general",
+            "marketwatch"
+          ],
+          "source_count": 2,
+          "publisher": "NPR",
+          "time": "2026-03-14T07:04:21Z",
+          "verified": true
+        },
+        {
+          "title": "A Paramount-Warner Bros. movie slate could rule the 2027 box office, but is it sustainable? - CNBC",
           "sources": [
             "newsapi_business"
           ],
           "source_count": 1,
-          "publisher": "The Wall Street Journal",
-          "time": "2026-03-13T20:53:00Z",
+          "publisher": "CNBC",
+          "time": "2026-03-14T11:00:01Z",
           "verified": false
         },
         {
-          "title": "A flying taxi crossed the Golden Gate Bridge. Could it soon take you from S.F. to Wine Country? - San Francisco Chronicle",
+          "title": "Stocks Close To Breaking As Oil Soars; Nvidia, Micron Due - Investor's Business Daily",
           "sources": [
             "newsapi_business"
           ],
           "source_count": 1,
-          "publisher": "San Francisco Chronicle",
-          "time": "2026-03-13T19:07:50Z",
+          "publisher": "Investor's Business Daily",
+          "time": "2026-03-14T04:11:00Z",
           "verified": false
         },
         {
-          "title": "Wall Street warns Iran war will trigger prolonged energy crisis - Financial Times",
+          "title": "A Paramount-Warner Bros. movie slate could rule the 2027 box office, but is it sustainable? - CNBC",
           "sources": [
-            "newsapi_business"
+            "newsapi_general"
           ],
           "source_count": 1,
-          "publisher": "Financial Times",
-          "time": "2026-03-13T18:30:34Z",
+          "publisher": "CNBC",
+          "time": "2026-03-14T11:00:01Z",
           "verified": false
         }
       ]
@@ -74,82 +96,96 @@
     "6h": {
       "label": "PENTING",
       "weight": 0.7,
-      "verified_count": 4,
+      "verified_count": 8,
       "news": [
         {
-          "title": "Dow Jones Futures: Oil Prices, Iran War Drive Stocks Lower; Nvidia GTC, Micron Earnings Due - Investor's Business Daily",
+          "title": "It's not just oil. Here comes Hormuz inflation. - Politico",
           "sources": [
-            "investing_com",
+            "google_crypto",
             "newsapi_business",
+            "marketwatch",
+            "yahoo_spx"
+          ],
+          "source_count": 4,
+          "publisher": "Politico",
+          "time": "2026-03-14T11:00:00Z",
+          "verified": true
+        },
+        {
+          "title": "Stocks Close To Breaking As Oil Soars; Nvidia, Micron Due - Investor's Business Daily",
+          "sources": [
+            "newsapi_business",
+            "google_gold",
             "yahoo_spx"
           ],
           "source_count": 3,
           "publisher": "Investor's Business Daily",
-          "time": "2026-03-14T01:21:00Z",
+          "time": "2026-03-14T04:11:00Z",
           "verified": true
         },
         {
-          "title": "Yen Slides to Weakest Since July 2024 as Iran War Escalates - Bloomberg.com",
+          "title": "The whole market moves based on fresh assessments of the length of the war - investingLive",
           "sources": [
-            "google_crypto",
+            "newsapi_business",
             "investing_com",
-            "newsapi_business"
+            "yahoo_spx"
           ],
           "source_count": 3,
-          "publisher": "Bloomberg",
-          "time": "2026-03-13T20:05:04Z",
+          "publisher": "Investinglive.com",
+          "time": "2026-03-14T02:31:35Z",
           "verified": true
         },
         {
-          "title": "Trump turns to California offshore oil to help with Iran war - Axios",
+          "title": "These are the casualties and cost of the war in Iran 2 weeks into the conflict - NPR",
           "sources": [
-            "investing_com",
-            "newsapi_business"
+            "newsapi_general",
+            "marketwatch",
+            "yahoo_spx"
+          ],
+          "source_count": 3,
+          "publisher": "NPR",
+          "time": "2026-03-14T07:04:21Z",
+          "verified": true
+        },
+        {
+          "title": "A young dad's colon cancer spread to his lungs with no warning. He says a clinical trial led to a miracle. - CBS News",
+          "sources": [
+            "newsapi_general",
+            "google_crypto"
           ],
           "source_count": 2,
+          "publisher": "CBS News",
+          "time": "2026-03-14T12:12:00Z",
+          "verified": true
+        },
+        {
+          "title": "A Paramount-Warner Bros. movie slate could rule the 2027 box office, but is it sustainable? - CNBC",
+          "sources": [
+            "newsapi_business"
+          ],
+          "source_count": 1,
+          "publisher": "CNBC",
+          "time": "2026-03-14T11:00:01Z",
+          "verified": false
+        },
+        {
+          "title": "A Paramount-Warner Bros. movie slate could rule the 2027 box office, but is it sustainable? - CNBC",
+          "sources": [
+            "newsapi_general"
+          ],
+          "source_count": 1,
+          "publisher": "CNBC",
+          "time": "2026-03-14T11:00:01Z",
+          "verified": false
+        },
+        {
+          "title": "Subpoenas against Fed chair Powell tossed in a scathing opinion - Axios",
+          "sources": [
+            "newsapi_general"
+          ],
+          "source_count": 1,
           "publisher": "Axios",
-          "time": "2026-03-13T21:31:48Z",
-          "verified": true
-        },
-        {
-          "title": "Bitcoin: Institutional interest provides buffer as BTC eyes $73,000 resistance",
-          "sources": [
-            "investing_com",
-            "yahoo_btc"
-          ],
-          "source_count": 2,
-          "publisher": "yahoo_btc",
-          "time": "Sun, 15 Mar 2026 05:13:00 +0000",
-          "verified": true
-        },
-        {
-          "title": "The Iran War Is Now Disrupting Global Trade - WSJ",
-          "sources": [
-            "newsapi_business"
-          ],
-          "source_count": 1,
-          "publisher": "The Wall Street Journal",
-          "time": "2026-03-13T20:53:00Z",
-          "verified": false
-        },
-        {
-          "title": "A flying taxi crossed the Golden Gate Bridge. Could it soon take you from S.F. to Wine Country? - San Francisco Chronicle",
-          "sources": [
-            "newsapi_business"
-          ],
-          "source_count": 1,
-          "publisher": "San Francisco Chronicle",
-          "time": "2026-03-13T19:07:50Z",
-          "verified": false
-        },
-        {
-          "title": "Wall Street warns Iran war will trigger prolonged energy crisis - Financial Times",
-          "sources": [
-            "newsapi_business"
-          ],
-          "source_count": 1,
-          "publisher": "Financial Times",
-          "time": "2026-03-13T18:30:34Z",
+          "time": "2026-03-14T09:33:35Z",
           "verified": false
         }
       ]
@@ -157,97 +193,103 @@
     "24h": {
       "label": "KONTEKS",
       "weight": 0.4,
-      "verified_count": 10,
+      "verified_count": 11,
       "news": [
         {
-          "title": "Dow Jones Futures: Oil Prices, Iran War Drive Stocks Lower; Nvidia GTC, Micron Earnings Due - Investor's Business Daily",
+          "title": "These are the casualties and cost of the war in Iran 2 weeks into the conflict - NPR",
           "sources": [
-            "investing_com",
+            "google_crypto",
+            "google_macro",
+            "yahoo_spx",
+            "newsapi_general",
+            "marketwatch",
+            "yahoo_btc"
+          ],
+          "source_count": 6,
+          "publisher": "NPR",
+          "time": "2026-03-14T07:04:21Z",
+          "verified": true
+        },
+        {
+          "title": "Stocks Close To Breaking As Oil Soars; Nvidia, Micron Due - Investor's Business Daily",
+          "sources": [
+            "google_crypto",
+            "google_gold",
             "yahoo_gold",
+            "yahoo_spx",
+            "newsapi_business"
+          ],
+          "source_count": 5,
+          "publisher": "Investor's Business Daily",
+          "time": "2026-03-14T04:11:00Z",
+          "verified": true
+        },
+        {
+          "title": "It's not just oil. Here comes Hormuz inflation. - Politico",
+          "sources": [
+            "google_crypto",
             "newsapi_business",
+            "marketwatch",
             "yahoo_spx"
           ],
           "source_count": 4,
-          "publisher": "Investor's Business Daily",
-          "time": "2026-03-14T01:21:00Z",
+          "publisher": "Politico",
+          "time": "2026-03-14T11:00:00Z",
           "verified": true
         },
         {
-          "title": "The Iran War Is Now Disrupting Global Trade - WSJ",
-          "sources": [
-            "google_gold",
-            "yahoo_gold",
-            "newsapi_business"
-          ],
-          "source_count": 3,
-          "publisher": "The Wall Street Journal",
-          "time": "2026-03-13T20:53:00Z",
-          "verified": true
-        },
-        {
-          "title": "Yen Slides to Weakest Since July 2024 as Iran War Escalates - Bloomberg.com",
+          "title": "The whole market moves based on fresh assessments of the length of the war - investingLive",
           "sources": [
             "google_crypto",
+            "newsapi_business",
             "investing_com",
-            "newsapi_business"
-          ],
-          "source_count": 3,
-          "publisher": "Bloomberg",
-          "time": "2026-03-13T20:05:04Z",
-          "verified": true
-        },
-        {
-          "title": "Explosion shakes Tehran amid state-organised rally after Israeli warning - France 24",
-          "sources": [
-            "google_crypto",
-            "newsapi_general",
             "yahoo_spx"
           ],
-          "source_count": 3,
-          "publisher": "FRANCE 24 English",
-          "time": "2026-03-13T21:49:38Z",
+          "source_count": 4,
+          "publisher": "Investinglive.com",
+          "time": "2026-03-14T02:31:35Z",
           "verified": true
         },
         {
-          "title": "Is Dogecoin a Millionaire-Maker Cryptocurrency? - The Motley Fool",
+          "title": "Subpoenas against Fed chair Powell tossed in a scathing opinion - Axios",
           "sources": [
-            "google_crypto",
-            "investing_com",
-            "yahoo_btc"
+            "newsapi_general",
+            "yahoo_gold",
+            "google_fed"
           ],
           "source_count": 3,
-          "publisher": "google_crypto",
-          "time": "Sat, 14 Mar 2026 16:30:00 GMT",
+          "publisher": "Axios",
+          "time": "2026-03-14T09:33:35Z",
           "verified": true
         },
         {
-          "title": "A flying taxi crossed the Golden Gate Bridge. Could it soon take you from S.F. to Wine Country? - San Francisco Chronicle",
+          "title": "A Paramount-Warner Bros. movie slate could rule the 2027 box office, but is it sustainable? - CNBC",
           "sources": [
             "newsapi_business"
           ],
           "source_count": 1,
-          "publisher": "San Francisco Chronicle",
-          "time": "2026-03-13T19:07:50Z",
+          "publisher": "CNBC",
+          "time": "2026-03-14T11:00:01Z",
           "verified": false
         },
         {
-          "title": "Wall Street warns Iran war will trigger prolonged energy crisis - Financial Times",
-          "sources": [
-            "newsapi_business"
-          ],
-          "source_count": 1,
-          "publisher": "Financial Times",
-          "time": "2026-03-13T18:30:34Z",
-          "verified": false
-        },
-        {
-          "title": "Live updates: Iran war news; US strikes Kharg Island oil export hub, Trump says - CNN",
+          "title": "A Paramount-Warner Bros. movie slate could rule the 2027 box office, but is it sustainable? - CNBC",
           "sources": [
             "newsapi_general"
           ],
           "source_count": 1,
-          "publisher": "CNN",
-          "time": "2026-03-14T02:05:00Z",
+          "publisher": "CNBC",
+          "time": "2026-03-14T11:00:01Z",
+          "verified": false
+        },
+        {
+          "title": "Fed to weigh interest rates amid Iran war, potential price increases - USA Today",
+          "sources": [
+            "google_fed"
+          ],
+          "source_count": 1,
+          "publisher": "google_fed",
+          "time": "Sun, 15 Mar 2026 10:05:00 GMT",
           "verified": false
         }
       ]
