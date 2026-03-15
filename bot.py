@@ -1547,7 +1547,8 @@ async def main():
 
 
 
-             "Balance: $"+str(round(data["balance"],2))+"\n"
+             "Balance: $"+str(round(data["balance"],2))+" (cash)\n"
++"Portfolio: $"+str(round(data["balance"]+sum((current_prices.get(s,pos["entry_price"])-pos["entry_price"])*pos["qty"]+pos["amount"] for s,pos in positions.items()),2))+"\n"
 
 
 
