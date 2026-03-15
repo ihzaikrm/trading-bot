@@ -37,6 +37,8 @@ load_dotenv()
 from core.llm_clients import call_all_llms
 from core.momentum_filter import get_momentum_signal
 from core.dxy_filter import get_dxy_signal
+from core.screener import run_screener
+from core.screener import run_screener
 from core.smc_context import get_smc_context
 from core.smc_context import get_smc_context
 
@@ -804,7 +806,20 @@ async def main():
 
 
 
-    alloc = data["balance"] / len(ASSETS) * kelly_mult
+    # === BUILD DYNAMIC ASSETS dari screener ===
+    try:
+        active_narr = []
+        import json as _json
+        if os.path.exists("logs/narrative_state.json"):
+            ns = _json.load(open("logs/narrative_state.json"))
+            active_narr = [n["name"] for n in ns.get("active_narratives",[])[:3]]
+        ASSETS = build_dynamic_assets(active_narr, data["balance"], kelly_mult)
+        print(f"  Total aset aktif: {len(ASSETS)}")
+    except Exception as e:
+        print(f"  Dynamic assets error: {e}")
+        ASSETS = ASSETS_BASE
+
+    alloc = data["balance"] / max(len(ASSETS), 1) * kelly_mult
 
 
 
