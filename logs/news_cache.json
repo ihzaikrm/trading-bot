@@ -1,183 +1,38 @@
 {
-  "timestamp": "2026-03-15T05:28:12.950695",
+  "timestamp": "2026-03-15T14:42:24.700841",
   "results": {
     "1h": {
       "label": "BREAKING",
       "weight": 1.0,
-      "verified_count": 1,
-      "news": [
-        {
-          "title": "The Iran War Is Now Disrupting Global Trade - WSJ",
-          "sources": [
-            "newsapi_business",
-            "investing_com"
-          ],
-          "source_count": 2,
-          "publisher": "The Wall Street Journal",
-          "time": "2026-03-13T20:53:00Z",
-          "verified": true
-        },
-        {
-          "title": "Dow Jones Futures: Oil Prices, Iran War Drive Stocks Lower; Nvidia GTC, Micron Earnings Due - Investor's Business Daily",
-          "sources": [
-            "newsapi_business"
-          ],
-          "source_count": 1,
-          "publisher": "Investor's Business Daily",
-          "time": "2026-03-14T01:21:00Z",
-          "verified": false
-        },
-        {
-          "title": "Trump turns to California offshore oil to help with Iran war - Axios",
-          "sources": [
-            "newsapi_business"
-          ],
-          "source_count": 1,
-          "publisher": "Axios",
-          "time": "2026-03-13T21:31:48Z",
-          "verified": false
-        },
-        {
-          "title": "Yen Slides to Weakest Since July 2024 as Iran War Escalates - Bloomberg.com",
-          "sources": [
-            "newsapi_business"
-          ],
-          "source_count": 1,
-          "publisher": "Bloomberg",
-          "time": "2026-03-13T20:05:04Z",
-          "verified": false
-        }
-      ]
-    },
-    "6h": {
-      "label": "PENTING",
-      "weight": 0.7,
       "verified_count": 3,
       "news": [
         {
-          "title": "Dow Jones Futures: Oil Prices, Iran War Drive Stocks Lower; Nvidia GTC, Micron Earnings Due - Investor's Business Daily",
-          "sources": [
-            "newsapi_business",
-            "yahoo_spx"
-          ],
-          "source_count": 2,
-          "publisher": "Investor's Business Daily",
-          "time": "2026-03-14T01:21:00Z",
-          "verified": true
-        },
-        {
-          "title": "The Iran War Is Now Disrupting Global Trade - WSJ",
-          "sources": [
-            "newsapi_business",
-            "investing_com"
-          ],
-          "source_count": 2,
-          "publisher": "The Wall Street Journal",
-          "time": "2026-03-13T20:53:00Z",
-          "verified": true
-        },
-        {
-          "title": "New Crypto: Pepeto Announces Ecosystem Expansion as Bitcoin Price Targets $1M Amid Dogecoin and Elon Musk News - markets.businessinsider.com",
-          "sources": [
-            "yahoo_gold",
-            "google_crypto"
-          ],
-          "source_count": 2,
-          "publisher": "google_crypto",
-          "time": "Sat, 14 Mar 2026 23:58:10 GMT",
-          "verified": true
-        },
-        {
           "title": "Trump turns to California offshore oil to help with Iran war - Axios",
           "sources": [
-            "newsapi_business"
-          ],
-          "source_count": 1,
-          "publisher": "Axios",
-          "time": "2026-03-13T21:31:48Z",
-          "verified": false
-        },
-        {
-          "title": "Yen Slides to Weakest Since July 2024 as Iran War Escalates - Bloomberg.com",
-          "sources": [
-            "newsapi_business"
-          ],
-          "source_count": 1,
-          "publisher": "Bloomberg",
-          "time": "2026-03-13T20:05:04Z",
-          "verified": false
-        },
-        {
-          "title": "A flying taxi crossed the Golden Gate Bridge. Could it soon take you from S.F. to Wine Country? - San Francisco Chronicle",
-          "sources": [
-            "newsapi_business"
-          ],
-          "source_count": 1,
-          "publisher": "San Francisco Chronicle",
-          "time": "2026-03-13T19:07:50Z",
-          "verified": false
-        }
-      ]
-    },
-    "24h": {
-      "label": "KONTEKS",
-      "weight": 0.4,
-      "verified_count": 9,
-      "news": [
-        {
-          "title": "The Iran War Is Now Disrupting Global Trade - WSJ",
-          "sources": [
-            "yahoo_gold",
-            "newsapi_business",
             "investing_com",
-            "google_gold"
+            "newsapi_business"
           ],
-          "source_count": 4,
+          "source_count": 2,
+          "publisher": "Axios",
+          "time": "2026-03-13T21:31:48Z",
+          "verified": true
+        },
+        {
+          "title": "The Iran War Is Now Disrupting Global Trade - WSJ",
+          "sources": [
+            "investing_com",
+            "newsapi_business"
+          ],
+          "source_count": 2,
           "publisher": "The Wall Street Journal",
           "time": "2026-03-13T20:53:00Z",
           "verified": true
         },
         {
-          "title": "Dow Jones Futures: Oil Prices, Iran War Drive Stocks Lower; Nvidia GTC, Micron Earnings Due - Investor's Business Daily",
-          "sources": [
-            "yahoo_gold",
-            "newsapi_business",
-            "yahoo_spx"
-          ],
-          "source_count": 3,
-          "publisher": "Investor's Business Daily",
-          "time": "2026-03-14T01:21:00Z",
-          "verified": true
-        },
-        {
-          "title": "Explosion shakes Tehran amid state-organised rally after Israeli warning - France 24",
-          "sources": [
-            "newsapi_general",
-            "google_crypto",
-            "yahoo_spx"
-          ],
-          "source_count": 3,
-          "publisher": "FRANCE 24 English",
-          "time": "2026-03-13T21:49:38Z",
-          "verified": true
-        },
-        {
-          "title": "Bitcoin Hit a Major Milestone\u2014Most Miners Won't Be Around for the Next One - Decrypt",
-          "sources": [
-            "yahoo_btc",
-            "yahoo_gold",
-            "google_crypto"
-          ],
-          "source_count": 3,
-          "publisher": "google_crypto",
-          "time": "Sat, 14 Mar 2026 14:07:30 GMT",
-          "verified": true
-        },
-        {
           "title": "Yen Slides to Weakest Since July 2024 as Iran War Escalates - Bloomberg.com",
           "sources": [
-            "newsapi_business",
-            "google_crypto"
+            "investing_com",
+            "newsapi_business"
           ],
           "source_count": 2,
           "publisher": "Bloomberg",
@@ -185,13 +40,13 @@
           "verified": true
         },
         {
-          "title": "Trump turns to California offshore oil to help with Iran war - Axios",
+          "title": "Dow Jones Futures: Oil Prices, Iran War Drive Stocks Lower; Nvidia GTC, Micron Earnings Due - Investor's Business Daily",
           "sources": [
             "newsapi_business"
           ],
           "source_count": 1,
-          "publisher": "Axios",
-          "time": "2026-03-13T21:31:48Z",
+          "publisher": "Investor's Business Daily",
+          "time": "2026-03-14T01:21:00Z",
           "verified": false
         },
         {
@@ -212,6 +67,197 @@
           "source_count": 1,
           "publisher": "Financial Times",
           "time": "2026-03-13T18:30:34Z",
+          "verified": false
+        }
+      ]
+    },
+    "6h": {
+      "label": "PENTING",
+      "weight": 0.7,
+      "verified_count": 5,
+      "news": [
+        {
+          "title": "Yen Slides to Weakest Since July 2024 as Iran War Escalates - Bloomberg.com",
+          "sources": [
+            "investing_com",
+            "google_crypto",
+            "newsapi_business"
+          ],
+          "source_count": 3,
+          "publisher": "Bloomberg",
+          "time": "2026-03-13T20:05:04Z",
+          "verified": true
+        },
+        {
+          "title": "Dow Jones Futures: Oil Prices, Iran War Drive Stocks Lower; Nvidia GTC, Micron Earnings Due - Investor's Business Daily",
+          "sources": [
+            "newsapi_business",
+            "yahoo_spx"
+          ],
+          "source_count": 2,
+          "publisher": "Investor's Business Daily",
+          "time": "2026-03-14T01:21:00Z",
+          "verified": true
+        },
+        {
+          "title": "Trump turns to California offshore oil to help with Iran war - Axios",
+          "sources": [
+            "investing_com",
+            "newsapi_business"
+          ],
+          "source_count": 2,
+          "publisher": "Axios",
+          "time": "2026-03-13T21:31:48Z",
+          "verified": true
+        },
+        {
+          "title": "The Iran War Is Now Disrupting Global Trade - WSJ",
+          "sources": [
+            "investing_com",
+            "newsapi_business"
+          ],
+          "source_count": 2,
+          "publisher": "The Wall Street Journal",
+          "time": "2026-03-13T20:53:00Z",
+          "verified": true
+        },
+        {
+          "title": "Bitcoin: Institutional interest provides buffer as BTC eyes $73,000 resistance",
+          "sources": [
+            "investing_com",
+            "yahoo_btc"
+          ],
+          "source_count": 2,
+          "publisher": "yahoo_btc",
+          "time": "Sun, 15 Mar 2026 05:13:00 +0000",
+          "verified": true
+        },
+        {
+          "title": "A flying taxi crossed the Golden Gate Bridge. Could it soon take you from S.F. to Wine Country? - San Francisco Chronicle",
+          "sources": [
+            "newsapi_business"
+          ],
+          "source_count": 1,
+          "publisher": "San Francisco Chronicle",
+          "time": "2026-03-13T19:07:50Z",
+          "verified": false
+        },
+        {
+          "title": "Wall Street warns Iran war will trigger prolonged energy crisis - Financial Times",
+          "sources": [
+            "newsapi_business"
+          ],
+          "source_count": 1,
+          "publisher": "Financial Times",
+          "time": "2026-03-13T18:30:34Z",
+          "verified": false
+        },
+        {
+          "title": "Mortgage Rates Surge to 7-Month Highs - Mortgage News Daily",
+          "sources": [
+            "newsapi_business"
+          ],
+          "source_count": 1,
+          "publisher": "Mortgage News Daily",
+          "time": "2026-03-13T18:12:34Z",
+          "verified": false
+        }
+      ]
+    },
+    "24h": {
+      "label": "KONTEKS",
+      "weight": 0.4,
+      "verified_count": 10,
+      "news": [
+        {
+          "title": "The Iran War Is Now Disrupting Global Trade - WSJ",
+          "sources": [
+            "investing_com",
+            "newsapi_business",
+            "google_gold",
+            "yahoo_gold"
+          ],
+          "source_count": 4,
+          "publisher": "The Wall Street Journal",
+          "time": "2026-03-13T20:53:00Z",
+          "verified": true
+        },
+        {
+          "title": "Dow Jones Futures: Oil Prices, Iran War Drive Stocks Lower; Nvidia GTC, Micron Earnings Due - Investor's Business Daily",
+          "sources": [
+            "newsapi_business",
+            "yahoo_spx",
+            "yahoo_gold"
+          ],
+          "source_count": 3,
+          "publisher": "Investor's Business Daily",
+          "time": "2026-03-14T01:21:00Z",
+          "verified": true
+        },
+        {
+          "title": "Yen Slides to Weakest Since July 2024 as Iran War Escalates - Bloomberg.com",
+          "sources": [
+            "investing_com",
+            "google_crypto",
+            "newsapi_business"
+          ],
+          "source_count": 3,
+          "publisher": "Bloomberg",
+          "time": "2026-03-13T20:05:04Z",
+          "verified": true
+        },
+        {
+          "title": "Explosion shakes Tehran amid state-organised rally after Israeli warning - France 24",
+          "sources": [
+            "google_crypto",
+            "newsapi_general",
+            "yahoo_spx"
+          ],
+          "source_count": 3,
+          "publisher": "FRANCE 24 English",
+          "time": "2026-03-13T21:49:38Z",
+          "verified": true
+        },
+        {
+          "title": "Is Dogecoin a Millionaire-Maker Cryptocurrency? - The Motley Fool",
+          "sources": [
+            "investing_com",
+            "google_crypto",
+            "yahoo_btc"
+          ],
+          "source_count": 3,
+          "publisher": "google_crypto",
+          "time": "Sat, 14 Mar 2026 16:30:00 GMT",
+          "verified": true
+        },
+        {
+          "title": "A flying taxi crossed the Golden Gate Bridge. Could it soon take you from S.F. to Wine Country? - San Francisco Chronicle",
+          "sources": [
+            "newsapi_business"
+          ],
+          "source_count": 1,
+          "publisher": "San Francisco Chronicle",
+          "time": "2026-03-13T19:07:50Z",
+          "verified": false
+        },
+        {
+          "title": "Wall Street warns Iran war will trigger prolonged energy crisis - Financial Times",
+          "sources": [
+            "newsapi_business"
+          ],
+          "source_count": 1,
+          "publisher": "Financial Times",
+          "time": "2026-03-13T18:30:34Z",
+          "verified": false
+        },
+        {
+          "title": "Live updates: Iran war news; US strikes Kharg Island oil export hub, Trump says - CNN",
+          "sources": [
+            "newsapi_general"
+          ],
+          "source_count": 1,
+          "publisher": "CNN",
+          "time": "2026-03-14T02:05:00Z",
           "verified": false
         }
       ]
