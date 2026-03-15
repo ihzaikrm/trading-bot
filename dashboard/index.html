@@ -496,7 +496,7 @@ async function fetchJSON(url) {
 async function fetchPrices() {
   const p = {};
   try {
-    const r = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,gold&vs_currencies=usd&include_24hr_change=true');
+    const r = await fetch('https://api.kraken.com/0/public/Ticker?pair=XBTUSD,ETHUSD');
     const d = await r.json();
     if (d.bitcoin) { p.BTC = d.bitcoin.usd; p.BTC_CHG = d.bitcoin.usd_24h_change; }
     if (d.ethereum) { p.ETH = d.ethereum.usd; p.ETH_CHG = d.ethereum.usd_24h_change; }
@@ -517,7 +517,7 @@ async function fetchPrices() {
 
 async function fetchCandles() {
   try {
-    const r = await fetch('https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1d&limit=14');
+    const r = await fetch('https://api.coingecko.com/api/v3/coins/bitcoin/ohlc?vs_currency=usd&days=14');
     return await r.json();
   } catch(e) { return []; }
 }
@@ -559,7 +559,7 @@ function renderCandles(data) {
     timeScale: { borderColor: '#1a2535', timeVisible: true },
     crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
   });
-  const series = candleInst.addCandlestickSeries({
+  const series = candleInst.addSeries(LightweightCharts.CandlestickSeries, {
     upColor: '#00e676', downColor: '#ff1744',
     borderUpColor: '#00e676', borderDownColor: '#ff1744',
     wickUpColor: '#00c853', wickDownColor: '#b71c1c',
