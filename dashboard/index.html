@@ -225,7 +225,9 @@ async function fetchJSON(url) {
 async function fetchLivePrices() {
   const prices = {};
   try {
-    const btc = await fetch('https://api.gate.io/api/v4/spot/tickers?currency_pair=BTC_USDT');
+    const btc = await fetch('https://api.coinbase.com/v2/prices/BTC-USD/spot');
+const btcData = await btc.json();
+if (btcData.data) { prices.BTC = parseFloat(btcData.data.amount); prices.BTC_CHG = 0; }
     const btcData = await btc.json();
     if (btcData[0]) { prices.BTC = parseFloat(btcData[0].last); prices.BTC_CHG = parseFloat(btcData[0].change_percentage); }
   } catch(e) {}
