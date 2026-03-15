@@ -452,7 +452,12 @@ async def run_narrative_scan(news_text="", market_context=""):
 
 
 
-    print(f"  Top narratives: {[(n,v) for n,v in top_narratives]}")
+    # Fallback ke keyword scores jika LLM voting kosong
+    if not top_narratives:
+        top_narratives = [(n,v) for n,v in top_keyword if v > 0][:3]
+        print(f"  Top narratives (keyword fallback): {top_narratives}")
+    else:
+        print(f"  Top narratives: {[(n,v) for n,v in top_narratives]}")
 
     print(f"  Risk profile: {risk_profile} | Urgency: {urgency}")
 

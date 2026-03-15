@@ -1,22 +1,9 @@
-﻿import asyncio, sys, re, json
-sys.path.insert(0, '.')
-from dotenv import load_dotenv
-load_dotenv()
-from core.llm_clients import call_all_llms
+﻿import asyncio
+from core.llm_clients import call_llm
 
 async def test():
-    print("Calling LLMs...")
-    try:
-        results = await asyncio.wait_for(
-            call_all_llms("Balas JSON saja.", '{"narratives":["CRYPTO_BULL","AI_TECH","INFLATION_HEDGE"],"risk_profile":"moderate","reasoning":"test","rotation_urgency":"low"}'),
-            timeout=30
-        )
-        print("Results:", len(results))
-        for llm, (ok, resp) in results.items():
-            print(llm, ok, str(resp)[:60] if resp else "EMPTY")
-    except asyncio.TimeoutError:
-        print("TIMEOUT!")
-    except Exception as e:
-        print("ERROR:", e)
+    result = await call_llm("qwen", "Kamu adalah analis narasi market.",
+        "Pilih TOP 3 narasi dari: INFLATION_HEDGE, RISK_OFF, CRYPTO_BULL. Balas HANYA JSON: {\"narratives\":[\"N1\",\"N2\",\"N3\"],\"risk_profile\":\"moderate\",\"urgency\":\"low\"}")
+    print("Result:", repr(result[:300]))
 
 asyncio.run(test())
