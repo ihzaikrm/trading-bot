@@ -1,5 +1,18 @@
 {
-  "active_narratives": [],
+  "active_narratives": [
+    [
+      "INFLATION_HEDGE",
+      4
+    ],
+    [
+      "RISK_OFF",
+      4
+    ],
+    [
+      "DEFI_SEASON",
+      2
+    ]
+  ],
   "last_scan": "2026-03-16 03:52",
   "history": [
     {
