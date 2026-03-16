@@ -458,6 +458,15 @@ async def run_narrative_scan(news_text="", market_context=""):
         print(f"  Top narratives (keyword fallback): {top_narratives}")
     else:
         print(f"  Top narratives: {[(n,v) for n,v in top_narratives]}")
+    # Simpan ke narrative_state.json agar dashboard bisa baca
+    import json, os
+    state_file = 'logs/narrative_state.json'
+    try:
+        existing = json.load(open(state_file)) if os.path.exists(state_file) else {}
+        existing['active_narratives'] = [[n,v] for n,v in top_narratives]
+        existing['last_scan'] = str(__import__('datetime').datetime.now())
+        json.dump(existing, open(state_file,'w'), indent=2)
+    except: pass
 
     print(f"  Risk profile: {risk_profile} | Urgency: {urgency}")
 
