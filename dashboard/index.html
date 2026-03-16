@@ -523,7 +523,7 @@ async function fetchCandles() {
     const r = await fetch('https://min-api.cryptocompare.com/data/v2/histoday?fsym=BTC&tsym=USD&limit=14');
     const d = await r.json();
     const raw = d.Data?.Data || [];
-    return raw.map(k => ({time: k.time, open: k.open, high: k.high, low: k.low, close: k.close}));
+    return raw.map(k => ({time: new Date(k.time*1000).toISOString().slice(0,10), open: k.open, high: k.high, low: k.low, close: k.close}));
   } catch(e) { return []; }
 }
 
