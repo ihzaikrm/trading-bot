@@ -570,8 +570,8 @@ function renderCandles(data) {
     wickUpColor: '#00c853', wickDownColor: '#b71c1c',
   });
   const candles = data.map(d => ({
-    time: Math.floor(d[0] / 1000),
-open: parseFloat(d[1]), high: parseFloat(d[2]), low: parseFloat(d[3]), close: parseFloat(d[4])
+    time: d.time,
+    open: parseFloat(d.open), high: parseFloat(d.high), low: parseFloat(d.low), close: parseFloat(d.close)
   }));
   series.setData(candles);
   candleInst.timeScale().fitContent();
