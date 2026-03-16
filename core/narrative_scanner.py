@@ -506,7 +506,7 @@ async def run_narrative_scan(news_text="", market_context=""):
 
     rotation_needed = urgency == "high" or set(prev_narratives) != set(curr_narratives)
 
-    if rotation_needed and prev_narratives:
+    if True:  # selalu update state narrative
 
         print(f"\n  ⚡ ROTASI DETECTED: {prev_narratives} → {curr_narratives}")
 
