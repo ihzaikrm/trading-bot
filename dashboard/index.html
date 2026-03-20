@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -387,6 +387,17 @@
         <tr><td colspan="9" class="empty">No open positions</td></tr>
       </tbody>
     </table>
+  </div>
+
+  <!-- FILTER STATUS SECTION -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-title">Market Filters</div>
+      <div class="section-meta" id="filterTimestamp">--</div>
+    </div>
+    <div id="filterStatus" class="bottom-body" style="height: auto; min-height: 90px;">
+      <div class="empty">Loading filters...</div>
+    </div>
   </div>
 
   <!-- BOTTOM GRID: Narrative | LLM Voting | News -->
@@ -860,8 +871,50 @@ function renderFG(fg) {
   el.style.color = v <= 25 ? '#ff1744' : v <= 45 ? '#ff7043' : v <= 55 ? '#ffd600' : v <= 75 ? '#ffab40' : '#ff1744';
 }
 
+async function fetchFilterStatus() {
+  const raw = 'https://raw.githubusercontent.com/ihzaikrm/trading-bot/main/logs/';
+  try {
+    const r = await fetch(raw + 'filter_status.json?_=' + Date.now());
+    if (!r.ok) throw new Error('Filter status not found');
+    const data = await r.json();
+    renderFilterStatus(data);
+  } catch(e) {
+    console.warn('Filter status unavailable:', e);
+    const el = document.getElementById('filterStatus');
+    if (el) el.innerHTML = '<div class="empty">Filter data not yet available</div>';
+  }
+}
+
+function renderFilterStatus(data) {
+  const container = document.getElementById('filterStatus');
+  if (!container) return;
+  const dxy = data.dxy;
+  const mom = data.momentum;
+  const narratives = data.active_narratives || [];
+
+  const dxyColor = dxy.signal === 'BEARISH' ? 'down' : (dxy.signal === 'BULLISH' ? 'up' : 'neutral');
+  const momColor = mom.signal === 'BEARISH' ? 'down' : (mom.signal === 'BULLISH' ? 'up' : 'neutral');
+
+  let html = `
+    <div class="filter-item" style="margin-bottom: 8px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+      <strong>DXY</strong> <span class="${dxyColor}">${dxy.signal}</span> (${dxy.value}, trend ${dxy.trend})
+    </div>
+    <div class="filter-item" style="margin-bottom: 8px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+      <strong>Momentum</strong> <span class="${momColor}">${mom.signal}</span> (RSI ${mom.rsi})
+    </div>
+    <div class="filter-item">
+      <strong>Narratives</strong><br>
+      ${narratives.map(n => `<span class="tag" style="background:rgba(0,229,255,0.1); margin-right:6px;">${n[0]} (${n[1]})</span>`).join(' ')}
+    </div>
+  `;
+  container.innerHTML = html;
+  const ts = document.getElementById('filterTimestamp');
+  if (ts && data.timestamp) ts.textContent = new Date(data.timestamp).toLocaleTimeString();
+}
+
 async function loadAll() {
   fetchPrices().then(renderTicker);
+     fetchFilterStatus();
   document.getElementById('dataStatus').textContent = 'refreshing...';
   try {
     const [T, N, L, NEWS, prices, candles, fg] = await Promise.allSettled([
