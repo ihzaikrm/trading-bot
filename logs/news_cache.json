@@ -1,94 +1,95 @@
 {
-  "timestamp": "2026-03-16T00:13:21.905571",
+  "timestamp": "2026-03-20T22:19:52.129732",
   "results": {
     "1h": {
       "label": "BREAKING",
       "weight": 1.0,
-      "verified_count": 5,
+      "verified_count": 8,
       "news": [
         {
-          "title": "It's not just oil. Here comes Hormuz inflation. - Politico",
+          "title": "Stock Market Today: Oil Soars to $115 a Barrel, Dow Futures Inch Lower \u2014 Live Updates - WSJ",
           "sources": [
+            "marketwatch",
             "newsapi_business",
             "yahoo_spx"
           ],
-          "source_count": 2,
-          "publisher": "Politico",
-          "time": "2026-03-14T11:00:00Z",
+          "source_count": 3,
+          "publisher": "The Wall Street Journal",
+          "time": "2026-03-19T12:39:26Z",
           "verified": true
         },
         {
-          "title": "The whole market moves based on fresh assessments of the length of the war - investingLive",
+          "title": "\u2018Epic Fury\u2019 has already canceled out Big Beautiful Bill\u2019s tax refunds \u2014 even if the Iran war ended today - MarketWatch",
+          "sources": [
+            "marketwatch",
+            "newsapi_business"
+          ],
+          "source_count": 2,
+          "publisher": "MarketWatch",
+          "time": "2026-03-19T10:38:00Z",
+          "verified": true
+        },
+        {
+          "title": "Scoreboard on every street: Gas heads for $4 per gallon due to Iran war - Axios",
           "sources": [
             "newsapi_business",
             "investing_com"
           ],
           "source_count": 2,
-          "publisher": "Investinglive.com",
-          "time": "2026-03-14T02:31:35Z",
+          "publisher": "Axios",
+          "time": "2026-03-19T09:00:19Z",
           "verified": true
         },
         {
-          "title": "A young dad's colon cancer spread to his lungs with no warning. He says a clinical trial led to a miracle. - CBS News",
+          "title": "Oil Rises After Attacks on Middle East Energy Sites; Asian Stocks Fall - WSJ",
           "sources": [
-            "newsapi_general",
-            "google_crypto"
+            "yahoo_gold",
+            "newsapi_business"
           ],
           "source_count": 2,
-          "publisher": "CBS News",
-          "time": "2026-03-14T12:12:00Z",
+          "publisher": "The Wall Street Journal",
+          "time": "2026-03-19T08:05:00Z",
           "verified": true
         },
         {
-          "title": "Trump Strikes Iran\u2019s Kharg Oil Hub and Urges Reopening of Hormuz - Bloomberg.com",
+          "title": "HDFC Bank shares fall 5% as part-time chair of India\u2019s largest private bank resigns over 'ethics' - CNBC",
           "sources": [
-            "newsapi_general",
-            "investing_com"
+            "google_crypto",
+            "newsapi_business"
           ],
           "source_count": 2,
-          "publisher": "Bloomberg",
-          "time": "2026-03-14T11:58:14Z",
+          "publisher": "CNBC",
+          "time": "2026-03-19T04:33:00Z",
           "verified": true
         },
         {
-          "title": "These are the casualties and cost of the war in Iran 2 weeks into the conflict - NPR",
+          "title": "\u2018What is he doing?\u2019: New threats emerge for Trump\u2019s economy as war drags on - Politico",
           "sources": [
-            "newsapi_general",
-            "marketwatch"
+            "newsapi_business"
           ],
-          "source_count": 2,
-          "publisher": "NPR",
-          "time": "2026-03-14T07:04:21Z",
-          "verified": true
+          "source_count": 1,
+          "publisher": "Politico",
+          "time": "2026-03-19T09:00:00Z",
+          "verified": false
         },
         {
-          "title": "A Paramount-Warner Bros. movie slate could rule the 2027 box office, but is it sustainable? - CNBC",
+          "title": "Live updates: Interest rates steady, Federal Reserve forecasts one rate cut in 2026 - Yahoo Finance",
+          "sources": [
+            "newsapi_business"
+          ],
+          "source_count": 1,
+          "publisher": "Yahoo Entertainment",
+          "time": "2026-03-19T08:00:36Z",
+          "verified": false
+        },
+        {
+          "title": "Bank of Japan keeps rates steady as expected, warns Iran war may push up inflation - CNBC",
           "sources": [
             "newsapi_business"
           ],
           "source_count": 1,
           "publisher": "CNBC",
-          "time": "2026-03-14T11:00:01Z",
-          "verified": false
-        },
-        {
-          "title": "Stocks Close To Breaking As Oil Soars; Nvidia, Micron Due - Investor's Business Daily",
-          "sources": [
-            "newsapi_business"
-          ],
-          "source_count": 1,
-          "publisher": "Investor's Business Daily",
-          "time": "2026-03-14T04:11:00Z",
-          "verified": false
-        },
-        {
-          "title": "A Paramount-Warner Bros. movie slate could rule the 2027 box office, but is it sustainable? - CNBC",
-          "sources": [
-            "newsapi_general"
-          ],
-          "source_count": 1,
-          "publisher": "CNBC",
-          "time": "2026-03-14T11:00:01Z",
+          "time": "2026-03-19T02:54:00Z",
           "verified": false
         }
       ]
@@ -96,96 +97,98 @@
     "6h": {
       "label": "PENTING",
       "weight": 0.7,
-      "verified_count": 8,
+      "verified_count": 13,
       "news": [
         {
-          "title": "It's not just oil. Here comes Hormuz inflation. - Politico",
+          "title": "Stock Market Today: Oil Soars to $115 a Barrel, Dow Futures Inch Lower \u2014 Live Updates - WSJ",
           "sources": [
-            "google_crypto",
-            "newsapi_business",
             "marketwatch",
+            "yahoo_gold",
+            "newsapi_business",
             "yahoo_spx"
           ],
           "source_count": 4,
-          "publisher": "Politico",
-          "time": "2026-03-14T11:00:00Z",
+          "publisher": "The Wall Street Journal",
+          "time": "2026-03-19T12:39:26Z",
           "verified": true
         },
         {
-          "title": "Stocks Close To Breaking As Oil Soars; Nvidia, Micron Due - Investor's Business Daily",
+          "title": "\u2018Epic Fury\u2019 has already canceled out Big Beautiful Bill\u2019s tax refunds \u2014 even if the Iran war ended today - MarketWatch",
           "sources": [
-            "newsapi_business",
             "google_gold",
-            "yahoo_spx"
-          ],
-          "source_count": 3,
-          "publisher": "Investor's Business Daily",
-          "time": "2026-03-14T04:11:00Z",
-          "verified": true
-        },
-        {
-          "title": "The whole market moves based on fresh assessments of the length of the war - investingLive",
-          "sources": [
-            "newsapi_business",
-            "investing_com",
-            "yahoo_spx"
-          ],
-          "source_count": 3,
-          "publisher": "Investinglive.com",
-          "time": "2026-03-14T02:31:35Z",
-          "verified": true
-        },
-        {
-          "title": "These are the casualties and cost of the war in Iran 2 weeks into the conflict - NPR",
-          "sources": [
-            "newsapi_general",
             "marketwatch",
+            "newsapi_business",
+            "yahoo_spx"
+          ],
+          "source_count": 4,
+          "publisher": "MarketWatch",
+          "time": "2026-03-19T10:38:00Z",
+          "verified": true
+        },
+        {
+          "title": "Scoreboard on every street: Gas heads for $4 per gallon due to Iran war - Axios",
+          "sources": [
+            "marketwatch",
+            "newsapi_business",
+            "investing_com"
+          ],
+          "source_count": 3,
+          "publisher": "Axios",
+          "time": "2026-03-19T09:00:19Z",
+          "verified": true
+        },
+        {
+          "title": "Oil Rises After Attacks on Middle East Energy Sites; Asian Stocks Fall - WSJ",
+          "sources": [
+            "yahoo_gold",
+            "newsapi_business",
             "yahoo_spx"
           ],
           "source_count": 3,
-          "publisher": "NPR",
-          "time": "2026-03-14T07:04:21Z",
+          "publisher": "The Wall Street Journal",
+          "time": "2026-03-19T08:05:00Z",
           "verified": true
         },
         {
-          "title": "A young dad's colon cancer spread to his lungs with no warning. He says a clinical trial led to a miracle. - CBS News",
+          "title": "Live updates: Interest rates steady, Federal Reserve forecasts one rate cut in 2026 - Yahoo Finance",
           "sources": [
-            "newsapi_general",
-            "google_crypto"
+            "google_gold",
+            "google_crypto",
+            "newsapi_business"
           ],
-          "source_count": 2,
-          "publisher": "CBS News",
-          "time": "2026-03-14T12:12:00Z",
+          "source_count": 3,
+          "publisher": "Yahoo Entertainment",
+          "time": "2026-03-19T08:00:36Z",
           "verified": true
         },
         {
-          "title": "A Paramount-Warner Bros. movie slate could rule the 2027 box office, but is it sustainable? - CNBC",
+          "title": "\u2018What is he doing?\u2019: New threats emerge for Trump\u2019s economy as war drags on - Politico",
           "sources": [
             "newsapi_business"
           ],
           "source_count": 1,
-          "publisher": "CNBC",
-          "time": "2026-03-14T11:00:01Z",
+          "publisher": "Politico",
+          "time": "2026-03-19T09:00:00Z",
           "verified": false
         },
         {
-          "title": "A Paramount-Warner Bros. movie slate could rule the 2027 box office, but is it sustainable? - CNBC",
+          "title": "How the Fed meeting will impact mortgage rates, housing market - thestreet.com",
+          "sources": [
+            "newsapi_business"
+          ],
+          "source_count": 1,
+          "publisher": "TheStreet",
+          "time": "2026-03-18T23:03:00Z",
+          "verified": false
+        },
+        {
+          "title": "Israel is rapidly killing Iran\u2019s top leaders. Experts warn the strategy could backfire - AP News",
           "sources": [
             "newsapi_general"
           ],
           "source_count": 1,
-          "publisher": "CNBC",
-          "time": "2026-03-14T11:00:01Z",
-          "verified": false
-        },
-        {
-          "title": "Subpoenas against Fed chair Powell tossed in a scathing opinion - Axios",
-          "sources": [
-            "newsapi_general"
-          ],
-          "source_count": 1,
-          "publisher": "Axios",
-          "time": "2026-03-14T09:33:35Z",
+          "publisher": "Associated Press",
+          "time": "2026-03-19T05:03:00Z",
           "verified": false
         }
       ]
@@ -193,103 +196,105 @@
     "24h": {
       "label": "KONTEKS",
       "weight": 0.4,
-      "verified_count": 11,
+      "verified_count": 18,
       "news": [
         {
-          "title": "These are the casualties and cost of the war in Iran 2 weeks into the conflict - NPR",
+          "title": "Stock Market Today: Oil Soars to $115 a Barrel, Dow Futures Inch Lower \u2014 Live Updates - WSJ",
           "sources": [
-            "google_crypto",
-            "google_macro",
-            "yahoo_spx",
-            "newsapi_general",
+            "yahoo_gold",
             "marketwatch",
-            "yahoo_btc"
+            "google_gold",
+            "google_stocks",
+            "newsapi_business",
+            "yahoo_spx"
           ],
           "source_count": 6,
-          "publisher": "NPR",
-          "time": "2026-03-14T07:04:21Z",
+          "publisher": "The Wall Street Journal",
+          "time": "2026-03-19T12:39:26Z",
           "verified": true
         },
         {
-          "title": "Stocks Close To Breaking As Oil Soars; Nvidia, Micron Due - Investor's Business Daily",
+          "title": "Oil Rises After Attacks on Middle East Energy Sites; Asian Stocks Fall - WSJ",
           "sources": [
-            "google_crypto",
+            "google_fed",
+            "yahoo_gold",
+            "google_macro",
+            "yahoo_btc",
+            "newsapi_business",
+            "yahoo_spx"
+          ],
+          "source_count": 6,
+          "publisher": "The Wall Street Journal",
+          "time": "2026-03-19T08:05:00Z",
+          "verified": true
+        },
+        {
+          "title": "\u2018Epic Fury\u2019 has already canceled out Big Beautiful Bill\u2019s tax refunds \u2014 even if the Iran war ended today - MarketWatch",
+          "sources": [
             "google_gold",
-            "yahoo_gold",
-            "yahoo_spx",
-            "newsapi_business"
-          ],
-          "source_count": 5,
-          "publisher": "Investor's Business Daily",
-          "time": "2026-03-14T04:11:00Z",
-          "verified": true
-        },
-        {
-          "title": "It's not just oil. Here comes Hormuz inflation. - Politico",
-          "sources": [
-            "google_crypto",
-            "newsapi_business",
             "marketwatch",
-            "yahoo_spx"
-          ],
-          "source_count": 4,
-          "publisher": "Politico",
-          "time": "2026-03-14T11:00:00Z",
-          "verified": true
-        },
-        {
-          "title": "The whole market moves based on fresh assessments of the length of the war - investingLive",
-          "sources": [
-            "google_crypto",
             "newsapi_business",
-            "investing_com",
             "yahoo_spx"
           ],
           "source_count": 4,
-          "publisher": "Investinglive.com",
-          "time": "2026-03-14T02:31:35Z",
+          "publisher": "MarketWatch",
+          "time": "2026-03-19T10:38:00Z",
           "verified": true
         },
         {
-          "title": "Subpoenas against Fed chair Powell tossed in a scathing opinion - Axios",
+          "title": "Scoreboard on every street: Gas heads for $4 per gallon due to Iran war - Axios",
           "sources": [
-            "newsapi_general",
-            "yahoo_gold",
-            "google_fed"
+            "marketwatch",
+            "yahoo_btc",
+            "newsapi_business",
+            "investing_com"
           ],
-          "source_count": 3,
+          "source_count": 4,
           "publisher": "Axios",
-          "time": "2026-03-14T09:33:35Z",
+          "time": "2026-03-19T09:00:19Z",
           "verified": true
         },
         {
-          "title": "A Paramount-Warner Bros. movie slate could rule the 2027 box office, but is it sustainable? - CNBC",
+          "title": "Live updates: Interest rates steady, Federal Reserve forecasts one rate cut in 2026 - Yahoo Finance",
+          "sources": [
+            "google_gold",
+            "google_crypto",
+            "yahoo_btc",
+            "newsapi_business"
+          ],
+          "source_count": 4,
+          "publisher": "Yahoo Entertainment",
+          "time": "2026-03-19T08:00:36Z",
+          "verified": true
+        },
+        {
+          "title": "How the Fed meeting will impact mortgage rates, housing market - thestreet.com",
           "sources": [
             "newsapi_business"
           ],
           "source_count": 1,
-          "publisher": "CNBC",
-          "time": "2026-03-14T11:00:01Z",
+          "publisher": "TheStreet",
+          "time": "2026-03-18T23:03:00Z",
           "verified": false
         },
         {
-          "title": "A Paramount-Warner Bros. movie slate could rule the 2027 box office, but is it sustainable? - CNBC",
+          "title": "The SEC Just Drew a Line in the Crypto Sand: What's a Security and What's Not? - The Motley Fool",
           "sources": [
-            "newsapi_general"
+            "google_crypto"
           ],
           "source_count": 1,
-          "publisher": "CNBC",
-          "time": "2026-03-14T11:00:01Z",
+          "publisher": "google_crypto",
+          "time": "Fri, 20 Mar 2026 13:41:36 GMT",
           "verified": false
         },
         {
-          "title": "Fed to weigh interest rates amid Iran war, potential price increases - USA Today",
+          "title": "Bitcoin long-term holder selling slows, signaling 'potentially constructive' trend: VanEck - The Block",
           "sources": [
-            "google_fed"
+            "google_crypto"
           ],
           "source_count": 1,
-          "publisher": "google_fed",
-          "time": "Sun, 15 Mar 2026 10:05:00 GMT",
+          "publisher": "google_crypto",
+          "time": "Fri, 20 Mar 2026 08:17:25 GMT",
           "verified": false
         }
       ]

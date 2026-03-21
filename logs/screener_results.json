@@ -1,25 +1,70 @@
 {
-  "timestamp": "2026-03-16T03:45:15.420144",
+  "timestamp": "2026-03-20T22:20:37.345080",
   "narratives": [
     "INFLATION_HEDGE",
-    "RISK_OFF"
+    "RISK_OFF",
+    "DEFI_SEASON"
   ],
   "passed": [
     {
       "symbol": "BTC",
       "type": "crypto",
-      "price": 71438,
-      "mcap": 1428404466889,
-      "vol": 23561632816,
+      "price": 69696,
+      "mcap": 1397137230370,
+      "vol": 40800740588,
       "manip_score": 0,
       "flags": [],
       "status": "PASS",
       "alloc": 68.25
     },
     {
+      "symbol": "ETH",
+      "type": "crypto",
+      "price": 2122.85,
+      "mcap": 256594219065,
+      "vol": 20174589505,
+      "manip_score": 0,
+      "flags": [],
+      "status": "PASS",
+      "alloc": 68.25
+    },
+    {
+      "symbol": "BNB",
+      "type": "crypto",
+      "price": 637.88,
+      "mcap": 87103934700,
+      "vol": 1043627636,
+      "manip_score": 0,
+      "flags": [],
+      "status": "PASS",
+      "alloc": 68.25
+    },
+    {
+      "symbol": "STX",
+      "type": "crypto",
+      "price": 0.245586,
+      "mcap": 452065399,
+      "vol": 9595764,
+      "manip_score": 0,
+      "flags": [],
+      "status": "PASS",
+      "alloc": 52.0
+    },
+    {
+      "symbol": "SEI",
+      "type": "crypto",
+      "price": 0.063327,
+      "mcap": 426616925,
+      "vol": 26301148,
+      "manip_score": 0,
+      "flags": [],
+      "status": "PASS",
+      "alloc": 52.0
+    },
+    {
       "symbol": "SPY",
       "type": "stock",
-      "price": 662.29,
+      "price": 651.88,
       "mcap": 50000000000,
       "manip_score": 0,
       "flags": [
@@ -31,7 +76,7 @@
     {
       "symbol": "GLD",
       "type": "stock",
-      "price": 460.84,
+      "price": 419.94,
       "mcap": 50000000000,
       "manip_score": 0,
       "flags": [
@@ -43,7 +88,7 @@
     {
       "symbol": "SLV",
       "type": "stock",
-      "price": 72.69,
+      "price": NaN,
       "mcap": 50000000000,
       "manip_score": 0,
       "flags": [
@@ -55,7 +100,7 @@
     {
       "symbol": "USO",
       "type": "stock",
-      "price": 119.89,
+      "price": NaN,
       "mcap": 50000000000,
       "manip_score": 0,
       "flags": [
@@ -67,8 +112,8 @@
     {
       "symbol": "RXRX",
       "type": "stock",
-      "price": 3.42,
-      "mcap": 1806451940.4986382,
+      "price": 3.36,
+      "mcap": 1777400778.1873298,
       "manip_score": 0,
       "flags": [],
       "status": "PASS",
