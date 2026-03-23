@@ -3,6 +3,7 @@ from datetime import datetime
 from collections import Counter
 import ccxt
 import pandas as pd
+from core.self_improvement import run_weekly_improvement
 
 sys.path.insert(0, os.getcwd())
 from dotenv import load_dotenv
