@@ -1,15 +1,41 @@
 {
-  "balance": 650.0,
-  "trades": [],
-  "positions": {
-    "BTC/USDT": {
+  "balance": 650.5101057867403,
+  "trades": [
+    {
       "entry_price": 70566.5,
       "qty": 0.004959860557063196,
       "amount": 350.0,
       "time": "2026-03-14 17:51",
       "narrative": "INFLATION_HEDGE",
       "tp_pct": 25,
+      "sl_pct": 10,
+      "asset": "BTC/USDT",
+      "exit_price": 70725.8,
+      "pnl": 0.79,
+      "exit_time": "2026-03-24 06:56"
+    },
+    {
+      "entry_price": 62.47,
+      "qty": 0.4338816670580147,
+      "amount": 27.104587741114177,
+      "time": "2026-03-24 11:53",
+      "asset": "SLV",
+      "exit_price": 62.47,
+      "pnl": 0.0,
+      "exit_time": "2026-03-24 11:53",
+      "exit_reason": "ROTATION"
+    }
+  ],
+  "positions": {
+    "BTC/USDT": {
+      "entry_price": 70725.8,
+      "qty": 0.004952648114266646,
+      "amount": 350.28,
+      "time": "2026-03-24 06:56",
+      "narrative": "INFLATION_HEDGE",
+      "tp_pct": 25,
       "sl_pct": 10
     }
-  }
+  },
+  "last_improvement": 1774260332.7361932
 }
