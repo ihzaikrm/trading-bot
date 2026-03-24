@@ -1,14 +1,100 @@
 ﻿# core/signal_engine.py
-import json, re
+import json
+import re
+import os
 import pandas as pd
 import numpy as np
 from collections import Counter
 from datetime import datetime
+
 from .llm_clients import call_all_llms
 from .llm_performance import get_weights, add_prediction
 from .news_sentiment import get_news_sentiment, get_fear_greed
 from config.trading_params import USE_NEWS_SENTIMENT, USE_FEAR_GREED
 from core.alternative_data import get_alt_data_for_prompt
+
+
+# ----------------------------------------------------------------------
+# Helper untuk konteks dinamis
+# ----------------------------------------------------------------------
+
+def _load_filter_context(asset_name):
+    """Ambil status filter (DXY, momentum, SMC) dan narasi dominan dari file JSON."""
+    base_dir = os.path.dirname(os.path.dirname(__file__))
+    filter_path = os.path.join(base_dir, 'logs', 'filter_status.json')
+    narrative_path = os.path.join(base_dir, 'logs', 'narrative_state.json')
+
+    context_lines = []
+
+    # Filter status
+    if os.path.exists(filter_path):
+        try:
+            with open(filter_path, 'r') as f:
+                filters = json.load(f)
+            dxy = filters.get('dxy', {})
+            momentum = filters.get('momentum', {})
+            smc = filters.get('smc', {})
+
+            if dxy.get('signal'):
+                context_lines.append(f"DXY: {dxy['signal']} (conf {dxy.get('confidence',0)}) – {_dxy_impact(dxy['signal'])}")
+            if momentum.get('signal'):
+                context_lines.append(f"Momentum: {momentum['signal']} (conf {momentum.get('confidence',0)}) – {_momentum_impact(momentum['signal'])}")
+            if smc.get('bias'):
+                context_lines.append(f"SMC Bias: {smc['bias']} – order block & liquidity levels")
+        except:
+            pass
+
+    # Narrative state
+    if os.path.exists(narrative_path):
+        try:
+            with open(narrative_path, 'r') as f:
+                narrative = json.load(f)
+
+            # Active narratives (top 3)
+            active = narrative.get('active_narratives', [])
+            if active:
+                top = ', '.join([f"{n[0]} ({n[1]})" for n in active[:3]])
+                context_lines.append(f"Narasi aktif: {top}")
+
+            # Apakah aset ini terpilih dalam selected_assets?
+            selected = narrative.get('selected_assets', [])
+            for asset in selected:
+                if asset.get('symbol') == asset_name:
+                    context_lines.append(
+                        f"  → {asset_name} terpilih untuk narasi {asset.get('narrative')} (skor {asset.get('score')}) "
+                        f"dengan TP {asset.get('tp_pct')}% / SL {asset.get('sl_pct')}%"
+                    )
+                    break
+
+            # Alokasi portofolio
+            alloc = narrative.get('allocation', {})
+            if alloc:
+                alloc_str = ', '.join([f"{k}: {v}%" for k, v in alloc.items()])
+                context_lines.append(f"Alokasi portofolio: {alloc_str}")
+
+        except:
+            pass
+
+    if context_lines:
+        return "\n".join(context_lines)
+    return ""
+
+
+def _dxy_impact(signal):
+    if signal == "BULLISH":
+        return "USD menguat → tekanan untuk risk assets (crypto, saham)"
+    elif signal == "BEARISH":
+        return "USD melemah → mendukung risk assets"
+    return "netral"
+
+
+def _momentum_impact(signal):
+    if signal == "BULLISH":
+        return "momentum positif → cenderung bullish"
+    elif signal == "BEARISH":
+        return "momentum negatif → cenderung bearish"
+    return "netral"
+
 
 # ----------------------------------------------------------------------
 # Strategi final per aset
@@ -34,6 +120,7 @@ def _sig_btc_vol_tsmom(ind, closes, volumes):
     if score >= 4:
         return "BUY"
     return "HOLD"
+
 
 def _sig_gold_smart_hold(ind, closes, date=None):
     if len(closes) < 200:
@@ -64,6 +151,7 @@ def _sig_gold_smart_hold(ind, closes, date=None):
         return "BUY"
     return "HOLD"
 
+
 def _sig_spx_monthly_seasonal(ind, closes, date):
     if len(closes) < 21:
         return "HOLD"
@@ -82,11 +170,13 @@ def _sig_spx_monthly_seasonal(ind, closes, date):
         return "BUY"
     return "HOLD"
 
+
 ASSET_STRATEGY_MAP = {
     "BTC/USDT": _sig_btc_vol_tsmom,
     "GC=F":     _sig_gold_smart_hold,
     "^GSPC":    _sig_spx_monthly_seasonal,
 }
+
 
 def get_strategy_status_text():
     from config.assets import ASSETS
@@ -102,6 +192,7 @@ def get_strategy_status_text():
         else:
             lines.append(f"{name} → Rule-based fallback")
     return "\n".join(lines)
+
 
 def mtf_bias(data):
     scores = []
@@ -130,6 +221,7 @@ def mtf_bias(data):
     elif avg <= -0.5: return "BEAR"
     else: return "NEUTRAL"
 
+
 def rule_based_signal_v2(asset_name, ind, closes, volumes, date):
     from config.assets import ASSETS
     symbol = None
@@ -155,6 +247,7 @@ def rule_based_signal_v2(asset_name, ind, closes, volumes, date):
             return "SHORT", 0.6
         else:
             return "HOLD", 0.5
+
 
 async def get_signal(asset_name, data, timestamp, perf, closes=None, volumes=None):
     price = data["price"]
@@ -183,13 +276,18 @@ async def get_signal(asset_name, data, timestamp, perf, closes=None, volumes=Non
             )
 
     bias = mtf_bias(data)
+    print(f"DEBUG: get_signal dipanggil untuk {asset_name}, bias={bias}")
 
     # D4: Skip LLM jika MTF NEUTRAL
-    if bias == "NEUTRAL":
+    if False and bias == "NEUTRAL":
         fallback_signal, fallback_conf = rule_based_signal_v2(
             asset_name, data.get("1d", {}), closes, volumes, date_str
         )
         return fallback_signal, fallback_conf, 0, ["D4: MTF NEUTRAL - rule-based only"], bias
+
+    # Ambil konteks dinamis dari filter & narasi
+    dynamic_context = _load_filter_context(asset_name)
+
     extra_info = ""
     # H5: Alternative data
     alt_data = get_alt_data_for_prompt(asset_name)
@@ -200,19 +298,27 @@ async def get_signal(asset_name, data, timestamp, perf, closes=None, volumes=Non
     if fng:
         extra_info += f"\nFear & Greed Index: {fng['value']} - {fng['classification']}"
 
+    # Build prompt dengan konteks dinamis
     prompt = (
         f"{asset_name} | Harga: {price} | 24h: {change}%\n"
         f"MTF Bias: {bias}{extra_info}\n"
-        + "\n".join(tf_lines) + "\n\n"
-        'Balas JSON: {"signal":"BUY/SELL/SHORT/COVER/HOLD","confidence":0.5,"reason":"singkat"}\n'
-        "BUY=buka long, SELL=tutup long, SHORT=buka short, COVER=tutup short, HOLD=tidak ada aksi"
+    )
+    if dynamic_context:
+        prompt += f"\n[Konteks Tambahan]\n{dynamic_context}\n"
+    prompt += (
+        "\n".join(tf_lines) + "\n\n"
+        "Balas JSON: {\"signal\":\"BUY/SELL/SHORT/COVER/HOLD\",\"confidence\":0.5,\"reason\":\"singkat\"}\n"
+        "BUY=buka long, SELL=tutup long, SHORT=buka short, COVER=tutup short, HOLD=tidak ada aksi\n"
+        "Pertimbangkan konteks tambahan dalam analisis Anda."
     )
 
     results = await call_all_llms(
-        "Analis trading profesional multi-timeframe. Gunakan bias MTF dan sentimen untuk keputusan. Balas JSON saja.", prompt)
+        "Analis trading profesional multi-timeframe. Gunakan bias MTF dan sentimen untuk keputusan. Balas JSON saja.",
+        prompt
+    )
 
     weights = get_weights(perf)
-    score = {"BUY":0, "SELL":0, "SHORT":0, "COVER":0, "HOLD":0}
+    score = {"BUY": 0, "SELL": 0, "SHORT": 0, "COVER": 0, "HOLD": 0}
     details = []
     for llm, (ok, resp) in results.items():
         if ok:
@@ -224,13 +330,15 @@ async def get_signal(asset_name, data, timestamp, perf, closes=None, volumes=Non
                     weight = weights.get(llm, 0.1)
                     score[sig] += weight * conf
                     details.append(f"{llm}: {sig} ({round(conf*100)}%)")
-                    if sig in ["BUY","SHORT"]:
+                    if sig in ["BUY", "SHORT"]:
                         add_prediction(asset_name, timestamp, price, llm, sig, conf)
             except:
                 pass
 
     if not details:
-        fallback_signal, fallback_conf = rule_based_signal_v2(asset_name, data.get("1d", {}), closes, volumes, date_str)
+        fallback_signal, fallback_conf = rule_based_signal_v2(
+            asset_name, data.get("1d", {}), closes, volumes, date_str
+        )
         return fallback_signal, fallback_conf, 0, ["Fallback: strategi final"], bias
 
     best_signal = max(score.items(), key=lambda x: x[1])[0]

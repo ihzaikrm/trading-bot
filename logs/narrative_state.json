@@ -1,19 +1,19 @@
 {
   "active_narratives": [
     [
-      "RISK_OFF",
-      4
-    ],
-    [
-      "EMERGING_TECH",
-      4
-    ],
-    [
       "INFLATION_HEDGE",
-      2
+      16
+    ],
+    [
+      "RISK_OFF",
+      13
+    ],
+    [
+      "CRYPTO_BULL",
+      5
     ]
   ],
-  "last_scan": "2026-03-20 22:21",
+  "last_scan": "2026-03-24 12:00",
   "history": [
     {
       "time": "2026-03-14 08:57",
@@ -188,34 +188,96 @@
         "INFLATION_HEDGE"
       ],
       "risk": "moderate"
+    },
+    {
+      "time": "2026-03-23 18:05",
+      "narratives": [
+        "INFLATION_HEDGE",
+        "AI_TECH",
+        "RISK_OFF"
+      ],
+      "risk": "moderate"
+    },
+    {
+      "time": "2026-03-23 19:35",
+      "narratives": [
+        "INFLATION_HEDGE",
+        "RISK_OFF",
+        "CRYPTO_BULL"
+      ],
+      "risk": "moderate"
+    },
+    {
+      "time": "2026-03-24 02:36",
+      "narratives": [
+        "RISK_OFF",
+        "INFLATION_HEDGE"
+      ],
+      "risk": "moderate"
+    },
+    {
+      "time": "2026-03-24 02:42",
+      "narratives": [
+        "RISK_OFF",
+        "INFLATION_HEDGE"
+      ],
+      "risk": "moderate"
+    },
+    {
+      "time": "2026-03-24 03:01",
+      "narratives": [
+        "INFLATION_HEDGE",
+        "RISK_OFF"
+      ],
+      "risk": "moderate"
+    },
+    {
+      "time": "2026-03-24 06:42",
+      "narratives": [
+        "RISK_OFF",
+        "AI_TECH",
+        "CRYPTO_BULL"
+      ],
+      "risk": "moderate"
+    },
+    {
+      "time": "2026-03-24 06:53",
+      "narratives": [
+        "RISK_OFF",
+        "AI_TECH",
+        "CRYPTO_BULL"
+      ],
+      "risk": "moderate"
+    },
+    {
+      "time": "2026-03-24 07:00",
+      "narratives": [
+        "INFLATION_HEDGE",
+        "RISK_OFF",
+        "CRYPTO_BULL"
+      ],
+      "risk": "moderate"
+    },
+    {
+      "time": "2026-03-24 12:00",
+      "narratives": [
+        "INFLATION_HEDGE",
+        "RISK_OFF",
+        "CRYPTO_BULL"
+      ],
+      "risk": "moderate"
     }
   ],
   "risk_profile": "moderate",
-  "rotation_urgency": "low",
+  "rotation_urgency": "high",
   "selected_assets": [
     {
       "symbol": "GC=F",
-      "narrative": "RISK_OFF",
+      "narrative": "INFLATION_HEDGE",
       "category": "commodities",
-      "tp_pct": 15,
-      "sl_pct": 8,
-      "score": 4
-    },
-    {
-      "symbol": "TSLA",
-      "narrative": "EMERGING_TECH",
-      "category": "stocks",
-      "tp_pct": 35,
-      "sl_pct": 15,
-      "score": 4
-    },
-    {
-      "symbol": "ENPH",
-      "narrative": "EMERGING_TECH",
-      "category": "stocks",
-      "tp_pct": 35,
-      "sl_pct": 15,
-      "score": 4
+      "tp_pct": 25,
+      "sl_pct": 10,
+      "score": 16
     },
     {
       "symbol": "CL=F",
@@ -223,7 +285,7 @@
       "category": "commodities",
       "tp_pct": 25,
       "sl_pct": 10,
-      "score": 2
+      "score": 16
     },
     {
       "symbol": "BTC/USDT",
@@ -231,7 +293,23 @@
       "category": "crypto",
       "tp_pct": 25,
       "sl_pct": 10,
-      "score": 2
+      "score": 16
+    },
+    {
+      "symbol": "GLD",
+      "narrative": "INFLATION_HEDGE",
+      "category": "stocks",
+      "tp_pct": 25,
+      "sl_pct": 10,
+      "score": 16
+    },
+    {
+      "symbol": "SLV",
+      "narrative": "INFLATION_HEDGE",
+      "category": "stocks",
+      "tp_pct": 25,
+      "sl_pct": 10,
+      "score": 16
     }
   ],
   "allocation": {
@@ -240,5 +318,5 @@
     "commodities": 15,
     "cash": 15
   },
-  "rotation_needed": false
+  "rotation_needed": true
 }

@@ -1,123 +1,123 @@
 {
-  "timestamp": "2026-03-20T22:20:37.345080",
+  "timestamp": "2026-03-24T11:56:06.858482",
   "narratives": [
     "INFLATION_HEDGE",
     "RISK_OFF",
-    "DEFI_SEASON"
+    "CRYPTO_BULL"
   ],
   "passed": [
     {
       "symbol": "BTC",
       "type": "crypto",
-      "price": 69696,
-      "mcap": 1397137230370,
-      "vol": 40800740588,
+      "price": 70510,
+      "mcap": 1409367741234,
+      "vol": 51770499399,
       "manip_score": 0,
       "flags": [],
       "status": "PASS",
-      "alloc": 68.25
+      "alloc": 68.3
     },
     {
       "symbol": "ETH",
       "type": "crypto",
-      "price": 2122.85,
-      "mcap": 256594219065,
-      "vol": 20174589505,
+      "price": 2140.08,
+      "mcap": 258128835151,
+      "vol": 28057591249,
       "manip_score": 0,
       "flags": [],
       "status": "PASS",
-      "alloc": 68.25
+      "alloc": 68.3
     },
     {
       "symbol": "BNB",
       "type": "crypto",
-      "price": 637.88,
-      "mcap": 87103934700,
-      "vol": 1043627636,
+      "price": 632.8,
+      "mcap": 86233483782,
+      "vol": 1661147433,
       "manip_score": 0,
       "flags": [],
       "status": "PASS",
-      "alloc": 68.25
+      "alloc": 68.3
+    },
+    {
+      "symbol": "SOL",
+      "type": "crypto",
+      "price": 90.1,
+      "mcap": 51519085395,
+      "vol": 5288441240,
+      "manip_score": 0,
+      "flags": [],
+      "status": "PASS",
+      "alloc": 68.3
     },
     {
       "symbol": "STX",
       "type": "crypto",
-      "price": 0.245586,
-      "mcap": 452065399,
-      "vol": 9595764,
+      "price": 0.24134,
+      "mcap": 443201820,
+      "vol": 15009984,
       "manip_score": 0,
       "flags": [],
       "status": "PASS",
-      "alloc": 52.0
-    },
-    {
-      "symbol": "SEI",
-      "type": "crypto",
-      "price": 0.063327,
-      "mcap": 426616925,
-      "vol": 26301148,
-      "manip_score": 0,
-      "flags": [],
-      "status": "PASS",
-      "alloc": 52.0
+      "alloc": 52.04
     },
     {
       "symbol": "SPY",
       "type": "stock",
-      "price": 651.88,
+      "price": 655.38,
       "mcap": 50000000000,
       "manip_score": 0,
       "flags": [
         "ETF whitelisted"
       ],
       "status": "PASS",
-      "alloc": 68.25
+      "alloc": 68.3
     },
     {
       "symbol": "GLD",
       "type": "stock",
-      "price": 419.94,
+      "price": 404.04,
       "mcap": 50000000000,
       "manip_score": 0,
       "flags": [
         "ETF whitelisted"
       ],
       "status": "PASS",
-      "alloc": 68.25
+      "alloc": 68.3
     },
     {
       "symbol": "SLV",
       "type": "stock",
-      "price": NaN,
+      "price": 62.47,
       "mcap": 50000000000,
       "manip_score": 0,
       "flags": [
         "ETF whitelisted"
       ],
       "status": "PASS",
-      "alloc": 68.25
+      "alloc": 68.3
     },
     {
       "symbol": "USO",
       "type": "stock",
-      "price": NaN,
+      "price": 110.56,
       "mcap": 50000000000,
       "manip_score": 0,
       "flags": [
         "ETF whitelisted"
       ],
       "status": "PASS",
-      "alloc": 68.25
+      "alloc": 68.3
     },
     {
       "symbol": "RXRX",
       "type": "stock",
-      "price": 3.36,
-      "mcap": 1777400778.1873298,
+      "price": 3.23,
+      "mcap": 1706093471.3746595,
       "manip_score": 0,
       "flags": [],
       "status": "PASS",
-      "alloc": 52.0
+      "alloc": 52.04
     }
   ],
   "rejected": []
