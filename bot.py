@@ -31,6 +31,20 @@ ASSETS = {
     "SPX":      {"type": "stock",  "symbol": "^GSPC",    "name": "S&P 500"},
 }
 
+def _dxy_impact(signal):
+    if signal == "BULLISH":
+        return "USD menguat → tekanan untuk risk assets (crypto, saham)"
+    elif signal == "BEARISH":
+        return "USD melemah → mendukung risk assets"
+    return "netral"
+
+def _momentum_impact(signal):
+    if signal == "BULLISH":
+        return "momentum positif → cenderung bullish"
+    elif signal == "BEARISH":
+        return "momentum negatif → cenderung bearish"
+    return "netral"
+
 def tg(msg):
     try:
         requests.post(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
@@ -113,17 +127,75 @@ def filter_news_for_asset(news_results, asset_name):
     relevant.sort(key=lambda x: x["weight"], reverse=True)
     return relevant[:5]
 
-async def get_signal_weighted(name, price, change, rsi, macd_hist, macd_cross, news_text, smc_text='', delta_text=''):
+async def get_signal_weighted(name, price, change, rsi, macd_hist, macd_cross, news_text, smc_text='', delta_text='', orderflow_text=''):
     weights = get_current_weights()
+
+    # --- Initial prompt without context yet ---
     prompt = (name+" | Harga: "+str(price)+" | 24h: "+str(change)+"%\n"
              "RSI: "+str(rsi)+" | MACD: "+str(macd_hist)+" ("+macd_cross+")\n\n"
              +news_text+"\n\n"
              +smc_text+"\n\n"
              +delta_text+"\n\n"
-             "Pertimbangkan data teknikal DAN berita di atas.\n"
-             'Balas JSON: {"signal":"BUY/SELL/HOLD","confidence":0.0-1.0,"reason":"max 10 kata"}')
+             +orderflow_text+"\n\n")
+
+    # --- Add dynamic context (DXY, momentum, narratives) ---
+    try:
+        import json, os
+        filter_path = "logs/filter_status.json"
+        narrative_path = "logs/narrative_state.json"
+        context_lines = []
+
+        # Filter status
+        if os.path.exists(filter_path):
+            with open(filter_path) as f:
+                filters = json.load(f)
+            dxy = filters.get('dxy', {})
+            if dxy.get('signal'):
+                context_lines.append(f"DXY: {dxy['signal']} – {_dxy_impact(dxy['signal'])}")
+            mom = filters.get('momentum', {})
+            if mom.get('signal'):
+                context_lines.append(f"Momentum: {mom['signal']} – {_momentum_impact(mom['signal'])}")
+
+        # Narrative state
+        if os.path.exists(narrative_path):
+            with open(narrative_path) as f:
+                narrative = json.load(f)
+            active = narrative.get('active_narratives', [])
+            if active:
+                top = ', '.join([f"{n[0]} ({n[1]})" for n in active[:3]])
+                context_lines.append(f"Narasi aktif: {top}")
+            selected = narrative.get('selected_assets', [])
+            for asset in selected:
+                if asset.get('symbol') == name:  # name is "Bitcoin", "Gold", etc.
+                    context_lines.append(f"  → {name} terpilih untuk narasi {asset.get('narrative')} (skor {asset.get('score')}) dengan TP {asset.get('tp_pct')}% / SL {asset.get('sl_pct')}%")
+                    break
+            alloc = narrative.get('allocation', {})
+            if alloc:
+                alloc_str = ', '.join([f"{k}: {v}%" for k, v in alloc.items()])
+                context_lines.append(f"Alokasi portofolio: {alloc_str}")
+
+        if context_lines:
+            prompt += "\n[Konteks Tambahan]\n" + "\n".join(context_lines) + "\n"
+    except Exception as e:
+        print(f"  Gagal tambah konteks: {e}")
+
+    # --- Final instruction ---
+    prompt += ("Pertimbangkan data teknikal DAN berita di atas.\n"
+               'Balas JSON: {"signal":"BUY/SELL/HOLD","confidence":0.0-1.0,"reason":"max 10 kata"}')
+
+    # --- Debug print (optional) ---
+    print("\n=== PROMPT UNTUK", name, "===")
+    print(prompt)
+    print("====================\n")
+
+    # --- Call LLMs ---
     results = await call_all_llms("Analis trading profesional. Balas JSON saja.", prompt)
 
+    print("RAW LLM RESPONSES:")
+    for llm, (ok, resp) in results.items():
+        print(f"{llm}: {resp[:200]}...")
+
+    # --- Parse results ---
     weighted_votes = {"BUY": 0.0, "SELL": 0.0, "HOLD": 0.0}
     details = []
     llm_signals = {}
@@ -140,7 +212,8 @@ async def get_signal_weighted(name, price, change, rsi, macd_hist, macd_cross, n
                 weighted_votes[sig] += conf * w
                 llm_signals[llm] = sig
                 details.append(llm+"("+str(round(w*100))+"%) → "+sig+" ("+str(round(conf*100))+"%)")
-            except: pass
+            except:
+                pass
 
     final_signal = max(weighted_votes, key=weighted_votes.get)
     total_weight = sum(weighted_votes.values())
@@ -249,6 +322,9 @@ async def main():
     summary = []
     current_prices = {}
 
+    # Global variable for order flow analyzer (persistent across loop)
+    _orderflow_analyzer = None
+
     print("\n[2] Analisa aset...")
     for name, info in ACTIVE_ASSETS.items():
         result = get_asset_data(name, info)
@@ -279,7 +355,7 @@ async def main():
         if info.get('type') == 'crypto':
             mom_sig, mom_det = get_momentum_signal(info['symbol'].split('/')[0])
             print(f'  [MomentumFilter] {mom_sig} | {mom_det}')
-            if mom_sig == 'BEARISH':
+            if mom_sig == 'BEARISH':   # <--- aktifkan kembali
                 print(f'  -> SKIP LLM (Momentum BEARISH)')
                 summary.append(name+': HOLD (momentum filter)')
                 continue
@@ -288,6 +364,8 @@ async def main():
 
         smc_text = ''
         delta_text = ''
+        orderflow_text = ''  # new
+
         if info.get('type') == 'crypto':
             sym = info['symbol'].split('/')[0]
             smc_text = get_smc_context(sym)
@@ -298,8 +376,25 @@ async def main():
             smc_text = ''
             delta_text = ''
 
+        # --- ORDER FLOW ANALYSIS for BTC/USDT ---
+        if name == "BTC/USDT":
+            try:
+                from core.orderflow_analyzer import OrderFlowAnalyzer
+                # Reuse analyzer instance
+                if _orderflow_analyzer is None:
+                    _orderflow_analyzer = OrderFlowAnalyzer(symbol=name)
+                of = _orderflow_analyzer
+                imbalance = await of.fetch_orderbook()
+                print(f"  Order Flow Imbalance: {imbalance:.3f}")
+                orderflow_text = f"ORDER FLOW:\nImbalance: {imbalance:.3f} (positif = tekanan beli)\nBid depth: {sum(of.bids.values()):.2f}\nAsk depth: {sum(of.asks.values()):.2f}"
+            except Exception as e:
+                print(f"  Order flow error: {e}")
+                orderflow_text = "ORDER FLOW: data tidak tersedia"
+
+        # GET SIGNAL (now with orderflow_text)
         signal, conf, wvotes, details, llm_signals = await get_signal_weighted(
-            info["name"], price, change, rsi, macd_hist, macd_cross, news_text, smc_text=smc_text, delta_text=delta_text)
+            info["name"], price, change, rsi, macd_hist, macd_cross, news_text,
+            smc_text=smc_text, delta_text=delta_text, orderflow_text=orderflow_text)
         print(f"  -> {signal} conf:{conf}")
         summary.append(name+": "+signal+" ("+str(conf)+")")
 
@@ -446,6 +541,18 @@ async def main():
     except Exception as e:
         print(f"  Could not save filter_status: {e}")
 
+    # --- SELF-IMPROVEMENT LOOP (mingguan) ---
+    # Check if 7 days have passed since last improvement
+    last_improvement = data.get("last_improvement", 0)
+    import time
+    if time.time() - last_improvement > 7 * 24 * 3600:
+        print("\n🔁 Running weekly self‑improvement...")
+        try:
+            run_weekly_improvement()
+            data["last_improvement"] = time.time()
+        except Exception as e:
+            print(f"  Self‑improvement error: {e}")
+    # Save updated data (including last_improvement)
     data["positions"] = positions
     save_trades(data)
 
