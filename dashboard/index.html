@@ -918,7 +918,7 @@ async function loadAll() {
   document.getElementById('dataStatus').textContent = 'refreshing...';
   try {
     const [T, N, L, NEWS, prices, candles, fg] = await Promise.allSettled([
-      fetchJSON(RAW + 'paper_trades.json'),
+      fetchJSON(RAW + 'logs/paper_trades.json'),
       fetchJSON(RAW + 'narrative_state.json'),
       fetchJSON(RAW + 'llm_performance.json'),
       fetchJSON(RAW + 'news_cache.json'),
