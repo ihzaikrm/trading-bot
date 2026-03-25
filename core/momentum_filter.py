@@ -86,12 +86,22 @@ def get_momentum_signal(symbol="BTC"):
             "price": closes[i]
         }
 
+        # BULLISH condition unchanged
         if in_uptrend and rsi_zone and macd_bull and delta_bull:
             return "BULLISH", details
-        elif macd_bear and delta_bear:
+        
+        # BEARISH conditions expanded
+        bearish_conditions = [
+            macd_bear and delta_bear,                         # original condition
+            r > 70 and not in_uptrend,                        # overbought in downtrend
+            not in_uptrend and macd_bear,                     # death cross not required but macd bearish
+            delta_bear and not in_uptrend,                    # selling pressure in downtrend
+        ]
+        if any(bearish_conditions):
             return "BEARISH", details
-        else:
-            return "NEUTRAL", details
+        
+        # NEUTRAL otherwise
+        return "NEUTRAL", details
 
     except Exception as e:
         return "NEUTRAL", {"error": str(e)}

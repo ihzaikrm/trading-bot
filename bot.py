@@ -27,8 +27,12 @@ PAPER_FILE = "logs/paper_trades.json"
 
 ASSETS = {
     "BTC/USDT": {"type": "crypto", "symbol": "BTC/USDT", "name": "Bitcoin"},
+    "ETH/USDT": {"type": "crypto", "symbol": "ETH/USDT", "name": "Ethereum"},
+    "SOL/USDT": {"type": "crypto", "symbol": "SOL/USDT", "name": "Solana"},
     "XAUUSD":   {"type": "stock",  "symbol": "GC=F",     "name": "Gold"},
     "SPX":      {"type": "stock",  "symbol": "^GSPC",    "name": "S&P 500"},
+    "QQQ":      {"type": "stock",  "symbol": "QQQ",      "name": "NASDAQ ETF"},
+    "SLV":      {"type": "stock",  "symbol": "SLV",      "name": "Silver ETF"},
 }
 
 def _dxy_impact(signal):
@@ -62,6 +66,25 @@ def save_trades(data):
     os.makedirs("logs", exist_ok=True)
     with open(PAPER_FILE, "w") as f:
         json.dump(data, f, indent=2)
+
+def push_logs_to_github():
+    """Commit and push logs to GitHub for dashboard synchronization."""
+    try:
+        import subprocess, os
+        repo_root = os.path.dirname(os.path.abspath(__file__))
+        os.chdir(repo_root)
+        subprocess.run(["git", "add", "logs/"], check=False, capture_output=True)
+        commit_result = subprocess.run(
+            ["git", "commit", "-m", "bot: update logs"],
+            check=False, capture_output=True, text=True
+        )
+        if commit_result.returncode == 0:
+            subprocess.run(["git", "push"], check=False, capture_output=True)
+            print("[Git] Logs pushed to GitHub.")
+        else:
+            print("[Git] No changes to commit.")
+    except Exception as e:
+        print(f"[Git] Error pushing logs: {e}")
 
 def calc_indicators(closes):
     s = pd.Series(closes)
@@ -322,8 +345,8 @@ async def main():
     summary = []
     current_prices = {}
 
-    # Global variable for order flow analyzer (persistent across loop)
-    _orderflow_analyzer = None
+    # Global dictionary for order flow analyzers (persistent across loop)
+    _orderflow_analyzers = {}
 
     print("\n[2] Analisa aset...")
     for name, info in ACTIVE_ASSETS.items():
@@ -352,13 +375,14 @@ async def main():
             dxy_penalty = 0.0
 
         # MOMENTUM PRE-FILTER (Strategy E)
+        momentum_penalty = 0.0
         if info.get('type') == 'crypto':
             mom_sig, mom_det = get_momentum_signal(info['symbol'].split('/')[0])
             print(f'  [MomentumFilter] {mom_sig} | {mom_det}')
-            if mom_sig == 'BEARISH':   # <--- aktifkan kembali
-                print(f'  -> SKIP LLM (Momentum BEARISH)')
-                summary.append(name+': HOLD (momentum filter)')
-                continue
+            if mom_sig == 'BEARISH':
+                print(f'  -> Momentum BEARISH, applying confidence penalty (0.3)')
+                momentum_penalty = 0.3  # reduce confidence by 30%
+                # continue removed to allow LLM processing for potential short signals
         else:
             mom_sig = 'NEUTRAL'
 
@@ -376,17 +400,21 @@ async def main():
             smc_text = ''
             delta_text = ''
 
-        # --- ORDER FLOW ANALYSIS for BTC/USDT ---
-        if name == "BTC/USDT":
+        # --- ORDER FLOW ANALYSIS for crypto assets ---
+        orderflow_modifier = 1.0
+        if info.get('type') == 'crypto':
             try:
                 from core.orderflow_analyzer import OrderFlowAnalyzer
-                # Reuse analyzer instance
-                if _orderflow_analyzer is None:
-                    _orderflow_analyzer = OrderFlowAnalyzer(symbol=name)
-                of = _orderflow_analyzer
-                imbalance = await of.fetch_orderbook()
-                print(f"  Order Flow Imbalance: {imbalance:.3f}")
-                orderflow_text = f"ORDER FLOW:\nImbalance: {imbalance:.3f} (positif = tekanan beli)\nBid depth: {sum(of.bids.values()):.2f}\nAsk depth: {sum(of.asks.values()):.2f}"
+                # Reuse analyzer instances across symbols
+                if name not in _orderflow_analyzers:
+                    _orderflow_analyzers[name] = OrderFlowAnalyzer(symbol=name)
+                of = _orderflow_analyzers[name]
+                summary_data = await of.get_orderflow_summary()
+                orderflow_text = of.get_orderflow_text(summary_data)
+                orderflow_modifier = await of.get_confidence_modifier(summary_data)
+                print(f"  Order Flow Imbalance: {summary_data['imbalance']:.3f}")
+                print(f"  Cumulative Delta: ${summary_data['cumulative_delta']['delta']:.2f}")
+                print(f"  Order Flow Confidence Modifier: {orderflow_modifier:.3f}")
             except Exception as e:
                 print(f"  Order flow error: {e}")
                 orderflow_text = "ORDER FLOW: data tidak tersedia"
@@ -396,6 +424,11 @@ async def main():
             info["name"], price, change, rsi, macd_hist, macd_cross, news_text,
             smc_text=smc_text, delta_text=delta_text, orderflow_text=orderflow_text)
         print(f"  -> {signal} conf:{conf}")
+        # Apply order flow confidence modifier
+        conf = conf * orderflow_modifier
+        # Apply momentum penalty (reduce confidence for bearish momentum)
+        conf = conf * (1 - momentum_penalty)
+        print(f"  Adjusted confidence: {conf:.3f} (modifier: {orderflow_modifier:.3f}, momentum penalty: {momentum_penalty})")
         summary.append(name+": "+signal+" ("+str(conf)+")")
 
         pos = positions.get(name)
@@ -555,6 +588,7 @@ async def main():
     # Save updated data (including last_improvement)
     data["positions"] = positions
     save_trades(data)
+    push_logs_to_github()
 
     # Leaderboard
     board = get_leaderboard()

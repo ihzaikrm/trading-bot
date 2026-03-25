@@ -1,1 +1,1 @@
-{"timestamp": "2026-03-21T10:11:09.865097", "data": {"market_data": {"BTC/USDT": 70000, "XAUUSD": 2180}}}
+{"timestamp": "2026-03-21T10:26:22.424386", "data": {"momentum": {"signal": "NEUTRAL", "details": {"rsi": 49.9, "ema50_gt_200": false, "delta_bullish": false, "macd_cross": "NONE", "price": 70504.27}}, "dxy": {"signal": "NEUTRAL", "details": {"dxy": 99.5, "ma10": 99.55, "ma20": 98.93, "chg5d": "-0.85%", "trend": "SIDEWAYS"}}}}

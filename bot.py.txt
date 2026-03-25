@@ -115,30 +115,30 @@ def generate_dashboard(data, perf, equity, drawdown):
         cls = "good" if pnl > 0 else "bad"
         html += f"""
         <tr>
-            <td>{trade.get('asset','')}</td>
-            <td>{trade.get('type','')}</td>
-            <td>${trade.get('entry_price',0):.2f}</td>
-            <td>${trade.get('exit_price',0):.2f}</td>
+            <td>{trade.get('asset','')}胸
+            <td>{trade.get('type','')}胸
+            <td>${trade.get('entry_price',0):.2f}胸
+            <td>${trade.get('exit_price',0):.2f}胸
             <td class="{cls}">${pnl:.2f}</td>
         </tr>"""
     html += """
-    </table>
+     </table>
     
     <h2>LLM Performance</h2>
     <table class="table">
-        <tr><th>LLM</th><th>Correct</th><th>Total</th><th>Accuracy</th></tr>
+         <tr><th>LLM</th><th>Correct</th><th>Total</th><th>Accuracy</th></tr>
 """
     for llm, stats in perf.items():
         acc = stats.get('accuracy',0)*100
         html += f"""
-        <tr>
-            <td>{llm}</td>
-            <td>{stats.get('correct',0)}</td>
-            <td>{stats.get('total',0)}</td>
-            <td>{acc:.1f}%</td>
-        </tr>"""
+         <tr>
+             <td>{llm}</td>
+             <td>{stats.get('correct',0)}</td>
+             <td>{stats.get('total',0)}</td>
+             <td>{acc:.1f}%</td>
+         </tr>"""
     html += """
-    </table>
+     </table>
 </div>
 </body>
 </html>"""
@@ -180,6 +180,10 @@ async def main():
 
     print("\nAnalisa 3 aset (MTF)...")
     summary = []
+    
+    # Parameter trailing stop (dapat dipindahkan ke config nanti)
+    TRAIL_PCT = 0.08   # 8% dari harga tertinggi/terendah
+
     for name, info in ASSETS.items():
         # Cek pasar buka
         if not is_market_open(info["type"]):
@@ -194,11 +198,74 @@ async def main():
             continue
 
         price = asset_data["price"]
+if name == "BTC/USDT":
+    try:
+        from core.orderflow_analyzer import OrderFlowAnalyzer
+        of = OrderFlowAnalyzer(symbol=name)
+        await of.fetch_orderbook()
+        imbalance = of.imbalance
+        liquidity = of.liquidity_levels[:3]   # tiga level tertinggi
+        print(f"  Order Flow Imbalance: {imbalance:.3f}")
+        # Bisa juga ditambahkan ke context sinyal
+    except Exception as e:
+        print(f"  Order flow error: {e}")
         change = asset_data["change"]
         bias = mtf_bias(asset_data)
 
-        # Cek SL/TP untuk posisi existing
+        # Ambil posisi yang ada (update dari data)
         long_pos = positions.get(name)
+        short_pos = shorts.get(name)
+
+        # === UPDATE TRAILING STOP (dinamis) ===
+        # --- Long position ---
+        if long_pos:
+            # Inisialisasi highest_price jika belum ada
+            if 'highest_price' not in long_pos:
+                long_pos['highest_price'] = long_pos['entry_price']
+                long_pos['trailing_stop'] = long_pos['entry_price'] * (1 - TRAIL_PCT)
+            
+            # Update highest_price jika harga naik
+            if price > long_pos['highest_price']:
+                long_pos['highest_price'] = price
+                new_stop = long_pos['highest_price'] * (1 - TRAIL_PCT)
+                if new_stop != long_pos.get('trailing_stop'):
+                    long_pos['trailing_stop'] = new_stop
+                    print(f"  Trailing stop for {name} updated to {new_stop:.2f}")
+            
+            # Cek apakah kena trailing stop
+            if price <= long_pos['trailing_stop']:
+                print(f"  Trailing stop hit for {name} at {price:.2f} (stop: {long_pos['trailing_stop']:.2f})")
+                data = force_close_position(data, name, price, "TRAILING_STOP")
+                positions = data.get("positions", {})
+                shorts = data.get("shorts", {})
+                equity = calculate_equity(data, current_prices)
+                drawdown = max(0, (initial - equity) / initial * 100)
+                continue  # lanjut ke aset berikutnya
+
+        # --- Short position ---
+        if short_pos:
+            if 'lowest_price' not in short_pos:
+                short_pos['lowest_price'] = short_pos['entry_price']
+                short_pos['trailing_stop'] = short_pos['entry_price'] * (1 + TRAIL_PCT)
+            
+            if price < short_pos['lowest_price']:
+                short_pos['lowest_price'] = price
+                new_stop = short_pos['lowest_price'] * (1 + TRAIL_PCT)
+                if new_stop != short_pos.get('trailing_stop'):
+                    short_pos['trailing_stop'] = new_stop
+                    print(f"  Trailing stop for {name} (short) updated to {new_stop:.2f}")
+            
+            if price >= short_pos['trailing_stop']:
+                print(f"  Trailing stop hit for {name} short at {price:.2f} (stop: {short_pos['trailing_stop']:.2f})")
+                data = force_close_position(data, name, price, "TRAILING_STOP")
+                positions = data.get("positions", {})
+                shorts = data.get("shorts", {})
+                equity = calculate_equity(data, current_prices)
+                drawdown = max(0, (initial - equity) / initial * 100)
+                continue
+
+        # === STOP LOSS / TAKE PROFIT (statis) ===
+        long_pos = positions.get(name)   # refresh karena mungkin berubah
         short_pos = shorts.get(name)
 
         if long_pos:
@@ -208,7 +275,6 @@ async def main():
                 data = force_close_position(data, name, price, "STOP_LOSS")
                 positions = data.get("positions", {})
                 shorts = data.get("shorts", {})
-                # Update equity setelah close
                 equity = calculate_equity(data, current_prices)
                 drawdown = max(0, (initial - equity) / initial * 100)
                 continue
@@ -253,11 +319,18 @@ async def main():
         long_pos = positions.get(name)
         short_pos = shorts.get(name)
 
-        # Open Long hanya jika can_open_new
+        # Open Long
         if can_open_new and signal == "BUY" and conf >= 0.55 and votes >= 3 and not long_pos and not short_pos and alloc > 10:
             qty = alloc / price
-            positions[name] = {"entry_price": price, "qty": qty, "amount": alloc/LEVERAGE, "time": now}
-            data["balance"] -= alloc/LEVERAGE
+            positions[name] = {
+                "entry_price": price,
+                "qty": qty,
+                "amount": alloc / LEVERAGE,
+                "time": now,
+                "highest_price": price,
+                "trailing_stop": price * (1 - TRAIL_PCT)
+            }
+            data["balance"] -= alloc / LEVERAGE
             msg = (f"🟢 BUY {info['name']} (Leverage {LEVERAGE}x)\n"
                    f"Harga: ${price} | 24h: {change}%\n"
                    f"Qty: {round(qty,6)} | Notional: ${round(alloc,2)}\n"
@@ -267,7 +340,7 @@ async def main():
             print(f"  [BUY] {name}")
             tg(msg)
 
-        # Close Long (tetap bisa dilakukan meskipun drawdown tinggi)
+        # Close Long (tetap bisa meskipun drawdown tinggi)
         elif signal == "SELL" and long_pos:
             pnl = (price - long_pos["entry_price"]) * long_pos["qty"]
             data["balance"] += long_pos["amount"] + pnl
@@ -281,11 +354,18 @@ async def main():
             print(f"  [SELL] {name} PnL: ${round(pnl,2)}")
             tg(msg)
 
-        # Open Short hanya jika can_open_new
+        # Open Short
         elif can_open_new and signal == "SHORT" and conf >= 0.55 and votes >= 3 and not short_pos and not long_pos and alloc > 10:
             qty = alloc / price
-            shorts[name] = {"entry_price": price, "qty": qty, "amount": alloc/LEVERAGE, "time": now}
-            data["balance"] -= alloc/LEVERAGE
+            shorts[name] = {
+                "entry_price": price,
+                "qty": qty,
+                "amount": alloc / LEVERAGE,
+                "time": now,
+                "lowest_price": price,
+                "trailing_stop": price * (1 + TRAIL_PCT)
+            }
+            data["balance"] -= alloc / LEVERAGE
             msg = (f"🔴 SHORT {info['name']} (Leverage {LEVERAGE}x)\n"
                    f"Harga: ${price} | 24h: {change}%\n"
                    f"Qty: {round(qty,6)} | Notional: ${round(alloc,2)}\n"
@@ -313,10 +393,21 @@ async def main():
     data["shorts"] = shorts
     save_trades(data)
 
+    # ... setelah save_trades(data)
+
+    # === Self‑Improvement Loop (mingguan) ===
+    from core.self_improvement import run_weekly_improvement
+    import time
+    last_improvement = data.get("last_improvement", 0)
+    if time.time() - last_improvement > 7*24*3600:   # 7 hari
+        print("\n🔁 Running weekly self‑improvement...")
+        run_weekly_improvement()
+        data["last_improvement"] = time.time()
+        save_trades(data)
+
     # Generate dashboard HTML
     generate_dashboard(data, perf, equity, drawdown)
 
-    # Hitung ulang equity untuk status akhir (sudah dihitung)
     # Status ringkasan
     trades = data["trades"]
     wins = sum(1 for t in trades if t.get("pnl",0) > 0)
@@ -334,7 +425,6 @@ async def main():
               f"Trade: {len(trades)} | Winrate: {winrate}\n"
               f"Total PnL: ${round(total_pnl,2)}")
     
-    # Tambahkan link dashboard
     dashboard_url = "https://htmlpreview.github.io/?https://github.com/ihzaikrm/trading-bot/blob/main/dashboard/index.html"
     status += f"\n\n📈 Monitor: {dashboard_url}"
     
@@ -342,5 +432,28 @@ async def main():
     tg(status)
     print("\n=== SELESAI ===")
 
+# Inisialisasi OrderFlowAnalyzer (hanya untuk BTC/USDT)
+if name == "BTC/USDT":
+    if not hasattr(main, 'of_analyzer'):
+        of_analyzer = OrderFlowAnalyzer()
+        await of_analyzer.connect()
+        # Mulai task update asinkron
+        asyncio.create_task(of_analyzer.update())
+        main.of_analyzer = of_analyzer
+    else:
+        of_analyzer = main.of_analyzer
+    imbalance = getattr(of_analyzer, 'imbalance', 0)
+    liquidity = f"bid:{len(of_analyzer.bids)} ask:{len(of_analyzer.asks)}"
+    print(f"  Order flow imbalance: {imbalance:.3f}")
+
 if __name__ == "__main__":
     asyncio.run(main())
+    # === Self‑Improvement Loop (mingguan) ===
+    from core.self_improvement import run_weekly_improvement
+    import time
+    last_improvement = data.get("last_improvement", 0)
+    if time.time() - last_improvement > 7*24*3600:   # 7 hari
+        print("\n🔁 Running weekly self‑improvement...")
+        run_weekly_improvement()
+        data["last_improvement"] = time.time()
+        save_trades(data)

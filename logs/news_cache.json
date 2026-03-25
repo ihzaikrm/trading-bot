@@ -1,72 +1,83 @@
 {
-  "timestamp": "2026-03-24T11:54:47.078231",
+  "timestamp": "2026-03-24T20:39:18.530766",
   "results": {
     "1h": {
       "label": "BREAKING",
       "weight": 1.0,
-      "verified_count": 3,
+      "verified_count": 4,
       "news": [
         {
-          "title": "Gold Whipsaws After Worst Week in 40 Years as War Risks Mount - Bloomberg.com",
+          "title": "'When will it end?\u2019 The \u2018elevator pitch\u2019 oil executives and diplomats are making to the White House in Houston - Politico",
           "sources": [
             "newsapi_business",
-            "investing_com"
+            "marketwatch"
+          ],
+          "source_count": 2,
+          "publisher": "Politico",
+          "time": "2026-03-23T08:55:00Z",
+          "verified": true
+        },
+        {
+          "title": "Gold and silver in freefall as investors flee safe haven metals trade - CNBC",
+          "sources": [
+            "newsapi_business",
+            "google_gold"
+          ],
+          "source_count": 2,
+          "publisher": "CNBC",
+          "time": "2026-03-23T07:43:00Z",
+          "verified": true
+        },
+        {
+          "title": "Goldman Raises Oil Forecasts on Largest-Ever Supply Shock - Bloomberg",
+          "sources": [
+            "newsapi_business",
+            "marketwatch"
           ],
           "source_count": 2,
           "publisher": "Bloomberg",
-          "time": "2026-03-23T01:09:00Z",
+          "time": "2026-03-23T04:55:00Z",
           "verified": true
         },
         {
-          "title": "Stock market today: Dow, S&P 500, Nasdaq futures fall as four week down spiral continues, Trump threatens Iran - Yahoo Finance",
+          "title": "Stock Market\u2019s Perfect Storm: Hormuz, Inflation, and the Fed - TipRanks",
           "sources": [
-            "google_gold",
-            "newsapi_business"
+            "newsapi_business",
+            "marketwatch"
           ],
           "source_count": 2,
-          "publisher": "Yahoo Entertainment",
-          "time": "2026-03-22T23:01:22Z",
+          "publisher": "Tipranks.com",
+          "time": "2026-03-22T18:55:31Z",
           "verified": true
         },
         {
-          "title": "Oil prices volatile after Trump's Strait of Hormuz threat - Axios",
-          "sources": [
-            "marketwatch",
-            "newsapi_general"
-          ],
-          "source_count": 2,
-          "publisher": "Axios",
-          "time": "2026-03-22T23:41:28Z",
-          "verified": true
-        },
-        {
-          "title": "Airlines Are Already Preparing for an Oil Crisis - WIRED",
+          "title": "Dow Jones Futures Fall, Oil Prices Rise As Trump's Strait Of Hormuz Deadline Nears - Investor's Business Daily",
           "sources": [
             "newsapi_business"
           ],
           "source_count": 1,
-          "publisher": "Wired",
-          "time": "2026-03-22T21:37:00Z",
+          "publisher": "Investor's Business Daily",
+          "time": "2026-03-23T10:32:48Z",
           "verified": false
         },
         {
-          "title": "Markets on edge as U.S.-Iran conflict deepens, energy risks mount (CL1:COM:Commodity) - Seeking Alpha",
+          "title": "Worried about a shaky stock market? This is what financial advisers suggest you do - NPR",
           "sources": [
             "newsapi_business"
           ],
           "source_count": 1,
-          "publisher": "Seeking Alpha",
-          "time": "2026-03-22T20:30:48Z",
+          "publisher": "NPR",
+          "time": "2026-03-23T09:00:00Z",
           "verified": false
         },
         {
-          "title": "Traders Brace for Turbulent Open as War Rages On: Markets Wrap - Bloomberg.com",
+          "title": "Honda\u2019s new full-size electric motorcycle snags awards on way to production - Electrek",
           "sources": [
             "newsapi_business"
           ],
           "source_count": 1,
-          "publisher": "Bloomberg",
-          "time": "2026-03-22T19:30:00Z",
+          "publisher": "Electrek",
+          "time": "2026-03-23T08:26:00Z",
           "verified": false
         }
       ]
@@ -74,98 +85,98 @@
     "6h": {
       "label": "PENTING",
       "weight": 0.7,
-      "verified_count": 7,
+      "verified_count": 10,
       "news": [
         {
-          "title": "Gold Whipsaws After Worst Week in 40 Years as War Risks Mount - Bloomberg.com",
+          "title": "'When will it end?\u2019 The \u2018elevator pitch\u2019 oil executives and diplomats are making to the White House in Houston - Politico",
+          "sources": [
+            "yahoo_spx",
+            "newsapi_business",
+            "yahoo_gold",
+            "marketwatch"
+          ],
+          "source_count": 4,
+          "publisher": "Politico",
+          "time": "2026-03-23T08:55:00Z",
+          "verified": true
+        },
+        {
+          "title": "Oil prices dip despite the US and Iran trading threats - Business Insider",
+          "sources": [
+            "google_crypto",
+            "newsapi_business",
+            "yahoo_gold",
+            "google_gold"
+          ],
+          "source_count": 4,
+          "publisher": "Business Insider",
+          "time": "2026-03-22T23:21:00Z",
+          "verified": true
+        },
+        {
+          "title": "Gold and silver in freefall as investors flee safe haven metals trade - CNBC",
+          "sources": [
+            "newsapi_business",
+            "yahoo_gold",
+            "google_gold"
+          ],
+          "source_count": 3,
+          "publisher": "CNBC",
+          "time": "2026-03-23T07:43:00Z",
+          "verified": true
+        },
+        {
+          "title": "Goldman Raises Oil Forecasts on Largest-Ever Supply Shock - Bloomberg",
+          "sources": [
+            "newsapi_business",
+            "yahoo_gold",
+            "marketwatch"
+          ],
+          "source_count": 3,
+          "publisher": "Bloomberg",
+          "time": "2026-03-23T04:55:00Z",
+          "verified": true
+        },
+        {
+          "title": "Stock Market\u2019s Perfect Storm: Hormuz, Inflation, and the Fed - TipRanks",
           "sources": [
             "newsapi_business",
             "yahoo_spx",
-            "yahoo_gold",
-            "investing_com"
-          ],
-          "source_count": 4,
-          "publisher": "Bloomberg",
-          "time": "2026-03-23T01:09:00Z",
-          "verified": true
-        },
-        {
-          "title": "Airlines Are Already Preparing for an Oil Crisis - WIRED",
-          "sources": [
-            "google_gold",
-            "newsapi_business",
-            "yahoo_gold",
-            "yahoo_btc"
-          ],
-          "source_count": 4,
-          "publisher": "Wired",
-          "time": "2026-03-22T21:37:00Z",
-          "verified": true
-        },
-        {
-          "title": "Stock market today: Dow, S&P 500, Nasdaq futures fall as four week down spiral continues, Trump threatens Iran - Yahoo Finance",
-          "sources": [
-            "google_gold",
-            "newsapi_business",
-            "yahoo_spx"
+            "marketwatch"
           ],
           "source_count": 3,
-          "publisher": "Yahoo Entertainment",
-          "time": "2026-03-22T23:01:22Z",
+          "publisher": "Tipranks.com",
+          "time": "2026-03-22T18:55:31Z",
           "verified": true
         },
         {
-          "title": "Markets on edge as U.S.-Iran conflict deepens, energy risks mount (CL1:COM:Commodity) - Seeking Alpha",
-          "sources": [
-            "google_gold",
-            "newsapi_business",
-            "yahoo_gold"
-          ],
-          "source_count": 3,
-          "publisher": "Seeking Alpha",
-          "time": "2026-03-22T20:30:48Z",
-          "verified": true
-        },
-        {
-          "title": "Oil prices volatile after Trump's Strait of Hormuz threat - Axios",
-          "sources": [
-            "yahoo_gold",
-            "marketwatch",
-            "newsapi_general"
-          ],
-          "source_count": 3,
-          "publisher": "Axios",
-          "time": "2026-03-22T23:41:28Z",
-          "verified": true
-        },
-        {
-          "title": "3 weeks of war, possible rate hikes, and AI's 'show me' phase: What to watch this week - Yahoo Finance",
+          "title": "Worried about a shaky stock market? This is what financial advisers suggest you do - NPR",
           "sources": [
             "newsapi_business"
           ],
           "source_count": 1,
-          "publisher": "Yahoo Entertainment",
-          "time": "2026-03-22T16:22:44Z",
+          "publisher": "NPR",
+          "time": "2026-03-23T09:00:00Z",
           "verified": false
         },
         {
-          "title": "Israeli settlers target Palestinian villages in occupied West Bank, attacking people and properties - BBC",
+          "title": "International Energy Agency head says global economy faces \u2018major, major threat\u2019 because of Iran war - AP News",
           "sources": [
-            "newsapi_general"
+            "newsapi_business"
           ],
           "source_count": 1,
-          "publisher": "BBC News",
-          "time": "2026-03-22T22:38:24Z",
+          "publisher": "Associated Press",
+          "time": "2026-03-23T06:15:00Z",
           "verified": false
         },
         {
-          "title": "Markets on edge as U.S.-Iran conflict deepens, energy risks mount (CL1:COM:Commodity) - Seeking Alpha",
+          "title": "One gas station, two drivers and three fill-ups: The Iran war hits home - The Washington Post",
           "sources": [
-            "newsapi_general"
+            "newsapi_business"
           ],
           "source_count": 1,
-          "publisher": "Seeking Alpha",
-          "time": "2026-03-22T20:30:48Z",
+          "publisher": "The Washington Post",
+          "time": "2026-03-22T16:00:50Z",
           "verified": false
         }
       ]
@@ -173,106 +184,103 @@
     "24h": {
       "label": "KONTEKS",
       "weight": 0.4,
-      "verified_count": 9,
+      "verified_count": 14,
       "news": [
         {
-          "title": "Gold Whipsaws After Worst Week in 40 Years as War Risks Mount - Bloomberg.com",
+          "title": "Oil prices dip despite the US and Iran trading threats - Business Insider",
           "sources": [
-            "google_fed",
-            "newsapi_business",
-            "google_gold",
-            "yahoo_spx",
-            "yahoo_gold",
             "google_crypto",
+            "newsapi_business",
+            "yahoo_gold",
+            "google_gold",
+            "yahoo_btc",
             "investing_com"
           ],
-          "source_count": 7,
-          "publisher": "Bloomberg",
-          "time": "2026-03-23T01:09:00Z",
+          "source_count": 6,
+          "publisher": "Business Insider",
+          "time": "2026-03-22T23:21:00Z",
           "verified": true
         },
         {
-          "title": "Airlines Are Already Preparing for an Oil Crisis - WIRED",
-          "sources": [
-            "google_gold",
-            "newsapi_business",
-            "google_macro",
-            "yahoo_gold",
-            "yahoo_btc"
-          ],
-          "source_count": 5,
-          "publisher": "Wired",
-          "time": "2026-03-22T21:37:00Z",
-          "verified": true
-        },
-        {
-          "title": "Oil prices volatile after Trump's Strait of Hormuz threat - Axios",
-          "sources": [
-            "google_gold",
-            "yahoo_gold",
-            "marketwatch",
-            "google_crypto",
-            "newsapi_general"
-          ],
-          "source_count": 5,
-          "publisher": "Axios",
-          "time": "2026-03-22T23:41:28Z",
-          "verified": true
-        },
-        {
-          "title": "Stock market today: Dow, S&P 500, Nasdaq futures fall as four week down spiral continues, Trump threatens Iran - Yahoo Finance",
+          "title": "Dow Jones Futures Fall, Oil Prices Rise As Trump's Strait Of Hormuz Deadline Nears - Investor's Business Daily",
           "sources": [
             "google_crypto",
             "newsapi_business",
+            "google_stocks",
+            "yahoo_spx"
+          ],
+          "source_count": 4,
+          "publisher": "Investor's Business Daily",
+          "time": "2026-03-23T10:32:48Z",
+          "verified": true
+        },
+        {
+          "title": "'When will it end?\u2019 The \u2018elevator pitch\u2019 oil executives and diplomats are making to the White House in Houston - Politico",
+          "sources": [
             "yahoo_spx",
+            "newsapi_business",
+            "yahoo_gold",
+            "marketwatch"
+          ],
+          "source_count": 4,
+          "publisher": "Politico",
+          "time": "2026-03-23T08:55:00Z",
+          "verified": true
+        },
+        {
+          "title": "Honda\u2019s new full-size electric motorcycle snags awards on way to production - Electrek",
+          "sources": [
+            "yahoo_btc",
+            "newsapi_business",
+            "yahoo_gold",
             "google_gold"
           ],
           "source_count": 4,
-          "publisher": "Yahoo Entertainment",
-          "time": "2026-03-22T23:01:22Z",
+          "publisher": "Electrek",
+          "time": "2026-03-23T08:26:00Z",
           "verified": true
         },
         {
-          "title": "Markets on edge as U.S.-Iran conflict deepens, energy risks mount (CL1:COM:Commodity) - Seeking Alpha",
+          "title": "\u2018Pandemonium\u2019 Fuels Surge in Yields as Fed Rate-Hike Bets Emerge - Bloomberg.com",
           "sources": [
-            "google_gold",
+            "google_fed",
+            "google_crypto",
             "newsapi_business",
-            "yahoo_gold",
-            "yahoo_btc"
+            "investing_com"
           ],
           "source_count": 4,
-          "publisher": "Seeking Alpha",
-          "time": "2026-03-22T20:30:48Z",
+          "publisher": "Bloomberg",
+          "time": "2026-03-23T05:42:00Z",
           "verified": true
         },
         {
-          "title": "3 weeks of war, possible rate hikes, and AI's 'show me' phase: What to watch this week - Yahoo Finance",
+          "title": "International Energy Agency head says global economy faces \u2018major, major threat\u2019 because of Iran war - AP News",
           "sources": [
             "newsapi_business"
           ],
           "source_count": 1,
-          "publisher": "Yahoo Entertainment",
-          "time": "2026-03-22T16:22:44Z",
+          "publisher": "Associated Press",
+          "time": "2026-03-23T06:15:00Z",
           "verified": false
         },
         {
-          "title": "Israeli settlers target Palestinian villages in occupied West Bank, attacking people and properties - BBC",
+          "title": "Dow Jones Futures Fall, Oil Prices Rise As Trump's Strait Of Hormuz Deadline Nears - Investor's Business Daily",
           "sources": [
             "newsapi_general"
           ],
           "source_count": 1,
-          "publisher": "BBC News",
-          "time": "2026-03-22T22:38:24Z",
+          "publisher": "Investor's Business Daily",
+          "time": "2026-03-23T10:32:48Z",
           "verified": false
         },
         {
-          "title": "Markets on edge as U.S.-Iran conflict deepens, energy risks mount (CL1:COM:Commodity) - Seeking Alpha",
+          "title": "Gold and silver in freefall as investors flee safe haven metals trade - CNBC",
           "sources": [
             "newsapi_general"
           ],
           "source_count": 1,
-          "publisher": "Seeking Alpha",
-          "time": "2026-03-22T20:30:48Z",
+          "publisher": "CNBC",
+          "time": "2026-03-23T07:43:00Z",
           "verified": false
         }
       ]

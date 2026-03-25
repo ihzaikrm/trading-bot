@@ -1,0 +1,1780 @@
+﻿Folder PATH listing for volume Windows-SSD
+Volume serial number is 4004-C4C1
+C:\USERS\IHZAI\SYNCLAVIX
+ª   .env
+ª   .gitignore
+ª   add_realdata.py
+ª   add_vix.py
+ª   add_wfo_hook.py
+ª   add_wfo_hook2.py
+ª   backtest.py
+ª   backtest_BTC_USDT.png
+ª   backtest_SPX.png
+ª   backtest_XAUUSD.png
+ª   bot - Copy.txt
+ª   bot.py
+ª   bot.py.backup
+ª   bot.py.txt
+ª   check2.py
+ª   check3.py
+ª   check_all_free.py
+ª   check_balance.py
+ª   check_calllm.py
+ª   check_can.py
+ª   check_compat.py
+ª   check_free.py
+ª   check_gemini_free.py
+ª   check_indent.py
+ª   check_llm.py
+ª   check_models.py
+ª   check_rl.py
+ª   compare_strategies.py
+ª   compare_strategies2.py
+ª   compare_strategies3.py
+ª   debug_gate.py
+ª   debug_narrative.py
+ª   equity_comparison.png
+ª   fix_assets.py
+ª   fix_assets2.py
+ª   gold_final_test.py
+ª   integrate_boost.py
+ª   integrate_narrative.py
+ª   list_gemini.py
+ª   list_models.py
+ª   macro_backtest.py
+ª   montecarlo.py
+ª   optimization_results.json
+ª   optimize.py
+ª   README.md
+ª   requirements.txt
+ª   research_backtest.py
+ª   run_backtest.py
+ª   show_settings.py
+ª   synclavix_context_corrected.txt
+ª   telegram_bot.py
+ª   telegram_listener.py
+ª   test_direct.py
+ª   test_each.py
+ª   test_exchange.py
+ª   test_free_models.py
+ª   test_gemini_direct.py
+ª   test_gemini_sdk.py
+ª   test_groq_direct.py
+ª   test_models.py
+ª   test_models2.py
+ª   test_phase2.py
+ª   test_phase3.py
+ª   test_phase4.py
+ª   test_phase5.py
+ª   test_telegram.py
+ª   ultimate_strategy_test.py
+ª   validate_strategies.py
+ª   
++---.github
+ª   +---workflows
+ª           deploy-pages.yml
+ª           trading-bot.yml
+ª           
++---backtest
+ª   ª   data_loader.py
+ª   ª   engine.py
+ª   ª   engine_backup.py
+ª   ª   report.py
+ª   ª   walk_forward.py
+ª   ª   
+ª   +---__pycache__
+ª           data_loader.cpython-311.pyc
+ª           engine.cpython-311.pyc
+ª           report.cpython-311.pyc
+ª           walk_forward.cpython-314.pyc
+ª           
++---config
+ª   ª   assets.py
+ª   ª   settings.py
+ª   ª   trading_params.py
+ª   ª   __init__.py
+ª   ª   
+ª   +---__pycache__
+ª           assets.cpython-311.pyc
+ª           assets.cpython-314.pyc
+ª           settings.cpython-311.pyc
+ª           trading_params.cpython-311.pyc
+ª           __init__.cpython-311.pyc
+ª           __init__.cpython-314.pyc
+ª           
++---core
+ª   ª   alternative_data.py
+ª   ª   command_handler.py
+ª   ª   confidence_calibration.py
+ª   ª   correlation.py
+ª   ª   cot_weekly.py
+ª   ª   daily_report.py
+ª   ª   decision_context.py
+ª   ª   dxy_filter.py
+ª   ª   dynamic_weights.py
+ª   ª   indicators.py
+ª   ª   kelly.py
+ª   ª   liquidation.py
+ª   ª   llm_clients.py
+ª   ª   llm_performance.py
+ª   ª   market_data.py
+ª   ª   momentum_filter.py
+ª   ª   narrative_scanner.py
+ª   ª   news_pipeline.py
+ª   ª   news_sentiment.py
+ª   ª   notifier.py
+ª   ª   performance_boost.py
+ª   ª   portfolio_manager.py
+ª   ª   risk_manager.py
+ª   ª   screener.py
+ª   ª   self_improvement.py
+ª   ª   self_improvement_backup.py
+ª   ª   signal_engine.py
+ª   ª   smc_context.py
+ª   ª   strategy_manager.py
+ª   ª   __init__.py
+ª   ª   
+ª   +---__pycache__
+ª           alternative_data.cpython-314.pyc
+ª           confidence_calibration.cpython-311.pyc
+ª           cot_weekly.cpython-311.pyc
+ª           decision_context.cpython-311.pyc
+ª           dxy_filter.cpython-311.pyc
+ª           dynamic_weights.cpython-311.pyc
+ª           indicators.cpython-311.pyc
+ª           indicators.cpython-314.pyc
+ª           kelly.cpython-311.pyc
+ª           llm_clients.cpython-311.pyc
+ª           momentum_filter.cpython-311.pyc
+ª           narrative_scanner.cpython-311.pyc
+ª           news_pipeline.cpython-311.pyc
+ª           performance_boost.cpython-311.pyc
+ª           portfolio_manager.cpython-311.pyc
+ª           screener.cpython-311.pyc
+ª           smc_context.cpython-311.pyc
+ª           __init__.cpython-311.pyc
+ª           __init__.cpython-314.pyc
+ª           
++---dashboard
+ª       index.html
+ª       
++---docs
+ª       ARCHITECTURE.md
+ª       DECISIONS.md
+ª       
++---logs
+ª       alt_data_cache.json
+ª       backtest_results.json
+ª       coingecko_cache.json
+ª       filter_status.json
+ª       llm_performance.json
+ª       montecarlo_results.json
+ª       narrative_state.json
+ª       news_cache.json
+ª       paper_trades.json
+ª       predictions.json
+ª       screener_results.json
+ª       tg_offset.txt
+ª       trailing_stops.json
+ª       
++---logsmove
++---synclavix
+ª   ª   .env.example
+ª   ª   main.py
+ª   ª   requirements.txt
+ª   ª   
+ª   +---MiroFish-Offline
+ª   ª   ª   .dockerignore
+ª   ª   ª   .env
+ª   ª   ª   .env.example
+ª   ª   ª   .gitignore
+ª   ª   ª   docker-compose.yml
+ª   ª   ª   Dockerfile
+ª   ª   ª   LICENSE
+ª   ª   ª   package-lock.json
+ª   ª   ª   package.json
+ª   ª   ª   README.md
+ª   ª   ª   ROADMAP.md
+ª   ª   ª   
+ª   ª   +---.github
+ª   ª   ª   +---workflows
+ª   ª   ª           docker-image.yml
+ª   ª   ª           
+ª   ª   +---backend
+ª   ª   ª   ª   pyproject.toml
+ª   ª   ª   ª   requirements.txt
+ª   ª   ª   ª   run.py
+ª   ª   ª   ª   uv.lock
+ª   ª   ª   ª   
+ª   ª   ª   +---app
+ª   ª   ª   ª   ª   config.py
+ª   ª   ª   ª   ª   __init__.py
+ª   ª   ª   ª   ª   
+ª   ª   ª   ª   +---api
+ª   ª   ª   ª   ª       graph.py
+ª   ª   ª   ª   ª       report.py
+ª   ª   ª   ª   ª       simulation.py
+ª   ª   ª   ª   ª       __init__.py
+ª   ª   ª   ª   ª       
+ª   ª   ª   ª   +---models
+ª   ª   ª   ª   ª       project.py
+ª   ª   ª   ª   ª       task.py
+ª   ª   ª   ª   ª       __init__.py
+ª   ª   ª   ª   ª       
+ª   ª   ª   ª   +---services
+ª   ª   ª   ª   ª       entity_reader.py
+ª   ª   ª   ª   ª       graph_builder.py
+ª   ª   ª   ª   ª       graph_memory_updater.py
+ª   ª   ª   ª   ª       graph_tools.py
+ª   ª   ª   ª   ª       oasis_profile_generator.py
+ª   ª   ª   ª   ª       ontology_generator.py
+ª   ª   ª   ª   ª       report_agent.py
+ª   ª   ª   ª   ª       simulation_config_generator.py
+ª   ª   ª   ª   ª       simulation_ipc.py
+ª   ª   ª   ª   ª       simulation_manager.py
+ª   ª   ª   ª   ª       simulation_runner.py
+ª   ª   ª   ª   ª       text_processor.py
+ª   ª   ª   ª   ª       __init__.py
+ª   ª   ª   ª   ª       
+ª   ª   ª   ª   +---storage
+ª   ª   ª   ª   ª       embedding_service.py
+ª   ª   ª   ª   ª       graph_storage.py
+ª   ª   ª   ª   ª       neo4j_schema.py
+ª   ª   ª   ª   ª       neo4j_storage.py
+ª   ª   ª   ª   ª       ner_extractor.py
+ª   ª   ª   ª   ª       search_service.py
+ª   ª   ª   ª   ª       __init__.py
+ª   ª   ª   ª   ª       
+ª   ª   ª   ª   +---utils
+ª   ª   ª   ª           file_parser.py
+ª   ª   ª   ª           llm_client.py
+ª   ª   ª   ª           logger.py
+ª   ª   ª   ª           retry.py
+ª   ª   ª   ª           __init__.py
+ª   ª   ª   ª           
+ª   ª   ª   +---scripts
+ª   ª   ª           action_logger.py
+ª   ª   ª           run_parallel_simulation.py
+ª   ª   ª           run_reddit_simulation.py
+ª   ª   ª           run_twitter_simulation.py
+ª   ª   ª           test_profile_format.py
+ª   ª   ª           
+ª   ª   +---docs
+ª   ª   ª       progress.md
+ª   ª   ª       
+ª   ª   +---frontend
+ª   ª   ª   ª   .gitignore
+ª   ª   ª   ª   CHINESE_TEXT_INVENTORY.md
+ª   ª   ª   ª   index.html
+ª   ª   ª   ª   package-lock.json
+ª   ª   ª   ª   package.json
+ª   ª   ª   ª   vite.config.js
+ª   ª   ª   ª   
+ª   ª   ª   +---public
+ª   ª   ª   ª       home-styles.css
+ª   ª   ª   ª       icon.png
+ª   ª   ª   ª       
+ª   ª   ª   +---src
+ª   ª   ª       ª   App.vue
+ª   ª   ª       ª   main.js
+ª   ª   ª       ª   
+ª   ª   ª       +---api
+ª   ª   ª       ª       graph.js
+ª   ª   ª       ª       index.js
+ª   ª   ª       ª       report.js
+ª   ª   ª       ª       simulation.js
+ª   ª   ª       ª       
+ª   ª   ª       +---assets
+ª   ª   ª       ª   +---logo
+ª   ª   ª       ª           MiroFish_logo_compressed.jpeg
+ª   ª   ª       ª           MiroFish_logo_left.jpeg
+ª   ª   ª       ª           
+ª   ª   ª       +---components
+ª   ª   ª       ª       GraphPanel.vue
+ª   ª   ª       ª       HistoryDatabase.vue
+ª   ª   ª       ª       Step1GraphBuild.vue
+ª   ª   ª       ª       Step2EnvSetup.vue
+ª   ª   ª       ª       Step3Simulation.vue
+ª   ª   ª       ª       Step4Report.vue
+ª   ª   ª       ª       Step5Interaction.vue
+ª   ª   ª       ª       
+ª   ª   ª       +---router
+ª   ª   ª       ª       index.js
+ª   ª   ª       ª       
+ª   ª   ª       +---store
+ª   ª   ª       ª       pendingUpload.js
+ª   ª   ª       ª       
+ª   ª   ª       +---views
+ª   ª   ª               Home.css
+ª   ª   ª               Home.vue
+ª   ª   ª               InteractionView.vue
+ª   ª   ª               MainView.vue
+ª   ª   ª               Process.vue
+ª   ª   ª               ReportView.vue
+ª   ª   ª               SimulationRunView.vue
+ª   ª   ª               SimulationView.vue
+ª   ª   ª               
+ª   ª   +---static
+ª   ª       +---image
+ª   ª           ª   mirofish-offline-banner.png
+ª   ª           ª   mirofish-offline-screenshot.jpg
+ª   ª           ª   MiroFish_logo.jpeg
+ª   ª           ª   MiroFish_logo_compressed.jpeg
+ª   ª           ª   QQ?.png
+ª   ª           ª   shanda_logo.png
+ª   ª           ª   ????????.png
+ª   ª           ª   ?????????.jpg
+ª   ª           ª   
+ª   ª           +---Screenshot
+ª   ª                   ????1.png
+ª   ª                   ????2.png
+ª   ª                   ????3.png
+ª   ª                   ????4.png
+ª   ª                   ????5.png
+ª   ª                   ????6.png
+ª   ª                   
+ª   +---synclavix
+ª       ª   .env
+ª       ª   .env.example
+ª       ª   main.py
+ª       ª   README.md
+ª       ª   requirements.txt
+ª       ª   test_api.py
+ª       ª   test_llm.py
+ª       ª   test_state_integration.py
+ª       ª   
+ª       +---data
+ª       ª   ª   session_state.json
+ª       ª   ª   __init__.py
+ª       ª   ª   
+ª       ª   +---checkpoints
+ª       ª           analyze_checkpoint.json
+ª       ª           collect_checkpoint.json
+ª       ª           execute_checkpoint.json
+ª       ª           reconcile_checkpoint.json
+ª       ª           risk_check_checkpoint.json
+ª       ª           __init__.py
+ª       ª           
+ª       +---docs
+ª       ª       ARCHITECTURE.md
+ª       ª       CONTRIBUTING.md
+ª       ª       
+ª       +---llm_clients
+ª       ª   ª   factory.py
+ª       ª   ª   factory_backup.py
+ª       ª   ª   __init__.py
+ª       ª   ª   
+ª       ª   +---__pycache__
+ª       ª           factory.cpython-314.pyc
+ª       ª           __init__.cpython-314.pyc
+ª       ª           
+ª       +---logs
+ª       ª       signals.json
+ª       ª       
+ª       +---modules
+ª       ª   ª   alternative_data.py
+ª       ª   ª   command_handler.py
+ª       ª   ª   confidence_calibration.py
+ª       ª   ª   correlation.py
+ª       ª   ª   cot_weekly.py
+ª       ª   ª   daily_report.py
+ª       ª   ª   decision_context.py
+ª       ª   ª   dxy_filter.py
+ª       ª   ª   dynamic_weights.py
+ª       ª   ª   indicators.py
+ª       ª   ª   kelly.py
+ª       ª   ª   liquidation.py
+ª       ª   ª   llm_clients.py
+ª       ª   ª   llm_performance.py
+ª       ª   ª   market_data.py
+ª       ª   ª   mirofish_client.py
+ª       ª   ª   momentum_filter.py
+ª       ª   ª   narrative_scanner.py
+ª       ª   ª   news_pipeline.py
+ª       ª   ª   news_sentiment.py
+ª       ª   ª   notifier.py
+ª       ª   ª   performance_boost.py
+ª       ª   ª   portfolio_manager.py
+ª       ª   ª   risk_manager.py
+ª       ª   ª   screener.py
+ª       ª   ª   self_improvement.py
+ª       ª   ª   self_improvement_backup.py
+ª       ª   ª   signal_engine.py
+ª       ª   ª   smc_context.py
+ª       ª   ª   strategy_manager.py
+ª       ª   ª   __init__.py
+ª       ª   ª   
+ª       ª   +---signal_engine
+ª       ª   ª   ª   analysts.py
+ª       ª   ª   ª   confidence.py
+ª       ª   ª   ª   consensus.py
+ª       ª   ª   ª   __init__.py
+ª       ª   ª   ª   
+ª       ª   ª   +---prompt_templates
+ª       ª   +---__pycache__
+ª       ª           dxy_filter.cpython-314.pyc
+ª       ª           market_data.cpython-314.pyc
+ª       ª           momentum_filter.cpython-314.pyc
+ª       ª           __init__.cpython-314.pyc
+ª       ª           
+ª       +---monitoring
+ª       ª       health_check.py
+ª       ª       performance_tracker.py
+ª       ª       
+ª       +---orchestrator
+ª       ª   ª   graph.py
+ª       ª   ª   graph_backup.py
+ª       ª   ª   signal_generator.py
+ª       ª   ª   __init__.py
+ª       ª   ª   
+ª       ª   +---__pycache__
+ª       ª           graph.cpython-314.pyc
+ª       ª           signal_generator.cpython-314.pyc
+ª       ª           __init__.cpython-314.pyc
+ª       ª           
+ª       +---state
+ª       ª   ª   state_manager.py
+ª       ª   ª   __init__.py
+ª       ª   ª   
+ª       ª   +---__pycache__
+ª       ª           state_manager.cpython-314.pyc
+ª       ª           __init__.cpython-314.pyc
+ª       ª           
+ª       +---tests
+ª       ª   ª   test_filters.py
+ª       ª   ª   
+ª       ª   +---__init__.py
+ª       +---utils
+ª           ª   exceptions.py
+ª           ª   logger.py
+ª           ª   rate_limiter.py
+ª           ª   __init__.py
+ª           ª   
+ª           +---__pycache__
+ª                   logger.cpython-314.pyc
+ª                   __init__.cpython-314.pyc
+ª                   
++---tests
+ª       test_phase1.py
+ª       
++---__pycache__
+        backtest.cpython-311.pyc
+        bot.cpython-311.pyc
+        bot.cpython-314.pyc
+        
+
+
+===== FILE: bot.py =====
+import asyncio, json, os, sys, re, requests
+from datetime import datetime
+from collections import Counter
+import ccxt
+import pandas as pd
+
+sys.path.insert(0, os.getcwd())
+from dotenv import load_dotenv
+load_dotenv()
+
+from core.llm_clients import call_all_llms
+from core.momentum_filter import get_momentum_signal
+from core.dxy_filter import get_dxy_signal
+from core.screener import run_screener
+from core.smc_context import get_smc_context
+from core.dynamic_weights import get_current_weights, record_prediction, print_leaderboard, get_leaderboard
+from core.news_pipeline import get_multi_timeframe_news
+from core.performance_boost import (get_fear_greed, apply_fg_to_signal,
+    update_trailing_stop, clear_trailing_stop, is_too_correlated)
+from core.cot_weekly import (build_cot_prompt, generate_weekly_report,
+    should_send_weekly_report, tg as tg_report)
+
+BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
+PAPER_FILE = "logs/paper_trades.json"
+
+ASSETS = {
+    "BTC/USDT": {"type": "crypto", "symbol": "BTC/USDT", "name": "Bitcoin"},
+    "XAUUSD":   {"type": "stock",  "symbol": "GC=F",     "name": "Gold"},
+    "SPX":      {"type": "stock",  "symbol": "^GSPC",    "name": "S&P 500"},
+}
+
+def tg(msg):
+    try:
+        requests.post(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
+            json={"chat_id": CHAT_ID, "text": msg, "parse_mode": "Markdown"}, timeout=10)
+    except Exception as e:
+        print(f"[TG] Gagal: {e}")
+
+def load_trades():
+    if os.path.exists(PAPER_FILE):
+        with open(PAPER_FILE) as f:
+            return json.load(f)
+    return {"balance": 1000.0, "trades": [], "positions": {}}
+
+def save_trades(data):
+    os.makedirs("logs", exist_ok=True)
+    with open(PAPER_FILE, "w") as f:
+        json.dump(data, f, indent=2)
+
+def calc_indicators(closes):
+    s = pd.Series(closes)
+    delta = s.diff()
+    gain = delta.clip(lower=0).rolling(14).mean()
+    loss = -delta.clip(upper=0).rolling(14).mean()
+    rs = gain / loss.replace(0, 1)
+    rsi = round(float((100 - 100/(1+rs)).iloc[-1]), 2)
+    ema12 = s.ewm(span=12).mean()
+    ema26 = s.ewm(span=26).mean()
+    macd = ema12 - ema26
+    signal = macd.ewm(span=9).mean()
+    macd_hist = round(float((macd - signal).iloc[-1]), 4)
+    macd_cross = "BULLISH" if macd.iloc[-1] > signal.iloc[-1] else "BEARISH"
+    return rsi, macd_hist, macd_cross
+
+def get_crypto_data(symbol):
+    ex = ccxt.gate()
+    t = ex.fetch_ticker(symbol)
+    price = float(t.get("last") or t.get("close") or 0)
+    change = float(t.get("percentage") or 0)
+    ohlcv = ex.fetch_ohlcv(symbol, "1d", limit=50)
+    closes = [c[4] for c in ohlcv]
+    rsi, macd_hist, macd_cross = calc_indicators(closes)
+    return round(price,2), round(change,2), rsi, macd_hist, macd_cross
+
+def get_stock_data(symbol):
+    import yfinance as yf
+    hist = yf.Ticker(symbol).history(period="60d")
+    if hist.empty:
+        return None
+    price = round(float(hist["Close"].iloc[-1]), 2)
+    change = round((price - float(hist["Close"].iloc[-2])) / float(hist["Close"].iloc[-2]) * 100, 2)
+    rsi, macd_hist, macd_cross = calc_indicators(hist["Close"].tolist())
+    return price, change, rsi, macd_hist, macd_cross
+
+def get_asset_data(name, info):
+    try:
+        if info["type"] == "crypto":
+            return get_crypto_data(info["symbol"])
+        else:
+            return get_stock_data(info["symbol"])
+    except Exception as e:
+        print(f"  Error {name}: {e}")
+        return None
+
+def filter_news_for_asset(news_results, asset_name):
+    asset_keywords = {
+        "Bitcoin":  ["bitcoin", "btc", "crypto", "cryptocurrency", "satoshi"],
+        "Gold":     ["gold", "xau", "precious metal", "commodity", "silver"],
+        "S&P 500":  ["s&p", "sp500", "nasdaq", "dow", "stock market", "equities", "fed", "inflation"]
+    }
+    keywords = asset_keywords.get(asset_name, [])
+    relevant = []
+    for tf, data in news_results.items():
+        for n in data["news"]:
+            title_lower = n["title"].lower()
+            if any(kw in title_lower for kw in keywords):
+                weight = data["weight"]
+                if n["verified"]:
+                    weight *= 1.5
+                relevant.append({**n, "timeframe": tf, "weight": weight})
+    relevant.sort(key=lambda x: x["weight"], reverse=True)
+    return relevant[:5]
+
+async def get_signal_weighted(name, price, change, rsi, macd_hist, macd_cross, news_text, smc_text='', delta_text=''):
+    weights = get_current_weights()
+    prompt = (name+" | Harga: "+str(price)+" | 24h: "+str(change)+"%\n"
+             "RSI: "+str(rsi)+" | MACD: "+str(macd_hist)+" ("+macd_cross+")\n\n"
+             +news_text+"\n\n"
+             +smc_text+"\n\n"
+             +delta_text+"\n\n"
+             "Pertimbangkan data teknikal DAN berita di atas.\n"
+             'Balas JSON: {"signal":"BUY/SELL/HOLD","confidence":0.0-1.0,"reason":"max 10 kata"}')
+    results = await call_all_llms("Analis trading profesional. Balas JSON saja.", prompt)
+
+    weighted_votes = {"BUY": 0.0, "SELL": 0.0, "HOLD": 0.0}
+    details = []
+    llm_signals = {}
+
+    for llm, (ok, resp) in results.items():
+        if ok:
+            try:
+                r = json.loads(re.search(r"\{.*\}", resp, re.DOTALL).group())
+                sig = r.get("signal", "HOLD")
+                if sig not in weighted_votes:
+                    sig = "HOLD"
+                conf = float(r.get("confidence", 0.5))
+                w = weights.get(llm, 1/6)
+                weighted_votes[sig] += conf * w
+                llm_signals[llm] = sig
+                details.append(llm+"("+str(round(w*100))+"%) → "+sig+" ("+str(round(conf*100))+"%)")
+            except: pass
+
+    final_signal = max(weighted_votes, key=weighted_votes.get)
+    total_weight = sum(weighted_votes.values())
+    confidence = round(weighted_votes[final_signal] / total_weight, 2) if total_weight > 0 else 0.5
+    return final_signal, confidence, weighted_votes, details, llm_signals
+
+def build_dynamic_assets(narratives=None, balance=1000, kelly_mult=0.5):
+    assets = dict(ASSETS)
+    try:
+        candidates = run_screener(
+            active_narratives=narratives or ['INFLATION_HEDGE','RISK_OFF'],
+            balance=balance, kelly_mult=kelly_mult
+        )
+        SYMBOL_MAP = {
+            'BTC': ('BTC/USDT','crypto','BTC/USDT','Bitcoin'),
+            'ETH': ('ETH/USDT','crypto','ETH/USDT','Ethereum'),
+            'SOL': ('SOL/USDT','crypto','SOL/USDT','Solana'),
+        }
+        for item in candidates:
+            sym = item['symbol']
+            if sym in SYMBOL_MAP:
+                key, atype, symbol, name = SYMBOL_MAP[sym]
+            else:
+                key, atype, symbol, name = sym, item['type'], sym, sym
+            if key not in assets:
+                assets[key] = {'type': atype, 'symbol': symbol, 'name': name,
+                               'alloc': item.get('alloc',0)}
+        print(f'  Dynamic assets: {list(assets.keys())}')
+    except Exception as e:
+        print(f'  Screener error: {e}')
+    return assets
+
+async def main():
+    now = datetime.now().strftime("%Y-%m-%d %H:%M")
+    print("=== TRADING BOT | "+now+" ===")
+    data = load_trades()
+    positions = data.get("positions", {})
+
+    print("\n[1] Scan berita...")
+    try:
+        news_results, news_summary = get_multi_timeframe_news()
+        verified_total = sum(v["verified_count"] for v in news_results.values())
+        print(f"  Total verified: {verified_total}")
+    except Exception as e:
+        print(f"  News error: {e}")
+        news_results = {}
+        news_summary = "Berita tidak tersedia."
+
+    # Circuit breaker
+    ACTIVE_ASSETS = dict(ASSETS)  # default sebelum dynamic build
+    initial = 1000.0
+    current = data["balance"]
+    for name, pos in positions.items():
+        result = get_asset_data(name, ACTIVE_ASSETS.get(name, {"type":"stock","symbol":name}))
+        if result:
+            price = result[0]
+            current += pos["amount"] + (price - pos["entry_price"]) * pos["qty"]
+    drawdown = max(0, (initial - current) / initial * 100)
+
+... (truncated after 200 lines)
+
+
+===== FILE: core\decision_context.py =====
+import json
+import os
+from datetime import datetime
+
+CONTEXT_FILE = "logs/decision_context.json"
+
+def load_context():
+    if os.path.exists(CONTEXT_FILE):
+        with open(CONTEXT_FILE, 'r') as f:
+            return json.load(f)
+    return {"trades": []}
+
+def save_context(context):
+    with open(CONTEXT_FILE, 'w') as f:
+        json.dump(context, f, indent=2)
+
+def record_entry(asset, price, qty, amount, context_data):
+    ctx = load_context()
+    ctx["trades"].append({
+        "type": "entry",
+        "asset": asset,
+        "price": price,
+        "qty": qty,
+        "amount": amount,
+        "timestamp": datetime.now().isoformat(),
+        "context": context_data
+    })
+    save_context(ctx)
+
+def record_exit(asset, entry_price, exit_price, pnl, context_data=None):
+    ctx = load_context()
+    ctx["trades"].append({
+        "type": "exit",
+        "asset": asset,
+        "entry_price": entry_price,
+        "exit_price": exit_price,
+        "pnl": pnl,
+        "timestamp": datetime.now().isoformat(),
+        "context": context_data or {}
+    })
+    save_context(ctx)
+
+... (truncated after 200 lines)
+
+
+===== FILE: core\self_improvement.py =====
+import json
+import pandas as pd
+from datetime import datetime, timedelta
+import sys
+import os
+
+# Tambah path agar bisa import backtest
+sys.path.insert(0, os.getcwd())
+
+def get_last_week_trades():
+    """Ambil semua closed trade dalam 7 hari terakhir."""
+    try:
+        with open('logs/paper_trades.json', 'r') as f:
+            data = json.load(f)
+    except FileNotFoundError:
+        return []
+    trades = data.get('trades', [])
+    one_week_ago = datetime.now() - timedelta(days=7)
+    return [t for t in trades if datetime.fromisoformat(t.get('exit_time', '')) > one_week_ago]
+
+def evaluate_performance(trades):
+    """Hitung metrik sederhana dari daftar trade."""
+    if not trades:
+        return {'win_rate': 0, 'total_pnl': 0, 'n_trades': 0, 'avg_win': 0, 'avg_loss': 0, 'profit_factor': 0}
+    wins = [t for t in trades if t['pnl'] > 0]
+    losses = [t for t in trades if t['pnl'] <= 0]
+    win_rate = len(wins) / len(trades)
+    total_pnl = sum(t['pnl'] for t in trades)
+    avg_win = sum(t['pnl'] for t in wins) / len(wins) if wins else 0
+    avg_loss = sum(t['pnl'] for t in losses) / len(losses) if losses else 0
+    profit_factor = abs(sum(t['pnl'] for t in wins) / sum(t['pnl'] for t in losses)) if losses else 0
+    return {
+        'win_rate': round(win_rate, 3),
+        'total_pnl': round(total_pnl, 2),
+        'n_trades': len(trades),
+        'avg_win': round(avg_win, 2),
+        'avg_loss': round(avg_loss, 2),
+        'profit_factor': round(profit_factor, 2)
+    }
+
+def load_current_params():
+    """Muat parameter saat ini dari file konfigurasi atau default."""
+    # Coba import dari config (jika ada) atau gunakan default
+    try:
+        from config.trading_params import PARAMS
+        return PARAMS
+    except ImportError:
+        return {
+            'kelly_mult': 0.5,
+            'trailing_stop_pct': 0.2,
+            'rsi_lo': 45,
+            'rsi_hi': 65,
+            'delta_lookback': 3
+        }
+
+def backtest_suggestion(current_params, suggestion):
+    """Backtest perubahan parameter menggunakan data historis."""
+    from backtest import run_backtest_strategy
+
+    # Buat parameter sementara
+    test_params = current_params.copy()
+    for k, v in suggestion.items():
+        test_params[k] = v
+
+    # Konversi ke format yang diharapkan backtest
+    rsi_lo = test_params.get('rsi_lo', 45)
+    rsi_hi = test_params.get('rsi_hi', 65)
+    trail_pct = test_params.get('trailing_stop_pct', 0.2)
+    delta_lookback = test_params.get('delta_lookback', 3)
+
+    result = run_backtest_strategy(rsi_lo, rsi_hi, trail_pct, delta_lookback)
+    # Bandingkan dengan baseline
+    baseline = run_backtest_strategy()  # default parameter
+    return result['return_pct'] > baseline['return_pct']
+
+def log_suggestion(suggestions, accepted=False):
+    """Simpan saran ke file log."""
+    log_file = "logs/self_improvement_suggestions.json"
+    os.makedirs(os.path.dirname(log_file), exist_ok=True)
+    try:
+        with open(log_file, 'r') as f:
+            history = json.load(f)
+    except:
+        history = []
+    entry = {
+        "timestamp": datetime.now().isoformat(),
+        "suggestions": suggestions,
+        "accepted": accepted
+    }
+    history.append(entry)
+    with open(log_file, 'w') as f:
+        json.dump(history, f, indent=2)
+
+def suggest_parameters(performance, current_params):
+    """Berdasarkan performa, usulkan perubahan parameter."""
+    suggestions = {}
+    # Aturan sederhana untuk kelly multiplier
+    if performance['n_trades'] >= 5:
+        if performance['win_rate'] < 0.4:
+            # Jika win rate rendah, turunkan kelly
+            suggestions['kelly_mult'] = max(0.3, current_params.get('kelly_mult', 0.5) - 0.1)
+        elif performance['win_rate'] > 0.6:
+            # Jika win rate tinggi, naikkan kelly
+            suggestions['kelly_mult'] = min(0.8, current_params.get('kelly_mult', 0.5) + 0.05)
+
+    # Aturan untuk trailing stop berdasarkan avg loss
+    if performance['n_trades'] >= 5 and performance['avg_loss'] < -10:
+        # Perketat trailing stop jika loss rata-rata besar
+        suggestions['trailing_stop_pct'] = max(0.12, current_params.get('trailing_stop_pct', 0.2) - 0.02)
+
+    # Aturan untuk RSI threshold (contoh sederhana)
+    # if performance['n_trades'] >= 10 and performance['win_rate'] < 0.4:
+    #     suggestions['rsi_lo'] = max(40, current_params.get('rsi_lo', 45) - 2)
+    #     suggestions['rsi_hi'] = min(70, current_params.get('rsi_hi', 65) + 2)
+
+    return suggestions
+
+def apply_suggestion(suggestions):
+    """Terapkan saran ke file logs/current_params.json."""
+    params = load_current_params()
+    params.update(suggestions)
+    with open('logs/current_params.json', 'w') as f:
+        json.dump(params, f, indent=2)
+    print("Parameters updated in logs/current_params.json")
+
+def run_weekly_improvement():
+    print("=== Running Self-Improvement Loop ===")
+    trades = get_last_week_trades()
+    print(f"Trades last week: {len(trades)}")
+    perf = evaluate_performance(trades)
+    print(f"Performance: {perf}")
+
+    current_params = load_current_params()
+    print(f"Current params: {current_params}")
+
+    suggestions = suggest_parameters(perf, current_params)
+    if suggestions:
+        print(f"Suggestions: {suggestions}")
+        # Backtest setiap saran
+        accepted = {}
+        for param, value in suggestions.items():
+            # Buat saran tunggal untuk diuji
+            single_suggestion = {param: value}
+            if backtest_suggestion(current_params, single_suggestion):
+                accepted[param] = value
+                print(f"  Accepted {param} = {value}")
+            else:
+                print(f"  Rejected {param} = {value} (backtest not better)")
+        if accepted:
+            print(f"Accepted suggestions after backtest: {accepted}")
+            apply_suggestion(accepted)
+            log_suggestion(accepted, accepted=True)
+        else:
+            print("No suggestions accepted after backtest.")
+            log_suggestion(suggestions, accepted=False)
+    else:
+        print("No suggestions.")
+
+if __name__ == '__main__':
+    run_weekly_improvement()
+
+... (truncated after 200 lines)
+
+
+===== FILE: core\signal_engine.py =====
+# core/signal_engine.py
+import json, re
+import pandas as pd
+import numpy as np
+from collections import Counter
+from datetime import datetime
+from .llm_clients import call_all_llms
+from .llm_performance import get_weights, add_prediction
+from .news_sentiment import get_news_sentiment, get_fear_greed
+from config.trading_params import USE_NEWS_SENTIMENT, USE_FEAR_GREED
+from core.alternative_data import get_alt_data_for_prompt
+
+# ----------------------------------------------------------------------
+# Strategi final per aset
+# ----------------------------------------------------------------------
+
+def _sig_btc_vol_tsmom(ind, closes, volumes):
+    if len(closes) < 30 or len(volumes) < 20:
+        return "HOLD"
+    ret_30d = (closes[-1] - closes[-30]) / closes[-30]
+    ret_7d  = (closes[-1] - closes[-7])  / closes[-7]
+    vol_ratio = volumes[-1] / (np.median(volumes[-20:]) + 1e-9)
+    vol_strong = vol_ratio > 1.0
+    score = 0
+    if ret_30d > 0:   score += 2
+    elif ret_30d < 0: score -= 2
+    if ret_7d > 0:    score += 1
+    elif ret_7d < 0:  score -= 1
+    if ind["ema_trend"] == "BULLISH":  score += 2
+    elif ind["ema_trend"] == "BEARISH": score -= 2
+    if ind["macd_cross"] == "BULLISH": score += 1
+    else: score -= 1
+    if vol_strong: score += 2
+    if score >= 4:
+        return "BUY"
+    return "HOLD"
+
+def _sig_gold_smart_hold(ind, closes, date=None):
+    if len(closes) < 200:
+        return "HOLD"
+    if date is not None:
+        ts = pd.Timestamp(date)
+        if ts.month in [3,4,5,6]:
+            return "HOLD"
+        if ts.weekday() == 0:
+            return "HOLD"
+    s = pd.Series(closes)
+    ema50  = float(s.ewm(span=50).mean().iloc[-1])
+    ema200 = float(s.ewm(span=200).mean().iloc[-1])
+    price  = closes[-1]
+    ret_3m = (closes[-1] - closes[-63]) / closes[-63] if len(closes) >= 63 else 0
+    ret_1m = (closes[-1] - closes[-21]) / closes[-21] if len(closes) >= 21 else 0
+    if ret_3m < -0.08 and ret_1m < -0.03:
+        return "HOLD"
+    conditions = sum([
+        price > ema200,
+        ema50 > ema200,
+        ret_3m > 0.03,
+        ret_1m > 0,
+        ind["ema_trend"] == "BULLISH",
+        ind["macd_cross"] == "BULLISH",
+    ])
+    if conditions >= 5:
+        return "BUY"
+    return "HOLD"
+
+def _sig_spx_monthly_seasonal(ind, closes, date):
+    if len(closes) < 21:
+        return "HOLD"
+    month = pd.Timestamp(date).month
+    if month in [6, 9]:
+        return "HOLD"
+    STRONG = [1,4,7,11]
+    score = 0
+    high20 = max(closes[-21:-1])
+    if closes[-1] > high20:            score += 3
+    if ind["ema_trend"] == "BULLISH":  score += 2
+    if ind["macd_cross"] == "BULLISH": score += 1
+    if ind["rsi"] > 50:                score += 1
+    if month in STRONG:                score += 1
+    if score >= 5:
+        return "BUY"
+    return "HOLD"
+
+ASSET_STRATEGY_MAP = {
+    "BTC/USDT": _sig_btc_vol_tsmom,
+    "GC=F":     _sig_gold_smart_hold,
+    "^GSPC":    _sig_spx_monthly_seasonal,
+}
+
+def get_strategy_status_text():
+    from config.assets import ASSETS
+    lines = ["📊 *STRATEGI YANG DIGUNAKAN*"]
+    for name, info in ASSETS.items():
+        symbol = info["symbol"]
+        if symbol == "BTC/USDT":
+            lines.append(f"{name} → Vol-Weighted TSMOM (R2) | Score 8/14")
+        elif symbol == "GC=F":
+            lines.append(f"{name} → Smart Hold (Academic) | Exit saat prolonged bear")
+        elif symbol == "^GSPC":
+            lines.append(f"{name} → Monthly Seasonal R8 | Score 7/14 | Skip Jun, Sep")
+        else:
+            lines.append(f"{name} → Rule-based fallback")
+    return "\n".join(lines)
+
+def mtf_bias(data):
+    scores = []
+    for tf in ["1d", "4h", "1h"]:
+        if tf not in data:
+            continue
+        ind = data[tf]
+        score = 0
+        if ind["rsi"] > 55: score += 1
+        elif ind["rsi"] < 45: score -= 1
+        if ind["macd_cross"] == "BULLISH": score += 1
+        else: score -= 1
+        if ind["ema_trend"] == "BULLISH": score += 1
+        elif ind["ema_trend"] == "BEARISH": score -= 1
+        if ind["bb_pos"] == "OVERSOLD": score += 1
+        elif ind["bb_pos"] == "OVERBOUGHT": score -= 1
+        if ind["stoch_signal"] == "OVERSOLD": score += 1
+        elif ind["stoch_signal"] == "OVERBOUGHT": score -= 1
+        scores.append(score)
+    if not scores:
+        return "NEUTRAL"
+    avg = sum(scores) / len(scores)
+    if avg >= 1.5: return "STRONG_BULL"
+    elif avg >= 0.5: return "BULL"
+    elif avg <= -1.5: return "STRONG_BEAR"
+    elif avg <= -0.5: return "BEAR"
+    else: return "NEUTRAL"
+
+def rule_based_signal_v2(asset_name, ind, closes, volumes, date):
+    from config.assets import ASSETS
+    symbol = None
+    for name, info in ASSETS.items():
+        if name == asset_name:
+            symbol = info["symbol"]
+            break
+    if symbol is None:
+        return "HOLD", 0.5
+    if symbol in ASSET_STRATEGY_MAP:
+        strat_func = ASSET_STRATEGY_MAP[symbol]
+        if 'date' in strat_func.__code__.co_varnames:
+            signal = strat_func(ind, closes, date)
+        else:
+            signal = strat_func(ind, closes, volumes)
+        confidence = 0.7 if signal != "HOLD" else 0.5
+        return signal, confidence
+    else:
+        bias = mtf_bias({"1d": ind})
+        if bias in ["STRONG_BULL", "BULL"]:
+            return "BUY", 0.6
+        elif bias in ["STRONG_BEAR", "BEAR"]:
+            return "SHORT", 0.6
+        else:
+            return "HOLD", 0.5
+
+async def get_signal(asset_name, data, timestamp, perf, closes=None, volumes=None):
+    price = data["price"]
+    change = data["change"]
+    date_str = timestamp.split()[0]
+
+    if closes is None:
+        closes = data.get("closes", [])
+    if volumes is None:
+        volumes = data.get("volumes", [])
+
+    news = {}
+    fng = {}
+    if USE_NEWS_SENTIMENT:
+        news = get_news_sentiment(asset_name)
+    if USE_FEAR_GREED:
+        fng = get_fear_greed()
+
+    tf_lines = []
+    for tf, label in [("1d", "Daily"), ("4h", "4-Hour"), ("1h", "1-Hour")]:
+        if tf in data:
+            ind = data[tf]
+            tf_lines.append(
+                f"[{label}] RSI:{ind['rsi']} | MACD:{ind['macd_cross']}({ind['macd_hist']}) | "
+                f"EMA:{ind['ema_trend']} | BB:{ind['bb_pos']} | StochRSI:{ind['stoch_rsi']}({ind['stoch_signal']})"
+            )
+
+    bias = mtf_bias(data)
+
+    # D4: Skip LLM jika MTF NEUTRAL
+    if bias == "NEUTRAL":
+        fallback_signal, fallback_conf = rule_based_signal_v2(
+            asset_name, data.get("1d", {}), closes, volumes, date_str
+        )
+        return fallback_signal, fallback_conf, 0, ["D4: MTF NEUTRAL - rule-based only"], bias
+    extra_info = ""
+    # H5: Alternative data
+    alt_data = get_alt_data_for_prompt(asset_name)
+    if alt_data:
+        extra_info += f"\n{alt_data}"
+    if news:
+        extra_info += f"\nNews Sentiment: {news['sentiment']} (skor {news['score']}, {news['articles']} artikel)"
+    if fng:
+
+... (truncated after 200 lines)
+
+
+===== FILE: core\risk_manager.py =====
+import os
+# core/risk_manager.py
+from datetime import datetime
+
+def force_close_position(data, symbol, current_price, reason):
+    positions = data.get("positions", {})
+    shorts = data.get("shorts", {})
+
+    if symbol in positions:
+        pos = positions[symbol]
+        entry = pos["entry_price"]
+        qty = pos["qty"]
+        pnl = (current_price - entry) * qty
+        pos_type = "long"
+        data["balance"] += pos["amount"] + pnl
+        data["trades"].append({
+            "asset": symbol,
+            "type": pos_type,
+            "entry_price": entry,
+            "exit_price": current_price,
+            "qty": qty,
+            "amount": pos["amount"],
+            "pnl": round(pnl, 2),
+            "reason": reason,
+            "time": pos["time"],
+            "exit_time": datetime.now().isoformat()
+        })
+        del positions[symbol]
+        print(f"[FORCE CLOSE] {symbol} long ditutup karena {reason}. PnL: {pnl:.2f}")
+
+    elif symbol in shorts:
+        pos = shorts[symbol]
+        entry = pos["entry_price"]
+        qty = pos["qty"]
+        pnl = (entry - current_price) * qty
+        pos_type = "short"
+        data["balance"] += pos["amount"] + pnl
+        data["trades"].append({
+            "asset": symbol,
+            "type": pos_type,
+            "entry_price": entry,
+            "exit_price": current_price,
+            "qty": qty,
+            "amount": pos["amount"],
+            "pnl": round(pnl, 2),
+            "reason": reason,
+            "time": pos["time"],
+            "exit_time": datetime.now().isoformat()
+        })
+        del shorts[symbol]
+        print(f"[FORCE CLOSE] {symbol} short ditutup karena {reason}. PnL: {pnl:.2f}")
+
+    data["positions"] = positions
+    data["shorts"] = shorts
+    return data
+
+# â”€â”€ B4: Cooldown setelah SL hit â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+import json as _json
+from datetime import datetime as _dt, timezone as _tz, timedelta as _td
+
+_COOLDOWN_FILE  = os.path.join(os.path.dirname(__file__), "..", "logs", "paper_trades.json")
+COOLDOWN_CYCLES = 3   # skip 3 siklus
+CYCLE_MINUTES   = 60  # 1 siklus = 1 jam
+
+
+def _load_trades_cd():
+    try:
+        with open(_COOLDOWN_FILE, "r", encoding="utf-8") as f:
+            return _json.load(f)
+    except (FileNotFoundError, _json.JSONDecodeError):
+        return {}
+
+
+def _save_trades_cd(data):
+    os.makedirs(os.path.dirname(_COOLDOWN_FILE), exist_ok=True)
+    with open(_COOLDOWN_FILE, "w", encoding="utf-8") as f:
+        _json.dump(data, f, indent=2, default=str)
+
+
+def set_cooldown(asset):
+    """Panggil saat SL hit. Blokir aset selama COOLDOWN_CYCLES jam."""
+    data = _load_trades_cd()
+    if "cooldown" not in data:
+        data["cooldown"] = {}
+    until = _dt.now(_tz.utc) + _td(minutes=COOLDOWN_CYCLES * CYCLE_MINUTES)
+    data["cooldown"][asset] = until.isoformat()
+    _save_trades_cd(data)
+    logger.info("[B4] Cooldown aktif: %s hingga %s", asset, until.strftime("%Y-%m-%d %H:%M UTC"))
+
+
+def is_in_cooldown(asset):
+    """Return True jika aset masih cooldown. Panggil di bot.py sebelum open posisi."""
+    data = _load_trades_cd()
+    cooldown_map = data.get("cooldown", {})
+    if asset not in cooldown_map:
+        return False
+    try:
+        until = _dt.fromisoformat(cooldown_map[asset])
+        if until.tzinfo is None:
+            until = until.replace(tzinfo=_tz.utc)
+        now = _dt.now(_tz.utc)
+        if now < until:
+            remaining = int((until - now).total_seconds() / 60)
+            logger.info("[B4] %s cooldown â€” %d menit tersisa", asset, remaining)
+            return True
+        del cooldown_map[asset]
+        data["cooldown"] = cooldown_map
+        _save_trades_cd(data)
+        return False
+    except (ValueError, KeyError):
+        return False
+
+... (truncated after 200 lines)
+
+
+===== FILE: core\dxy_filter.py =====
+import yfinance as yf
+
+def get_dxy_signal():
+    """
+    DXY Macro Filter:
+    - DXY naik = USD kuat = bearish untuk BTC/crypto/emas
+    - DXY turun = USD lemah = bullish untuk BTC/crypto/emas
+    
+    Return: "BULLISH", "BEARISH", "NEUTRAL" + details
+    """
+    try:
+        dxy = yf.Ticker("DX-Y.NYB").history(period="30d")["Close"]
+        if len(dxy) < 10:
+            return "NEUTRAL", {"error": "data kurang"}
+
+        current = round(float(dxy.iloc[-1]), 2)
+        ma10    = round(float(dxy.tail(10).mean()), 2)
+        ma20    = round(float(dxy.tail(20).mean()), 2)
+        chg5d   = round((dxy.iloc[-1] - dxy.iloc[-6]) / dxy.iloc[-6] * 100, 2)
+
+        # DXY trend
+        dxy_uptrend   = current > ma10 > ma20
+        dxy_downtrend = current < ma10 < ma20
+
+        # Untuk crypto: DXY turun = BULLISH, DXY naik = BEARISH
+        if dxy_downtrend and chg5d < -0.5:
+            signal = "BULLISH"
+        elif dxy_uptrend and chg5d > 0.5:
+            signal = "BEARISH"
+        else:
+            signal = "NEUTRAL"
+
+        details = {
+            "dxy": current,
+            "ma10": ma10,
+            "ma20": ma20,
+            "chg5d": str(chg5d) + "%",
+            "trend": "DOWN" if dxy_downtrend else ("UP" if dxy_uptrend else "SIDEWAYS")
+        }
+        return signal, details
+
+    except Exception as e:
+        return "NEUTRAL", {"error": str(e)}
+
+
+if __name__ == "__main__":
+    sig, det = get_dxy_signal()
+    print(f"DXY Macro Signal : {sig}")
+    for k, v in det.items():
+        print(f"  {k}: {v}")
+
+... (truncated after 200 lines)
+
+
+===== FILE: core\momentum_filter.py =====
+import requests
+
+def get_momentum_signal(symbol="BTC"):
+    try:
+        url = "https://min-api.cryptocompare.com/data/v2/histoday?fsym=" + symbol + "&tsym=USD&limit=220"
+        data = requests.get(url, timeout=10).json()["Data"]["Data"]
+        closes = [d["close"] for d in data]
+        opens  = [d["open"]  for d in data]
+        vols   = [d["volumefrom"] for d in data]
+
+        def ema(prices, period):
+            result = [None] * (period - 1)
+            k = 2 / (period + 1)
+            e = sum(prices[:period]) / period
+            result.append(e)
+            for p in prices[period:]:
+                e = p * k + e * (1 - k)
+                result.append(e)
+            return result
+
+        def rsi(prices, period=14):
+            gains, losses = [], []
+            for i in range(1, len(prices)):
+                d = prices[i] - prices[i-1]
+                gains.append(max(d, 0))
+                losses.append(max(-d, 0))
+            result = [None] * period
+            avg_g = sum(gains[:period]) / period
+            avg_l = sum(losses[:period]) / period
+            for i in range(period, len(gains)):
+                avg_g = (avg_g * 13 + gains[i]) / 14
+                avg_l = (avg_l * 13 + losses[i]) / 14
+                rs = avg_g / avg_l if avg_l != 0 else 100
+                result.append(100 - 100 / (1 + rs))
+            return result
+
+        cum, delta = 0, []
+        for o, c, v in zip(opens, closes, vols):
+            cum += v if c >= o else -v
+            delta.append(cum)
+
+        rsi_vals = rsi(closes)
+        e12 = ema(closes, 12)
+        e26 = ema(closes, 26)
+        macd_line = [None if e12[i] is None or e26[i] is None else e12[i]-e26[i] for i in range(len(closes))]
+        valid_idx = [i for i,v in enumerate(macd_line) if v is not None]
+        sig_vals  = ema([macd_line[i] for i in valid_idx], 9)
+        macd_sig  = [None] * len(closes)
+        for j, idx in enumerate(valid_idx):
+            if sig_vals[j] is not None:
+                macd_sig[idx] = sig_vals[j]
+
+        ema50  = ema(closes, 50)
+        ema200 = ema(closes, 200)
+
+        # Pakai index terpendek agar tidak out of range
+        n = min(len(closes), len(rsi_vals), len(macd_line), len(macd_sig), len(ema50), len(ema200), len(delta))
+        i  = n - 1
+        ip = n - 2  # previous candle
+
+        r    = rsi_vals[i]
+        m    = macd_line[i]
+        s    = macd_sig[i]
+        mp   = macd_line[ip]
+        sp   = macd_sig[ip]
+        e50  = ema50[i]
+        e200 = ema200[i]
+        d_now = delta[i]
+        d_3   = delta[i-3]
+
+        if None in [r, m, s, mp, sp, e50, e200]:
+            return "NEUTRAL", {"reason": "indicator not ready"}
+
+        in_uptrend = e50 > e200
+        rsi_zone   = 45 < r < 65
+        macd_bull  = mp < sp and m > s
+        macd_bear  = mp > sp and m < s
+        delta_bull = d_now > d_3
+        delta_bear = d_now < d_3
+
+        details = {
+            "rsi": round(r, 1),
+            "ema50_gt_200": in_uptrend,
+            "delta_bullish": delta_bull,
+            "macd_cross": "BULL" if macd_bull else ("BEAR" if macd_bear else "NONE"),
+            "price": closes[i]
+        }
+
+        if in_uptrend and rsi_zone and macd_bull and delta_bull:
+            return "BULLISH", details
+        elif macd_bear and delta_bear:
+            return "BEARISH", details
+        else:
+            return "NEUTRAL", details
+
+    except Exception as e:
+        return "NEUTRAL", {"error": str(e)}
+
+if __name__ == "__main__":
+    sig, det = get_momentum_signal("BTC")
+    print(f"Momentum Signal : {sig}")
+    for k, v in det.items():
+        print(f"  {k}: {v}")
+
+... (truncated after 200 lines)
+
+
+===== FILE: core\narrative_scanner.py =====
+"""
+
+Sprint A: Narrative Scanner + Asset Universe
+
+LLM scan narasi dominan setiap 2 jam
+
+"""
+
+import json, os, sys, re, asyncio
+
+from datetime import datetime
+
+
+
+sys.path.insert(0, os.getcwd())
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+from core.llm_clients import call_all_llms
+
+
+
+NARRATIVE_FILE = "logs/narrative_state.json"
+
+
+
+# Universe aset per narasi
+
+NARRATIVES = {
+
+    "AI_TECH": {
+
+        "description": "AI & semiconductor boom",
+
+        "keywords": ["nvidia","ai","artificial intelligence","semiconductor","gpu","llm","openai","chatgpt"],
+
+        "assets": {
+
+            "stocks": ["NVDA","AMD","MSFT","GOOGL","META","TSMC","ASML"],
+
+            "crypto": ["FET/USDT","RNDR/USDT","WLD/USDT"],
+
+        },
+
+        "risk": "moderate",
+
+        "tp_pct": 40,
+
+        "sl_pct": 15,
+
+    },
+
+    "CRYPTO_BULL": {
+
+        "description": "Crypto bull market / halving cycle",
+
+        "keywords": ["bitcoin","btc","crypto","halving","bull run","altseason","blockchain"],
+
+        "assets": {
+
+            "crypto": ["BTC/USDT","ETH/USDT","SOL/USDT","BNB/USDT","AVAX/USDT"],
+
+            "stocks": ["COIN","MSTR"],
+
+        },
+
+        "risk": "aggressive",
+
+        "tp_pct": 50,
+
+        "sl_pct": 20,
+
+    },
+
+    "DEFI_SEASON": {
+
+        "description": "DeFi & Web3 narrative",
+
+        "keywords": ["defi","decentralized finance","yield","liquidity","dex","uniswap","aave"],
+
+        "assets": {
+
+            "crypto": ["UNI/USDT","AAVE/USDT","MKR/USDT","CRV/USDT","LDO/USDT"],
+
+        },
+
+        "risk": "aggressive",
+
+        "tp_pct": 60,
+
+        "sl_pct": 25,
+
+    },
+
+    "INFLATION_HEDGE": {
+
+        "description": "Inflation hedge & macro uncertainty",
+
+        "keywords": ["inflation","cpi","fed","interest rate","gold","commodity","oil","recession"],
+
+        "assets": {
+
+            "commodities": ["GC=F","CL=F","SI=F"],
+
+            "crypto": ["BTC/USDT"],
+
+            "stocks": ["GLD","SLV","USO"],
+
+        },
+
+        "risk": "conservative",
+
+        "tp_pct": 25,
+
+        "sl_pct": 10,
+
+    },
+
+    "SEMIS_SUPPLY": {
+
+        "description": "Semiconductor supply chain",
+
+        "keywords": ["semiconductor","chip","wafer","tsmc","asml","supply chain","foundry"],
+
+        "assets": {
+
+            "stocks": ["ASML","TSM","AMAT","KLAC","LRCX","MU"],
+
+        },
+
+        "risk": "moderate",
+
+        "tp_pct": 35,
+
+        "sl_pct": 12,
+
+    },
+
+    "RISK_OFF": {
+
+        "description": "Bear market / high uncertainty — hold cash",
+
+        "keywords": ["crash","recession","crisis","war","panic","fear","selloff","bear market"],
+
+        "assets": {
+
+            "commodities": ["GC=F"],
+
+            "cash_pct": 80,
+
+        },
+
+        "risk": "conservative",
+
+        "tp_pct": 15,
+
+        "sl_pct": 8,
+
+    },
+
+    "EMERGING_TECH": {
+
+        "description": "Emerging tech: biotech, space, energy",
+
+        "keywords": ["biotech","space","clean energy","ev","electric vehicle","solar","nuclear"],
+
+        "assets": {
+
+            "stocks": ["TSLA","ENPH","NEE","LMT","ARKG"],
+
+        },
+
+        "risk": "moderate",
+
+        "tp_pct": 35,
+
+        "sl_pct": 15,
+
+    },
+
+}
+
+
+
+def load_narrative_state():
+
+    if os.path.exists(NARRATIVE_FILE):
+
+        with open(NARRATIVE_FILE) as f:
+
+            return json.load(f)
+
+    return {
+
+        "active_narratives": [],
+
+        "last_scan": None,
+
+
+... (truncated after 200 lines)
+
+
+===== FILE: synclavix\synclavix\main.py =====
+import asyncio
+from orchestrator.graph import run_graph
+
+async def main():
+    print("🚀 Synclavix Trading Pipeline Started")
+    while True:
+        try:
+            await run_graph("main")
+            await asyncio.sleep(7200)  # 2 jam
+        except KeyboardInterrupt:
+            print("\n🛑 Synclavix stopped.")
+            break
+        except Exception as e:
+            print(f"❌ Error: {e}")
+            await asyncio.sleep(60)
+
+if __name__ == "__main__":
+    asyncio.run(main())
+
+... (truncated after 200 lines)
+
+
+===== FILE: synclavix\synclavix\state\state_manager.py =====
+import json
+import os
+from datetime import datetime
+from pathlib import Path
+
+class StateManager:
+    def __init__(self, data_dir="data"):
+        self.data_dir = Path(data_dir)
+        self.data_dir.mkdir(exist_ok=True)
+        (self.data_dir / "checkpoints").mkdir(exist_ok=True)
+        self.state_file = self.data_dir / "session_state.json"
+    
+    def load_state(self):
+        if not self.state_file.exists():
+            return self._initialize_new_session()
+        try:
+            with open(self.state_file, 'r') as f:
+                return json.load(f)
+        except:
+            return self._initialize_new_session()
+    
+    def save_checkpoint(self, next_state, checkpoint_data):
+        try:
+            # Save checkpoint data
+            checkpoint_file = self.data_dir / "checkpoints" / f"{next_state.lower()}_checkpoint.json"
+            with open(checkpoint_file, 'w') as f:
+                json.dump({"timestamp": datetime.utcnow().isoformat(), "data": checkpoint_data}, f)
+            
+            # Update state
+            state = {
+                "current_state": next_state,
+                "timestamp": datetime.utcnow().isoformat(),
+                "session_id": f"session_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}"
+            }
+            
+            with open(self.state_file, 'w') as f:
+                json.dump(state, f)
+            return True
+        except Exception as e:
+            print(f"Checkpoint error: {e}")
+            return False
+    
+    def _initialize_new_session(self):
+        return {
+            "current_state": "COLLECT", 
+            "timestamp": datetime.utcnow().isoformat(),
+            "session_id": f"session_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}"
+        }
+
+... (truncated after 200 lines)
+
+
+===== FILE: synclavix\synclavix\modules\risk_manager.py =====
+import os
+# core/risk_manager.py
+from datetime import datetime
+
+def force_close_position(data, symbol, current_price, reason):
+    positions = data.get("positions", {})
+    shorts = data.get("shorts", {})
+
+    if symbol in positions:
+        pos = positions[symbol]
+        entry = pos["entry_price"]
+        qty = pos["qty"]
+        pnl = (current_price - entry) * qty
+        pos_type = "long"
+        data["balance"] += pos["amount"] + pnl
+        data["trades"].append({
+            "asset": symbol,
+            "type": pos_type,
+            "entry_price": entry,
+            "exit_price": current_price,
+            "qty": qty,
+            "amount": pos["amount"],
+            "pnl": round(pnl, 2),
+            "reason": reason,
+            "time": pos["time"],
+            "exit_time": datetime.now().isoformat()
+        })
+        del positions[symbol]
+        print(f"[FORCE CLOSE] {symbol} long ditutup karena {reason}. PnL: {pnl:.2f}")
+
+    elif symbol in shorts:
+        pos = shorts[symbol]
+        entry = pos["entry_price"]
+        qty = pos["qty"]
+        pnl = (entry - current_price) * qty
+        pos_type = "short"
+        data["balance"] += pos["amount"] + pnl
+        data["trades"].append({
+            "asset": symbol,
+            "type": pos_type,
+            "entry_price": entry,
+            "exit_price": current_price,
+            "qty": qty,
+            "amount": pos["amount"],
+            "pnl": round(pnl, 2),
+            "reason": reason,
+            "time": pos["time"],
+            "exit_time": datetime.now().isoformat()
+        })
+        del shorts[symbol]
+        print(f"[FORCE CLOSE] {symbol} short ditutup karena {reason}. PnL: {pnl:.2f}")
+
+    data["positions"] = positions
+    data["shorts"] = shorts
+    return data
+
+# â”€â”€ B4: Cooldown setelah SL hit â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+import json as _json
+from datetime import datetime as _dt, timezone as _tz, timedelta as _td
+
+_COOLDOWN_FILE  = os.path.join(os.path.dirname(__file__), "..", "logs", "paper_trades.json")
+COOLDOWN_CYCLES = 3   # skip 3 siklus
+CYCLE_MINUTES   = 60  # 1 siklus = 1 jam
+
+
+def _load_trades_cd():
+    try:
+        with open(_COOLDOWN_FILE, "r", encoding="utf-8") as f:
+            return _json.load(f)
+    except (FileNotFoundError, _json.JSONDecodeError):
+        return {}
+
+
+def _save_trades_cd(data):
+    os.makedirs(os.path.dirname(_COOLDOWN_FILE), exist_ok=True)
+    with open(_COOLDOWN_FILE, "w", encoding="utf-8") as f:
+        _json.dump(data, f, indent=2, default=str)
+
+
+def set_cooldown(asset):
+    """Panggil saat SL hit. Blokir aset selama COOLDOWN_CYCLES jam."""
+    data = _load_trades_cd()
+    if "cooldown" not in data:
+        data["cooldown"] = {}
+    until = _dt.now(_tz.utc) + _td(minutes=COOLDOWN_CYCLES * CYCLE_MINUTES)
+    data["cooldown"][asset] = until.isoformat()
+    _save_trades_cd(data)
+    logger.info("[B4] Cooldown aktif: %s hingga %s", asset, until.strftime("%Y-%m-%d %H:%M UTC"))
+
+
+def is_in_cooldown(asset):
+    """Return True jika aset masih cooldown. Panggil di bot.py sebelum open posisi."""
+    data = _load_trades_cd()
+    cooldown_map = data.get("cooldown", {})
+    if asset not in cooldown_map:
+        return False
+    try:
+        until = _dt.fromisoformat(cooldown_map[asset])
+        if until.tzinfo is None:
+            until = until.replace(tzinfo=_tz.utc)
+        now = _dt.now(_tz.utc)
+        if now < until:
+            remaining = int((until - now).total_seconds() / 60)
+            logger.info("[B4] %s cooldown â€” %d menit tersisa", asset, remaining)
+            return True
+        del cooldown_map[asset]
+        data["cooldown"] = cooldown_map
+        _save_trades_cd(data)
+        return False
+    except (ValueError, KeyError):
+        return False
+
+... (truncated after 200 lines)
+
+
+===== FILE: synclavix\synclavix\.env.example =====
+# API Keys (rename to .env and fill in your keys)
+TELEGRAM_BOT_TOKEN=your_bot_token_here
+TELEGRAM_CHAT_ID=your_chat_id_here
+GATE_API_KEY=your_gate_api_key
+GATE_SECRET=your_gate_secret
+
+... (truncated after 200 lines)
+
+
+===== FILE: synclavix\synclavix\requirements.txt =====
+aiohttp
+ccxt
+python-dotenv
+pandas
+
+... (truncated after 200 lines)
