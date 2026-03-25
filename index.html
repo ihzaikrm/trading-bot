@@ -1,0 +1,517 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trading Terminal</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #080c10;
+    --bg2: #0c1118;
+    --bg3: #111820;
+    --border: #1a2535;
+    --border2: #243040;
+    --green: #00e676;
+    --green2: #00c853;
+    --cyan: #00e5ff;
+    --cyan2: #0097a7;
+    --red: #ff1744;
+    --red2: #b71c1c;
+    --yellow: #ffd600;
+    --purple: #d500f9;
+    --text: #c8d8e8;
+    --text2: #6a8aaa;
+    --text3: #3a5070;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Space Grotesk', sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--mono); font-size: 13px; overflow-x: hidden; }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+  /* TICKER */
+  .ticker {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 7px 16px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .ticker-brand {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--cyan);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .pulse { width: 7px; height: 7px; background: var(--green); border-radius: 50%; animation: pulse 1.4s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(0,230,118,.4)} 50%{opacity:.6;box-shadow:0 0 0 4px rgba(0,230,118,0)} }
+  .ticker-pair { font-size: 12px; color: var(--text2); }
+  .ticker-pair strong { color: var(--text); margin-right: 5px; }
+  .up { color: var(--green); }
+  .down { color: var(--red); }
+  .neu { color: var(--yellow); }
+  .ticker-time { margin-left: auto; font-size: 11px; color: var(--text3); flex-shrink: 0; }
+
+  /* HEADER */
+  .header {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 6px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .badges { display: flex; gap: 8px; align-items: center; }
+  .badge {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 3px 9px;
+    border-radius: 3px;
+    border: 1px solid;
+  }
+  .badge-paper { color: var(--cyan); border-color: var(--cyan2); background: rgba(0,229,255,.06); }
+  .badge-live { color: var(--green); border-color: var(--green2); background: rgba(0,230,118,.06); }
+  .badge-fear { color: var(--red); border-color: var(--red2); background: rgba(255,23,68,.06); }
+  .header-right { font-size: 11px; color: var(--text3); }
+  .countdown { color: var(--cyan); }
+
+  /* MAIN LAYOUT */
+  .main { padding: 12px 14px; display: grid; gap: 10px; }
+
+  /* STAT CARDS */
+  .stats-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+  .stat-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--cyan2);
+    opacity: .4;
+  }
+  .stat-card.green::before { background: var(--green2); }
+  .stat-card.red::before { background: var(--red2); }
+  .stat-card.yellow::before { background: var(--yellow); }
+  .stat-card.purple::before { background: var(--purple); }
+  .stat-label { font-size: 9px; letter-spacing: 1.5px; color: var(--text3); text-transform: uppercase; margin-bottom: 7px; }
+  .stat-value { font-size: 22px; font-weight: 600; color: #fff; line-height: 1; }
+  .stat-sub { font-size: 10px; color: var(--text2); margin-top: 5px; }
+
+  /* CHART ROW */
+  .chart-row { display: grid; grid-template-columns: 1fr 340px; gap: 10px; }
+  .chart-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .chart-header {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .chart-title { font-size: 10px; letter-spacing: 1.5px; color: var(--text2); text-transform: uppercase; }
+  .chart-meta { font-size: 11px; color: var(--cyan); font-weight: 600; }
+  .chart-body { padding: 14px; }
+  #candleChart { width: 100%; height: 220px; }
+  #allocChart { width: 100% !important; height: 220px !important; }
+
+  /* HOLDINGS */
+  .section-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .section-title { font-size: 10px; letter-spacing: 1.5px; color: var(--text2); text-transform: uppercase; }
+  .section-meta { font-size: 10px; color: var(--text3); }
+
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    padding: 8px 14px;
+    text-align: left;
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: var(--text3);
+    border-bottom: 1px solid var(--border);
+    text-transform: uppercase;
+  }
+  td {
+    padding: 10px 14px;
+    font-size: 12px;
+    border-bottom: 1px solid rgba(26,37,53,.6);
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(26,37,53,.4); }
+
+  .tag {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .5px;
+  }
+  .tag-buy { background: rgba(0,200,83,.12); color: var(--green); border: 1px solid rgba(0,200,83,.25); }
+  .tag-sell { background: rgba(255,23,68,.12); color: var(--red); border: 1px solid rgba(255,23,68,.25); }
+  .tag-hold { background: rgba(255,214,0,.12); color: var(--yellow); border: 1px solid rgba(255,214,0,.25); }
+  .tag-long { background: rgba(0,229,255,.1); color: var(--cyan); border: 1px solid rgba(0,229,255,.2); }
+  .tag-closed { background: rgba(106,138,170,.1); color: var(--text2); border: 1px solid var(--border); }
+  .tag-win { background: rgba(0,200,83,.1); color: var(--green); border: 1px solid rgba(0,200,83,.2); }
+  .tag-loss { background: rgba(255,23,68,.1); color: var(--red); border: 1px solid rgba(255,23,68,.2); }
+
+  /* THREE COLUMN BOTTOM */
+  .bottom-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .bottom-body { padding: 12px 14px; height: 280px; overflow-y: auto; }
+
+  /* NARRATIVE */
+  .narr-item { padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .narr-item:last-child { border-bottom: none; }
+  .narr-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+  .narr-name { font-size: 12px; font-weight: 600; color: var(--cyan); letter-spacing: .5px; }
+  .narr-votes { font-size: 10px; color: var(--text3); }
+  .narr-thesis { font-size: 11px; color: var(--text2); line-height: 1.5; margin-bottom: 5px; }
+  .narr-assets { display: flex; gap: 5px; flex-wrap: wrap; }
+  .narr-asset { font-size: 10px; padding: 2px 6px; background: rgba(0,229,255,.07); border: 1px solid rgba(0,229,255,.15); border-radius: 3px; color: var(--cyan); }
+  .narr-tpsl { font-size: 10px; color: var(--text3); margin-top: 5px; }
+  .urgency-high { color: var(--red); font-weight: 600; }
+  .urgency-medium { color: var(--yellow); font-weight: 600; }
+  .urgency-low { color: var(--green); font-weight: 600; }
+
+  /* LLM VOTING */
+  .llm-asset-section { margin-bottom: 14px; }
+  .llm-asset-label { font-size: 10px; letter-spacing: 1px; color: var(--text3); text-transform: uppercase; margin-bottom: 8px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+  .llm-row { display: flex; align-items: center; gap: 8px; padding: 4px 0; }
+  .llm-name { width: 72px; font-size: 11px; color: var(--text); }
+  .llm-signal { width: 36px; font-size: 10px; font-weight: 600; }
+  .llm-bar-bg { flex: 1; height: 5px; background: var(--border); border-radius: 3px; }
+  .llm-bar { height: 5px; border-radius: 3px; transition: width .4s; }
+  .bar-green { background: var(--green2); }
+  .bar-red { background: var(--red2); }
+  .bar-yellow { background: var(--yellow); }
+  .llm-elo { width: 38px; text-align: right; font-size: 10px; color: var(--text3); }
+
+  /* NEWS */
+  .news-item { padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .news-item:last-child { border-bottom: none; }
+  .news-tf { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 3px; }
+  .tf-breaking { color: var(--red); }
+  .tf-penting { color: var(--yellow); }
+  .tf-konteks { color: var(--text3); }
+  .news-title { font-size: 11px; color: var(--text2); line-height: 1.4; }
+  .news-src { font-size: 10px; color: var(--text3); margin-top: 2px; }
+  .verified-dot { color: var(--green); margin-right: 3px; }
+
+  /* TRADE HISTORY extra wide */
+  .trade-row td:first-child { font-size: 10px; color: var(--text3); }
+
+  /* EQUITY LINE */
+  #eqChart { width: 100% !important; }
+
+  /* TABS for LLM section */
+  .tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); }
+  .tab {
+    padding: 7px 14px;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: var(--text3);
+    border-bottom: 2px solid transparent;
+    transition: all .2s;
+  }
+  .tab.active { color: var(--cyan); border-bottom-color: var(--cyan); }
+  .tab:hover { color: var(--text); }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* RISK SUMMARY BAR */
+  .risk-bar { height: 3px; background: var(--border); border-radius: 2px; margin: 4px 0; overflow: hidden; }
+  .risk-fill { height: 100%; border-radius: 2px; transition: width .5s; }
+
+  /* EMPTY STATE */
+  .empty { color: var(--text3); font-size: 11px; padding: 20px 0; text-align: center; }
+
+  /* SPARKLINE */
+  .sparkline { height: 30px; }
+
+  /* CHART TABS */
+  .chart-tabs { display: flex; gap: 4px; margin-top: 8px; }
+  .chart-tab {
+    padding: 4px 10px;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: var(--text3);
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+  .chart-tab.active {
+    color: var(--cyan);
+    border-color: var(--cyan);
+    background: rgba(0, 229, 255, 0.1);
+  }
+  .chart-tab:hover {
+    color: var(--text);
+    border-color: var(--cyan2);
+  }
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-brand"><div class="pulse"></div>TRADING TERMINAL</div>
+  <div class="ticker-pair" id="tk-btc"><strong>BTC/USDT</strong> <span>--</span></div>
+  <div class="ticker-pair" id="tk-eth"><strong>ETH/USDT</strong> <span>--</span></div>
+  <div class="ticker-pair" id="tk-gold"><strong>XAU/USD</strong> <span class="neu">--</span></div>
+  <div class="ticker-pair" id="tk-eur"><strong>EUR/USD</strong> <span class="neu">--</span></div>
+  <div class="ticker-pair" id="tk-idr"><strong>USD/IDR</strong> <span class="neu">--</span></div>
+  <div class="ticker-time" id="tk-time">--</div>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="badges">
+    <div class="badge badge-paper">PAPER TRADING</div>
+    <div class="badge badge-live">● LIVE</div>
+    <div class="badge badge-fear" id="fgBadge">F&G: --</div>
+    <div id="fgSparkline" style="display: inline-block; margin-left: 6px; vertical-align: middle; width: 60px; height: 20px;"></div>
+    <div id="clockDisplay" style="font-size:11px;color:var(--text3);margin-left:4px"></div>
+  </div>
+  <div class="header-right">
+    Refresh in <span class="countdown" id="cdown">60</span>s &nbsp;|&nbsp;
+    <span id="dataStatus" style="color:var(--text3)">loading...</span>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- STAT CARDS -->
+  <div class="stats-row">
+    <div class="stat-card green">
+      <div class="stat-label">Portfolio Value</div>
+      <div class="stat-value" id="sPortfolio">$--</div>
+      <div class="stat-sub" id="sReturn">--</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Unrealized PnL</div>
+      <div class="stat-value" id="sUnreal">$--</div>
+      <div class="stat-sub" id="sUnrealPct">open positions</div>
+    </div>
+    <div class="stat-card red">
+      <div class="stat-label">Max Drawdown</div>
+      <div class="stat-value" id="sDrawdown">--%</div>
+      <div class="stat-sub">circuit breaker: 5%</div>
+    </div>
+    <div class="stat-card yellow">
+      <div class="stat-label">Win Rate</div>
+      <div class="stat-value" id="sWinrate">--%</div>
+      <div class="stat-sub" id="sTradeCount">-- trades</div>
+    </div>
+    <div class="stat-card purple">
+      <div class="stat-label">Total PnL</div>
+      <div class="stat-value" id="sTotalPnl">$--</div>
+      <div class="stat-sub" id="sSharpe">sharpe: --</div>
+    </div>
+  </div>
+
+  <!-- CHART ROW -->
+  <div class="chart-row">
+    <!-- Candlestick -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">BTC/USDT · 1D Candlestick</div>
+          <div style="font-size:10px;color:var(--text3);margin-top:2px">7 days · CoinGecko</div>
+          <!-- Asset Tabs -->
+          <div class="chart-tabs" style="display: flex; gap: 8px; margin-top: 10px;">
+            <button class="chart-tab active" data-asset="BTC" onclick="switchChartAsset('BTC')">BTC/USDT</button>
+            <button class="chart-tab" data-asset="ETH" onclick="switchChartAsset('ETH')">ETH/USDT</button>
+            <button class="chart-tab" data-asset="XAU" onclick="switchChartAsset('XAU')">XAU/USD</button>
+            <button class="chart-tab" data-asset="SPX" onclick="switchChartAsset('SPX')">SPX</button>
+          </div>
+          <!-- LLM Council Heatmap -->
+          <div id="llmHeatmap" style="margin-top: 12px; padding: 8px; background: var(--bg3); border-radius: 4px; border: 1px solid var(--border);">
+            <div style="font-size: 9px; letter-spacing: 1px; color: var(--text3); text-transform: uppercase; margin-bottom: 6px;">LLM Council Consensus</div>
+            <div id="llmHeatmapBars" style="display: flex; flex-direction: column; gap: 4px;">
+              <!-- Bars will be inserted by JavaScript -->
+              <div class="empty" style="font-size: 10px; color: var(--text3);">Loading LLM data...</div>
+            </div>
+          </div>
+        </div>
+        <div class="chart-meta" id="btcPrice">$--</div>
+      </div>
+      <div id="candleChart" style="height:220px"></div>
+    </div>
+
+    <!-- Allocation + Equity -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div class="chart-title">Asset Allocation</div>
+        <div style="font-size:10px;color:var(--text3)" id="allocCash">cash: --</div>
+      </div>
+      <div class="chart-body" style="padding:10px">
+        <canvas id="allocChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- EQUITY CURVE -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-title">Equity Curve</div>
+      <div class="section-meta" id="eqMeta">--</div>
+    </div>
+    <div style="padding:10px 14px">
+      <canvas id="eqChart" height="80"></canvas>
+    </div>
+  </div>
+
+  <!-- HOLDINGS TABLE -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-title">Open Positions</div>
+      <div class="section-meta" id="posCount">0 active</div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Asset</th>
+          <th>Side</th>
+          <th>Entry Price</th>
+          <th>Current</th>
+          <th>Qty</th>
+          <th>Amount</th>
+          <th>Unr. PnL</th>
+          <th>Trailing Stop</th>
+          <th>Signal</th>
+        </tr>
+      </thead>
+      <tbody id="holdingsBody">
+        <tr><td colspan="9" class="empty">No open positions</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FILTER STATUS SECTION -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-title">Market Filters</div>
+      <div class="section-meta" id="filterTimestamp">--</div>
+    </div>
+    <div id="filterStatus" class="bottom-body" style="height: auto; min-height: 90px;">
+      <div class="empty">Loading filters...</div>
+    </div>
+  </div>
+
+  <!-- BOTTOM GRID: Narrative | LLM Voting | News -->
+  <div class="bottom-grid">
+
+    <!-- NARRATIVE THESIS -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-title">Narrative Portfolio</div>
+        <div id="urgencyBadge" class="section-meta">--</div>
+      </div>
+      <div class="bottom-body" id="narrativeBody">
+        <div class="empty">Loading narratives...</div>
+      </div>
+    </div>
+
+    <!-- LLM VOTING PER ASSET -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-title">LLM Voting · Per Asset</div>
+        <div class="section-meta" id="llmTopLabel">top: --</div>
+      </div>
+      <div class="tabs" id="llmTabs"></div>
+      <div class="bottom-body" id="llmVotingBody" style="height:calc(280px - 32px)">
+        <div class="empty">Loading LLM data...</div>
+      </div>
+    </div>
+
+    <!-- NEWS -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-title">Verified News</div>
+        <div class="section-meta" id="newsCount">-- verified</div>
+      </div>
+      <div class="bottom-body" id="newsBody">
+        <div class="empty">Loading news...</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TRADE HISTORY TABLE -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-title">Trade History</div>
+      <div class="section-meta" id="tradeHistMeta">--</div>
+    </div>
+    <div style="overflow-x:auto;max-height:320px;overflow-y:auto">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Asset</th>
+            <th>Entry Time</th>
+            <th>Exit Time</th>
+            <th>Entry Price</th>
+            <th>Exit Price</th>
+            <th>Qty</th>
+            <th>PnL ($)</th>
+            <th>PnL (%)</th>
+            <th>Result</th>
+          </tr>
+        </thead>
+        <tbody id="tradeHistBody">
+          <tr><td colspan="10" class="empty">No closed trades yet</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<script src="dashboard.js?v=2"></script>
+<!-- v2.1 -->
+</body>
+</html>
+
