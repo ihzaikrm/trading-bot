@@ -1,6 +1,5 @@
 console.log('Dashboard script loading');
 // Ensure global functions are defined even if script parsing fails later
-window.switchChartAsset = function() { console.warn('switchChartAsset stub called'); };
 
 const RAW = 'https://raw.githubusercontent.com/ihzaikrm/trading-bot/main/logs/';
 let eqInst = null, allocInst = null, candleInst = null, countdown = 60;
@@ -223,7 +222,7 @@ function renderCandles(data) {
     }));
     
     // If chart already exists, just update the series data
-    if (candleInst && candleInst.series().length > 0) {
+    if (candleInst && typeof candleInst.series === 'function' && candleInst.series().length > 0) {
       const series = candleInst.series()[0];
       series.setData(candles);
       candleInst.timeScale().fitContent();
@@ -257,7 +256,7 @@ function renderCandles(data) {
 }
 
 function addTradeMarkers(trades, asset) {
-  if (!candleInst) return;
+  if (!candleInst || typeof candleInst.series !== 'function') return;
   const series = candleInst.series()[0];
   if (!series) return;
   
