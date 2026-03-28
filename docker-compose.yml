@@ -7,7 +7,7 @@ services:
       - "80:80"
     volumes:
       - ./dashboard:/usr/share/nginx/html:ro
-      - ./logs:/usr/share/nginx/html/logs:ro
+      - ./logs:/var/nginx/logs:ro
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
     restart: unless-stopped
     healthcheck:
