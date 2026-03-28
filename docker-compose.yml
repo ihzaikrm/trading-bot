@@ -1,0 +1,55 @@
+version: '3.8'
+services:
+  dashboard:
+    image: nginx:alpine
+    container_name: synclavix-dashboard
+    ports:
+      - "80:80"
+    volumes:
+      - ./dashboard:/usr/share/nginx/html:ro
+      - ./logs:/usr/share/nginx/html/logs:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  bot-runner:
+    build: .
+    container_name: synclavix-bot
+    env_file: .env
+    volumes:
+      - ./logs:/app/logs
+      - ./.git:/app/.git
+      - ./core:/app/core
+      - ./synclavix:/app/synclavix
+      - ./config:/app/config
+      - ./backtest:/app/backtest
+    command: >
+      sh -c "
+        echo 'Synclavix Bot started';
+        while true; do
+          echo 'Running bot: '$(date);
+          python bot.py;
+          echo 'Next run in 2 hours...';
+          sleep 7200;
+        done
+      "
+    restart: unless-stopped
+
+  telegram-listener:
+    build: .
+    container_name: synclavix-telegram
+    env_file: .env
+    volumes:
+      - ./logs:/app/logs
+    command: >
+      sh -c "
+        while true; do
+          python telegram_listener.py || echo 'Listener crashed, restarting...';
+          sleep 5;
+        done
+      "
+    restart: unless-stopped
